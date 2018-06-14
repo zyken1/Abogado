@@ -8,26 +8,26 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.nequiz_omen.abogado.Cliente">
 
-    <!--  ===========   Se oculta la barra predeterminada  =============  -->
+
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:theme="@style/AppTheme.AppBarOverlay">  <!--   Color de la letra -->
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                app:popupTheme="@style/AppTheme.PopupOverlay" />   <!--   Color y diseño de el TOOLBAR  -->
 
         </android.support.design.widget.AppBarLayout>
 
 
-    <!-- SE INCLUYE EL CONTENIDO DEL ACTIVITY CLIENTE
+
     <include
         android:id="@+id/include"
-        layout="@layout/content_cliente" />  AQUI ESTA EL ERROR  VERIFICARLO EN CELULAR DE DANIEL-->
+        layout="@layout/content_cliente" />
 
 
 

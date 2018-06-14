@@ -11,6 +11,27 @@ import android.os.Handler;
 
 public class SplashActivity extends Activity {
 
+    private static boolean splashLoaded = false;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
+        if (splashLoaded) {    /*DESDE AQUI SE CONTROLA EL SCREEN SPLASH  con un !splashLoaded   para negar la preposicion*/
+            setContentView(R.layout.activity_splash);
+            int secondsDelayed = 1;
+            new Handler().postDelayed(new Runnable() {
+                public void run() {
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    finish();
+                }
+            }, secondsDelayed * 5000);
+
+            splashLoaded = true;
+        } else {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
 }

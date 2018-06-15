@@ -13,11 +13,9 @@
     <string name="plazos">PLAZOS</string>
     <string name="finanzas">FINANZAS</string>
     <string name="obteniendo_configuraciones">OBTENIENDO CONFIGURACIONES</string>
-    <string name="title_activity_cliente">cliente</string>
-    <string name="title_activity_basic">Basic</string>
+    <string name="title_activity_cliente">Clientes</string>
     <string name="title_activity_juicios">Juicios</string>
     <string name="title_activity_plazos">Plazos</string>
-    <string name="title_activity_cliente__registro">Cliente_Registro</string>
-    <string name="title_activity_cliente__formulario">Cliente_Formulario</string>
-    <string name="title_activity_jucios__formulario">Jucios_Formulario</string>
+    <string name="title_activity_cliente__formulario">Nuevo Cliente</string>
+    <string name="title_activity_jucios__formulario">Registro Juicio</string>
 </resources>

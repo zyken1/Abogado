@@ -11,32 +11,23 @@ import android.os.Handler;
 
 public class SplashActivity extends Activity {
 
-    private static boolean splashLoaded = false;
+    // Duración en milisegundos que se mostrará el splash
+    private final int DURACION_SPLASH = 3000; // 3 segundos
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try {
-            if (splashLoaded) {    /*DESDE AQUI SE CONTROLA EL SCREEN SPLASH  con un !splashLoaded   para negar la preposicion*/
-                setContentView(R.layout.activity_splash);
-                int secondsDelayed = 1;
-                new Handler().postDelayed(new Runnable() {
-                    public void run() {
-                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                        finish();
-                    }
-                }, secondsDelayed * 5000);
 
-                splashLoaded = true;
-            } else {
-                Intent intent = new Intent(this, MainActivity.class);
+        // Tenemos una plantilla llamada splash.xml donde mostraremos la información que queramos (logotipo, etc.)
+        setContentView(R.layout.activity_splash);
+
+        new Handler().postDelayed(new Runnable(){
+            public void run(){
+                // Cuando pasen los 3 segundos, pasamos a la actividad principal de la aplicación
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
-            }
-        }catch (Exception e) {
-            finish();
-            e.printStackTrace();
-            finish();
+                finish();
+            };
+        }, DURACION_SPLASH);
     }
-  }
-
 }

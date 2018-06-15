@@ -17,7 +17,7 @@ public class SplashActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            if (!splashLoaded) {    /*DESDE AQUI SE CONTROLA EL SCREEN SPLASH  con un !splashLoaded   para negar la preposicion*/
+            if (splashLoaded) {    /*DESDE AQUI SE CONTROLA EL SCREEN SPLASH  con un !splashLoaded   para negar la preposicion*/
                 setContentView(R.layout.activity_splash);
                 int secondsDelayed = 1;
                 new Handler().postDelayed(new Runnable() {

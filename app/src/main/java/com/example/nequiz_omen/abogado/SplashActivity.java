@@ -31,9 +31,9 @@ public class SplashActivity extends Activity {
             } else {
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
-                finish();
             }
         }catch (Exception e) {
+            finish();
             e.printStackTrace();
             finish();
     }

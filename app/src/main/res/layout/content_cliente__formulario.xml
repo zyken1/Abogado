@@ -9,8 +9,8 @@
     tools:showIn="@layout/activity_cliente__formulario">
 
 
-
     !--======  Inicio Contenido APP -->
+
     <ScrollView
         android:id="@+id/scrollViewDatos"
         android:layout_width="match_parent"

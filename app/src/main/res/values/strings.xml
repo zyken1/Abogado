@@ -18,4 +18,6 @@
     <string name="title_activity_juicios">Juicios</string>
     <string name="title_activity_plazos">Plazos</string>
     <string name="title_activity_cliente__registro">Cliente_Registro</string>
+    <string name="title_activity_cliente__formulario">Cliente_Formulario</string>
+    <string name="title_activity_jucios__formulario">Jucios_Formulario</string>
 </resources>

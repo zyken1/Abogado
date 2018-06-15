@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_inicio"
+            android:icon="@drawable/ic_menu_home"
+            android:title="@string/inicio" />
+        <item
+            android:id="@+id/nav_cliente"
+            android:icon="@drawable/ic_menu_cliente"
+            android:title="@string/cliente" />
+        <item
+            android:id="@+id/nav_juicios"
+            android:icon="@drawable/ic_menu_mazo"
+            android:title="@string/juicios" />
+        <item
+            android:id="@+id/nav_plazos"
+            android:icon="@drawable/ic_menu_plazos"
+            android:title="@string/plazos" />
+
+        <item
+            android:id="@+id/nav_finanzas"
+            android:icon="@drawable/ic_menu_finanzas"
+            android:title="@string/finanzas" />
+    </group>
+
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_settings"
+                android:title="Configuraciones" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_acerca_de"
+                android:title="Acerca de" />
+        </menu>
+    </item>
+
+</menu>

@@ -9,16 +9,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
+        <activity android:name=".SplashActivity">
+            android:name=".SplashActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Light.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <!-- =========================      Aqui van todos los activitys y clases del mismo      ===================-->
+        <activity
+            android:name=".Cliente"
+            android:label="@string/title_activity_cliente"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Juicios"
+            android:label="@string/title_activity_juicios"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

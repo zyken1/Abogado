@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#c80a0c</color>
+    <color name="colorPrimaryDark">#a7060d</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorTransparente">#00ffffff</color>
+
+    <!--===================    colores añadidos       =====================-->
+
+    <color name="colorADO">#c61d23</color>
+    <color name="colorHint">#bcbcbc</color>
+    <color name="colorMike">#000000</color>
+    <color name="my_color">#FFF</color>
+    <color name="color_G">#a19f9f</color>
+    <color name="transparent">#00000000</color>
 </resources>

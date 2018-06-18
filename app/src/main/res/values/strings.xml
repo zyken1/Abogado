@@ -18,4 +18,24 @@
     <string name="title_activity_plazos">Plazos</string>
     <string name="title_activity_cliente__formulario">Nuevo Cliente</string>
     <string name="title_activity_jucios__formulario">Registro Juicio</string>
+
+
+
+    <string-array name="array_provincias">
+        <item>Sevilla</item>
+        <item>Málaga</item>
+    </string-array>
+
+    <string-array name="array_sevilla">
+        <item>Villanueva del Ariscal</item>
+        <item>Tomares</item>
+        <item>Mairena del Aljarafe</item>
+    </string-array>
+
+    <string-array name="array_malaga">
+        <item>Casares</item>
+        <item>Manilva</item>
+        <item>Estepona</item>
+    </string-array>
 </resources>
+

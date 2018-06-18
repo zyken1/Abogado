@@ -6,6 +6,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 public class Jucios_Formulario extends AppCompatActivity {
     @Override
@@ -30,7 +32,18 @@ public class Jucios_Formulario extends AppCompatActivity {
             }
         });
 
-    }
+
+        //SE CREA Y SE MANDA A LLAMAR EL SPINNER  TIPO DE JUICIO
+        Spinner spinner = (Spinner) findViewById(R.id.spinner_Juicio);
+        String[] tipo_juicio = {"Selecciona el Tipo de Expediente","JUICIO ORDINARIO CIVIL","JUICIO ORDINARIO MERCANTIL","JUICIO ORAL MERCANTIL","JUICIO EJECUTIVO MERCANTIL ORAL","JUICIO EJECUTIVO MERCANTIL","JUICIO ORDINARIO PENAL","AMPARO INDIRECTO","AMPARO DIRECTO","INCIDENTE DE SUSPENSIÓN","JUICIO ORDINARIO LABORAL"};
+        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tipo_juicio));
+
+        //SE CREA Y SE MANDA A LLAMAR EL SPINNER  ETAPA  PROCESAL
+        Spinner spinner1 = (Spinner) findViewById(R.id.spinner_Etapa);
+        String[] etapa_procesal = {"Selecciona la Etapa del proceso", "A","B","C","D","E"};
+        spinner1.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, etapa_procesal));
+
+    }//end ON CREATE
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

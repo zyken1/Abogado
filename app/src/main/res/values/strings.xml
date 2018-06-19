@@ -18,9 +18,11 @@
     <string name="title_activity_plazos">Plazos</string>
     <string name="title_activity_cliente__formulario">Nuevo Cliente</string>
     <string name="title_activity_jucios__formulario">Registro Juicio</string>
+    <string name="nombre">Nombre</string>
+    <string name="tipo_de_persona">Tipo de Persona</string>
 
 
-  <!-- Cadena de texto o array list para meterlo en el spinner -->
+    <!-- Cadena de texto o array list para meterlo en el spinner -->
     <string-array name="array_Juicios">
         <item>Juicio Ordinario Civil</item>
         <item>Juicio Ordinario Mercantil</item>

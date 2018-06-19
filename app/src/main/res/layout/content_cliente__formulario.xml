@@ -11,19 +11,21 @@
 
 
 
-    !--======  Inicio Contenido APP -->
+    <!--======  Inicio Contenido APP -->
 
     <ScrollView
         android:id="@+id/scrollViewDatos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar">
+        android:layout_below="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingLeft="6dp"
             android:paddingRight="6dp"
@@ -42,7 +44,7 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nombre"
+                    android:text="@string/nombre"
                     tools:layout_editor_absoluteX="16dp"
                     tools:layout_editor_absoluteY="66dp" />
 
@@ -59,35 +61,38 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tipo de Persona"
+                    android:text="@string/tipo_de_persona"
                     tools:layout_editor_absoluteX="16dp"
                     tools:layout_editor_absoluteY="66dp" />
 
-                <LinearLayout
+
+                <!--  TIPO DE PERSONA RADIO BUTTON -->
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <RadioButton
-
+                    <RadioGroup
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Fisica"
-                        tools:layout_editor_absoluteX="16dp"
-                        tools:layout_editor_absoluteY="85dp" />
+                        android:orientation="horizontal">
 
-                    <RadioButton
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:text="Fisica" />
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Moral"
-                        tools:layout_editor_absoluteX="112dp"
-                        tools:layout_editor_absoluteY="85dp" />
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="50dp"
+                            android:text="Moral" />
+                    </RadioGroup>
+                </RelativeLayout>
 
-                </LinearLayout>
 
                 <TextView
-
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -120,34 +125,39 @@
                 </LinearLayout>
 
                 <TextView
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Género"
                     tools:layout_editor_absoluteX="16dp"
                     tools:layout_editor_absoluteY="66dp" />
 
-                <LinearLayout
+
+                <!--   RADIO BUTTON PARA GENERO -->
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <RadioButton
-                        android:id="@+id/radioButton"
+                    <RadioGroup
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Masculino"
-                        tools:layout_editor_absoluteX="16dp"
-                        tools:layout_editor_absoluteY="85dp" />
+                        android:orientation="horizontal">
 
-                    <RadioButton
-                        android:id="@+id/radioButton2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Femenino"
-                        tools:layout_editor_absoluteX="112dp"
-                        tools:layout_editor_absoluteY="85dp" />
-                </LinearLayout>
+                        <RadioButton
+                            android:id="@+id/radioButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:text="Masculino" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="22dp"
+                            android:text="Femenino" />
+                    </RadioGroup>
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/textView2"
@@ -166,7 +176,7 @@
 
             </LinearLayout>
 
-            <!--   ===========    segunda parte del contenido   ============0   -->
+            <!--   ===========    SEGUNDA PARTE DEL FORMULARIO  ============0   -->
 
             <LinearLayout
                 android:layout_width="match_parent"

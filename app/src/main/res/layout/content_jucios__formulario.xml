@@ -285,7 +285,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
                             android:ems="10"
-                            android:hint="$ 0.00" />
+                            android:hint="$ 0.00"
+                            android:inputType="number"/>
                     </TableRow>
 
                     <TableRow
@@ -328,6 +329,12 @@
                             android:ems="10"
                             android:focusable="false"
                             android:inputType="date" />
+
+                        <ImageView
+                            android:id="@+id/imageView7"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            app:srcCompat="@drawable/ic_icono_mas" />
                     </TableRow>
                 </TableLayout>
 

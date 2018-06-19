@@ -20,22 +20,133 @@
     <string name="title_activity_jucios__formulario">Registro Juicio</string>
 
 
-
-    <string-array name="array_provincias">
-        <item>Sevilla</item>
-        <item>Málaga</item>
+  <!-- Cadena de texto o array list para meterlo en el spinner -->
+    <string-array name="array_Juicios">
+        <item>Juicio Ordinario Civil</item>
+        <item>Juicio Ordinario Mercantil</item>
+        <item>Juicio Oral Mercantil</item>
+        <item>Juicio Ejecutivo Mercantil Oral</item>
+        <item>Juicio Ejecutivo Mercantil</item>
+        <item>Juicio Ordinario Penal</item>
+        <item>Amparo Indirecto</item>
+        <item>Amparo Directo</item>
+        <item>Incidente de Suspensión</item>
+        <item>Juicio Ordinario Laboral</item>
     </string-array>
 
-    <string-array name="array_sevilla">
-        <item>Villanueva del Ariscal</item>
-        <item>Tomares</item>
-        <item>Mairena del Aljarafe</item>
+
+
+    <string-array name="array_Juicio_Ordinario_Civil">
+        <item>Demanda</item>
+        <item>Emplazamiento</item>
+        <item>Contestación</item>
+        <item>Reconvención</item>
+        <item>Desahogo De Vista</item>
+        <item>Audiencia</item>
+        <item>Alegatos</item>
+        <item>Sentencia</item>
+        <item>Ejecución</item>
     </string-array>
 
-    <string-array name="array_malaga">
-        <item>Casares</item>
-        <item>Manilva</item>
-        <item>Estepona</item>
+    <string-array name="array_Juicio_Ordinario_Mercantil">
+        <item>Demanda</item>
+        <item>Emplazamiento</item>
+        <item>Contestación</item>
+        <item>Reconvención</item>
+        <item>Desahogo De Vista</item>
+        <item>Período Probatorio Ofrecimiento</item>
+        <item>Período Probatorio Desahogo</item>
+        <item>Alegatos</item>
+        <item>Sentencia</item>
+        <item>Ejecución</item>
     </string-array>
+
+    <string-array name="array_Juicio_Oral_Mercantil">
+        <item>Demanda</item>
+        <item>Emplazamiento</item>
+        <item>Contestación</item>
+        <item>Reconvención</item>
+        <item>Desahogo De Vista</item>
+        <item>Audiencia Preliminar</item>
+        <item>Audiencia De Juicio</item>
+        <item>Sentencia</item>
+        <item>Ejecución</item>
+    </string-array>
+
+    <string-array name="array_Juicio_Ejecutivo_Mercantil_Oral">
+        <item>Demanda</item>
+        <item>Diligencia De Exequendo</item>
+        <item>Contestación</item>
+        <item>Reconvención</item>
+        <item>Desahogo De Vista</item>
+        <item>Audiencia Preliminar</item>
+        <item>Audiencia De Juicio</item>
+        <item>Sentencia</item>
+        <item>Ejecución</item>
+    </string-array>
+
+    <string-array name="array_Juicio_Ejecutivo_Mercantil">
+        <item>Demanda</item>
+        <item>Diligencia De Exequendo</item>
+        <item>Contestación</item>
+        <item>Reconvención</item>
+        <item>Desahogo De Vista</item>
+        <item>Período Probatorio</item>
+        <item>Sentencia</item>
+        <item>Ejecución</item>
+    </string-array>
+
+
+    <string-array name="array_Juicio_Ordinario_Penal">
+        <item>Investigación Inicial</item>
+        <item>Audiencia Inicial</item>
+        <item>Investigación Complementaria</item>
+        <item>Audiencia Intermedia</item>
+        <item>Juicio Oral</item>
+        <item>Procedimiento De Trámite</item>
+        <item>Sentencia</item>
+        <item>Ejecución</item>
+    </string-array>
+
+
+    <string-array name="array_Amparo_Indirecto">
+        <item>Demanda</item>
+        <item>Notificación Partes</item>
+        <item>Audiencia Constitucional</item>
+        <item>Sentencia</item>
+        <item>Informe Justificado</item>
+        <item>Cumplimiento</item>
+    </string-array>
+
+
+    <string-array name="array_Amparo_Directo">
+        <item>Demanda</item>
+        <item>Notificación</item>
+        <item>Amparo Adhesivo</item>
+        <item>Audiencia Constitucional</item>
+        <item>Sentencia</item>
+        <item>Complemento de Sentencia</item>
+    </string-array>
+
+    <string-array name="array_Incidente_de_Suspensión">
+        <item>Apertura</item>
+        <item>Notificación</item>
+        <item>Informe Previo</item>
+        <item>Audiencia Incidental</item>
+        <item>Sentencia</item>
+        <item>Cumplimiento De Suspensión</item>
+    </string-array>
+
+    <string-array name="array_Juicio_Ordinario_Laboral">
+        <item>Demanda</item>
+        <item>Emplazamiento</item>
+        <item>Audiencia De Conciliación, Demanda Y Excepciones</item>
+        <item>Audiencia De Ofrecimiento Y Admisión De Prueba</item>
+        <item>Audiencia De Desahogo</item>
+        <item>Cierre De Instrucción</item>
+        <item>Laudo</item>
+        <item>Ejecución</item>
+    </string-array>
+
 </resources>
 

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class Jucios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables
@@ -42,13 +43,11 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         //Construcción del "adaptador" para el primer Spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
-                R.array.array_provincias, //Se carga el array definido en el XML
-                android.R.layout.simple_spinner_item);
+                R.array.array_Juicios, /*Se carga el array definido en el XML */android.R.layout.simple_spinner_item);
 
         //Se carga el tipo de vista para el adaptador
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        //Se aplica el adaptador al Spinner de localidades
+        //Se aplica el adaptador al Spinner de Juicios
         spinnerPro.setAdapter(adapter);
         //Se aplica listener para saber que item ha sido seleccionado
         //y poder usarlo en el método "onItemSelected"
@@ -58,23 +57,33 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
 
 
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        //Se guarda en array de enteros los arrays de las provincias
-        int[] localidades = {R.array.array_sevilla,R.array.array_malaga};
-
+        //Se guarda en array de enteros los arrays de los Juicios
+        int[] Etapas = {R.array.array_Juicio_Ordinario_Civil,
+                R.array.array_Juicio_Ordinario_Mercantil,
+                R.array.array_Juicio_Oral_Mercantil,
+                R.array.array_Juicio_Ejecutivo_Mercantil_Oral,
+                R.array.array_Juicio_Ejecutivo_Mercantil,
+                R.array.array_Juicio_Ordinario_Penal,
+                R.array.array_Amparo_Indirecto,
+                R.array.array_Amparo_Directo,
+                R.array.array_Incidente_de_Suspensión,
+                R.array.array_Juicio_Ordinario_Laboral};
         //Construcción del "adaptador" para el segundo Spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
-                localidades[position],//En función de la provincia, se carga el array que corresponda del XML
-                android.R.layout.simple_spinner_item);
+                Etapas[position], /*En función del Juicio, se carga el array que corresponda del XML */ android.R.layout.simple_spinner_item);
 
         //Se carga el tipo de vista para el adaptadori
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        //Se aplica el adaptador al Spinner de localidades
+        //Se aplica el adaptador al Spinner de Juicios
         spinnerLoc.setAdapter(adapter);
+
+        Toast.makeText(this, "Haz seleccionado el Juicio: " + position , Toast.LENGTH_SHORT).show();
+
     }
 
-    @Override
+
+    @Override  // este spinner  es para la solucion en caso de que no se seleccione nada
     public void onNothingSelected(AdapterView<?> parent) {
 
     }

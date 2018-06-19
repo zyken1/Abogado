@@ -3,7 +3,7 @@
 xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/action_serch"
-        android:icon="@drawable/buscar"
+        android:icon="@drawable/ic_buscar"
         android:title="Guardar"
         app:showAsAction="always" />
 
@@ -13,11 +13,14 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
         android:title="Guardar"
         app:showAsAction="always" />
 
+
+
+    <!--ACCIONES PARA ORDENAR LOS ICONOS -->
    <item
-    android:id="@+id/action_ordenar1"
-    android:orderInCategory="100"
-    android:title="Ordenar Por Nombre"
-    app:showAsAction="never" />
+        android:id="@+id/action_ordenar1"
+        android:orderInCategory="100"
+        android:title="Ordenar Por Nombre"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_ordenar2"

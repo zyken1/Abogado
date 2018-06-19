@@ -8,7 +8,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
     app:showAsAction="never" />
 
 <item android:id="@+id/action_add"
-    android:icon="@drawable/user_ado"
+    android:icon="@drawable/ic_user_ado"
     android:title="Agregar Cliente"
     app:showAsAction="always" />
 

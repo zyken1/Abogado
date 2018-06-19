@@ -20,6 +20,11 @@
     <string name="title_activity_jucios__formulario">Registro Juicio</string>
     <string name="nombre">Nombre</string>
     <string name="tipo_de_persona">Tipo de Persona</string>
+    <string name="notas">Notas</string>
+    <string name="fisica">Fisica</string>
+    <string name="moral">Moral</string>
+    <string name="dependientes_economicos">Dependientes Económicos</string>
+    <string name="correo_electronico">Correo Electrónico</string>
 
 
     <!-- Cadena de texto o array list para meterlo en el spinner -->

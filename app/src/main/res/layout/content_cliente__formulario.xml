@@ -80,14 +80,14 @@
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:text="Fisica" />
+                            android:layout_marginStart="15dp"
+                            android:text="@string/fisica" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="50dp"
-                            android:text="Moral" />
+                            android:layout_marginStart="50dp"
+                            android:text="@string/moral" />
                     </RadioGroup>
                 </RelativeLayout>
 
@@ -96,7 +96,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="Correo Electrónico"
+                    android:text="@string/correo_electronico"
                     tools:layout_editor_absoluteX="16dp"
                     tools:layout_editor_absoluteY="66dp" />
 
@@ -224,7 +224,7 @@
                         android:layout_height="40dp"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/ic_celular_cliente"
-                        tools:ignore="VectorDrawableCompat" />
+                        tools:ignore="VectorDrawableCompat" android:contentDescription="TODO" />
                 </LinearLayout>
 
                 <TextView
@@ -280,14 +280,14 @@
                         android:layout_height="40dp"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/ic_tel_oficina_cliente"
-                        tools:ignore="VectorDrawableCompat" />
+                        tools:ignore="VectorDrawableCompat" android:contentDescription="TODO" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/textView11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Dependientes Económicos" />
+                    android:text="@string/dependientes_economicos" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -296,7 +296,7 @@
 
                     <EditText
                         android:id="@+id/editText8"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -309,7 +309,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Notas" />
+                    android:text="@string/notas" />
 
                 <EditText
                     android:id="@+id/editText9"

@@ -1,13 +1,18 @@
 package com.example.nequiz_omen.abogado;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
 
 public class Cliente_Formulario extends AppCompatActivity {
+    EditText fecha_nacimiento;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +21,10 @@ public class Cliente_Formulario extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        fecha_nacimiento = (EditText) findViewById(R.id.fecha_nacimiento);
+        fecha_nacimiento.setOnClickListener(fechaNacimiento());
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -53,6 +62,31 @@ public class Cliente_Formulario extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    // Metodos para insertar fecha de nacimiento
+    public View.OnClickListener fechaNacimiento() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        };
+    }
+
+
+
+    private void showDatePickerDialog() {
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 because january is zero
+                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                fecha_nacimiento.setText(selectedDate);
+            }
+        });
+        newFragment.show(getFragmentManager(), "datePicker");
     }
 
 }

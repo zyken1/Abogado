@@ -1,5 +1,6 @@
 package com.example.nequiz_omen.abogado;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -8,18 +9,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.BreakIterator;
+
 public class Jucios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables
     private Spinner spinnerPro, spinnerLoc;
     private LinearLayout layoutP;
     private ImageView imagenP;
-
+    EditText fecha_pago;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +35,13 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         imagenP.setOnClickListener(onClick());
 
 
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        fecha_pago = (EditText) findViewById(R.id.fecha_pago);
+        fecha_pago.setOnClickListener(fecha_pago());
+        
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -65,6 +73,8 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         spinnerPro.setOnItemSelectedListener(this);
 
     }//end ON CREATE
+
+  
 
 
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -136,6 +146,8 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         };
     }
 
+  
+
     private EditText createEditText() {
         final LinearLayout.LayoutParams lparams =
                 new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -143,4 +155,39 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         textView.setLayoutParams(lparams);
         return textView;
     }
-}
+
+
+    // Metodos para insertar fecha de de pagos en un fragment
+    public View.OnClickListener fechaNacimiento() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        };
+    }
+
+    private View.OnClickListener fecha_pago() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        };
+    }
+    
+    private void showDatePickerDialog() {
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 because january is zero
+                final String selectedDate = day + " / " + (month+1) + " / " + year;
+
+                fecha_pago.setText(selectedDate);
+            }
+        });
+        newFragment.show(getFragmentManager(), "datePicker");
+    }
+
+
+}//end class

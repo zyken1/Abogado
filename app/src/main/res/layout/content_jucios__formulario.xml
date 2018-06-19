@@ -17,17 +17,16 @@
 
 
         <!--   NO.  de Expediente  -->
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/expediente"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingLeft="6dp"
             android:paddingRight="6dp"
             android:paddingTop="6dp"
-            android:id="@+id/expediente"
             tools:context=".Juicios">
 
             <LinearLayout
@@ -53,15 +52,15 @@
                     android:inputType="textPersonName" />
             </LinearLayout>
 
-        <!-- CLIENTE  -->
+            <!-- CLIENTE  -->
             <LinearLayout
                 android:id="@+id/layoutP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/border_label_gris"
                 android:orientation="vertical"
-                android:padding="10dp"
-                android:layout_marginTop="5dp">
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/textView2"
@@ -72,12 +71,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"><EditText
-                    android:id="@+id/editText3"
-                    android:layout_width="312dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editText3"
+                        android:layout_width="312dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textPersonName" />
 
                     <ImageView
                         android:id="@+id/imagenP"
@@ -88,14 +89,14 @@
 
 
             </LinearLayout>
-        <!-- CONTRARIO -->
+            <!-- CONTRARIO -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/border_label_gris"
                 android:orientation="vertical"
-                android:padding="10dp"
-                android:layout_marginTop="5dp">
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/textView"
@@ -123,14 +124,14 @@
                 </LinearLayout>
             </LinearLayout>
 
-         <!--  TIPO DE JUICIO  -->
+            <!--  TIPO DE JUICIO  -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/border_label_gris"
                 android:orientation="vertical"
-                android:padding="10dp"
-                android:layout_marginTop="5dp" >
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/textView19"
@@ -141,7 +142,8 @@
                 <Spinner
                     android:id="@+id/spinner_Juicio"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="38dp"
+
                     android:layout_weight="1" />
 
                 <TextView
@@ -159,14 +161,14 @@
             </LinearLayout>
 
 
-         <!-- INSTANCIA  -->
+            <!-- INSTANCIA  -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/border_label_gris"
                 android:orientation="vertical"
-                android:padding="10dp"
-                android:layout_marginTop="5dp">
+                android:padding="10dp">
 
 
                 <TextView
@@ -183,14 +185,14 @@
                     android:inputType="textPersonName" />
             </LinearLayout>
 
-        <!-- ETAPA  PROCESAL -->
+            <!-- ETAPA  PROCESAL -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/border_label_gris"
                 android:orientation="vertical"
-                android:padding="10dp"
-                android:layout_marginTop="5dp">
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/textView16"
@@ -201,7 +203,7 @@
                 <Spinner
                     android:id="@+id/spinner_Etapa"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="38dp"
                     android:layout_weight="1" />
 
                 <TextView
@@ -231,102 +233,105 @@
             </LinearLayout>
 
 
-         <!-- COSTO DE JUICIO -->
+            <!--=====    COSTO DE JUICIO   =================-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/border_label_gris"
-                android:orientation="vertical"
-                android:padding="10dp"
-                android:layout_marginTop="5dp">
+                android:padding="10dp">
 
-                <LinearLayout
+
+                <TableLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Costo de Juicio" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
 
-                    <TextView
-                        android:id="@+id/textView13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Resta por Pagar" />
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Costo de Juicio" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/textovista"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Resta por Pagar" />
+                    </TableRow>
 
-                    <EditText
-                        android:id="@+id/editText17"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="number" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="left">
 
-                    <EditText
-                        android:id="@+id/editText16"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="number" />
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/editText17"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:hint="$ 0.00"
+                            android:inputType="number"/>
 
-                    <TextView
-                        android:id="@+id/textView15"
-                        android:layout_width="41dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Abono Cliente" />
+                        <EditText
+                            android:id="@+id/editText16"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:ems="10"
+                            android:hint="$ 0.00" />
+                    </TableRow>
 
-                    <TextView
-                        android:id="@+id/textView14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Fecha" />
-                </LinearLayout>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="left">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/textView15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Abono Cliente" />
 
-                    <EditText
-                        android:id="@+id/editText18"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="number" />
+                        <TextView
+                            android:id="@+id/textView14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fecha" />
+                    </TableRow>
 
-                    <EditText
-                        android:id="@+id/editText20"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="date" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical">
 
-                </LinearLayout>
+                        <EditText
+                            android:id="@+id/editText18"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:hint="$ 0.00"
+                            android:inputType="number" />
+
+                        <EditText
+                            android:id="@+id/fecha_pago"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:clickable="true"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:inputType="date" />
+                    </TableRow>
+                </TableLayout>
 
             </LinearLayout>
-
         </LinearLayout>
 
 

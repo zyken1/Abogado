@@ -19,20 +19,18 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
    <item
         android:id="@+id/action_ordenar1"
         android:orderInCategory="100"
-        android:title="Ordenar Por Nombre"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_ordenar2"
-        android:orderInCategory="100"
-        android:title="Ordenar Por instancia"
+        android:title="Ordenar Por Cliente"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_ordenar3"
         android:orderInCategory="100"
-        android:title="Ordenar Por Juicios"
+        android:title="Ordenar Por Asunto"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_ordenar2"
+        android:orderInCategory="101"
+        android:title="Ordenar Por Tipo de Juicio" />
 
 
 </menu>

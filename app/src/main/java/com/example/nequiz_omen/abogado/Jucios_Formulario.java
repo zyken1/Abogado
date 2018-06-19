@@ -8,17 +8,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 public class Jucios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables
     private Spinner spinnerPro, spinnerLoc;
+    private LinearLayout layoutP;
+    private ImageView imagenP;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jucios__formulario);
+
+        imagenP = (ImageView) findViewById(R.id.imagenP);
+        layoutP = (LinearLayout) findViewById(R.id.layoutP);
+        imagenP.setOnClickListener(onClick());
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -111,4 +122,25 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         return super.onOptionsItemSelected(item);
     }
 
+
+
+
+    //  ===================   Par de metodos para crear EditText
+    private View.OnClickListener onClick() {
+        return new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                layoutP.addView(createEditText());
+            }
+        };
+    }
+
+    private EditText createEditText() {
+        final LinearLayout.LayoutParams lparams =
+                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        final EditText textView = new EditText(this);
+        textView.setLayoutParams(lparams);
+        return textView;
+    }
 }

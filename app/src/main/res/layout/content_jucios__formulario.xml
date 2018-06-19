@@ -15,6 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar">
 
+
+        <!--   NO.  de Expediente  -->
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -25,6 +27,7 @@
             android:paddingLeft="6dp"
             android:paddingRight="6dp"
             android:paddingTop="6dp"
+            android:id="@+id/expediente"
             tools:context=".Juicios">
 
             <LinearLayout
@@ -32,7 +35,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_label_gris"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:paddingTop="5dp">
 
 
                 <TextView
@@ -49,12 +53,15 @@
                     android:inputType="textPersonName" />
             </LinearLayout>
 
+        <!-- CLIENTE  -->
             <LinearLayout
+                android:id="@+id/layoutP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_label_gris"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/textView2"
@@ -73,7 +80,7 @@
                     android:inputType="textPersonName" />
 
                     <ImageView
-                        android:id="@+id/imageView5"
+                        android:id="@+id/imagenP"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         app:srcCompat="@drawable/ic_mas_fb003f" />
@@ -81,13 +88,14 @@
 
 
             </LinearLayout>
-
+        <!-- CONTRARIO -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_label_gris"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/textView"
@@ -113,16 +121,16 @@
                         android:layout_height="30dp"
                         app:srcCompat="@drawable/ic_mas_fb003f" />
                 </LinearLayout>
-
-
             </LinearLayout>
 
+         <!--  TIPO DE JUICIO  -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_label_gris"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:layout_marginTop="5dp" >
 
                 <TextView
                     android:id="@+id/textView19"
@@ -148,16 +156,17 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName" />
-
-
             </LinearLayout>
 
+
+         <!-- INSTANCIA  -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_label_gris"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:layout_marginTop="5dp">
 
 
                 <TextView
@@ -174,12 +183,14 @@
                     android:inputType="textPersonName" />
             </LinearLayout>
 
+        <!-- ETAPA  PROCESAL -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_label_gris"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/textView16"
@@ -217,16 +228,17 @@
                         android:layout_height="30dp"
                         app:srcCompat="@drawable/ic_mas_fb003f" />
                 </LinearLayout>
-
-
             </LinearLayout>
 
+
+         <!-- COSTO DE JUICIO -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_label_gris"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:layout_marginTop="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"

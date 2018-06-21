@@ -1,9 +1,11 @@
 package com.example.nequiz_omen.abogado;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +23,7 @@ import java.text.BreakIterator;
 public class Jucios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables
     private Spinner spinnerPro, spinnerLoc;
-    private LinearLayout layout_Cliente;
+    private LinearLayout layout_Cliente,layout_Contrario;
     private ImageView addimage_cliente,addimage_contrario,getAddimage_cliente;
     EditText fecha_pago;
 
@@ -30,10 +32,14 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jucios__formulario);
 
-        //agrega un linear al layout de layout_Cliente al darclcik en la imagen  addimage_cliente
+        //abusqueda de imagen y layout con el id
         addimage_cliente = (ImageView) findViewById(R.id.addimage_cliente);
         layout_Cliente = (LinearLayout) findViewById(R.id.layout_Cliente);
-        addimage_cliente.setOnClickListener(onClick());
+
+        addimage_contrario = (ImageView) findViewById(R.id.addimage_contrario);
+        layout_Contrario = (LinearLayout) findViewById(R.id.layout_Contrario);
+
+        //addimage_cliente.setOnClickListener(onClick());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -131,7 +137,7 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
 
 
 
-
+    /*
     //  ===================   Par de metodos para crear EditText
     private View.OnClickListener onClick() {
         return new View.OnClickListener() {
@@ -148,10 +154,21 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         final EditText textView = new EditText(this);
         textView.setLayoutParams(lparams);
         return textView;
+}
+    */
+
+    /* Metodos para crear y eliminar nuevos editText*/
+    public void onAddField(View v) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final View rowView = inflater.inflate(R.layout.add_linear_trash, null);
+            // Add the new row before the add field button.
+            layout_Cliente.addView(rowView);
     }
 
 
-
+    public void onDelete(View v) {
+        layout_Cliente.removeView((View) v.getParent());
+    }
 
 
     // Metodos para insertar fecha de de pagos en un fragment
@@ -164,6 +181,7 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         };
     }
 
+
     private View.OnClickListener fecha_pago() {
         return new View.OnClickListener() {
             @Override
@@ -172,6 +190,7 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
             }
         };
     }
+
 
     private void showDatePickerDialog() {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {

@@ -100,7 +100,6 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         spinnerLoc.setAdapter(adapter);
 
         Toast.makeText(this, "Haz seleccionado el Juicio: " + position , Toast.LENGTH_SHORT).show();
-
     }
 
 
@@ -157,6 +156,7 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
     }
 
 
+
     // Metodos para insertar fecha de de pagos en un fragment
     public View.OnClickListener fechaNacimiento() {
         return new View.OnClickListener() {
@@ -175,7 +175,8 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
             }
         };
     }
-    
+
+
     private void showDatePickerDialog() {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override

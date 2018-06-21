@@ -49,12 +49,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:hint="Etiqueta flotante"
                     android:inputType="textPersonName" />
             </LinearLayout>
 
             <!-- CLIENTE  -->
             <LinearLayout
-                android:id="@+id/layoutP"
+                android:id="@+id/layout_Cliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -74,19 +75,19 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/editText3"
-                        android:layout_width="312dp"
+                        android:id="@+id/cliente_name"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="2"
                         android:ems="10"
                         android:inputType="textPersonName" />
 
                     <ImageView
-                        android:id="@+id/imagenP"
+                        android:id="@+id/addimage_cliente"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        app:srcCompat="@drawable/ic_mas_fb003f" />
+                        app:srcCompat="@drawable/ic_mas_fb003f"/>
                 </LinearLayout>
-
 
             </LinearLayout>
             <!-- CONTRARIO -->
@@ -111,16 +112,17 @@
 
                     <EditText
                         android:id="@+id/editText9"
-                        android:layout_width="312dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:layout_weight="2"/>
 
                     <ImageView
-                        android:id="@+id/imageView10"
+                        android:id="@+id/addimage_contrario"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        app:srcCompat="@drawable/ic_mas_fb003f" />
+                        app:srcCompat="@drawable/ic_mas_fb003f"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -143,7 +145,7 @@
                     android:id="@+id/spinner_Juicio"
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
-
+                    android:popupBackground="#ffff"
                     android:layout_weight="1" />
 
                 <TextView
@@ -222,10 +224,11 @@
                         android:layout_width="312dp"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:layout_weight="2"/>
 
                     <ImageView
-                        android:id="@+id/imageView6"
+                        android:id="@+id/addimage_tramite"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         app:srcCompat="@drawable/ic_mas_fb003f" />

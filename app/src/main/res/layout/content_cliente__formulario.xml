@@ -280,11 +280,12 @@
 
                     <ImageView
                         android:id="@+id/imageView5"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/ic_tel_oficina_cliente"
-                        tools:ignore="VectorDrawableCompat" android:contentDescription="TODO" />
+                        tools:ignore="VectorDrawableCompat"
+                        android:contentDescription="TODO" />
                 </LinearLayout>
 
                 <TextView
@@ -316,11 +317,11 @@
                     android:text="@string/notas" />
 
                 <EditText
-                    android:id="@+id/editText9"
+                    android:id="@+id/text_notas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="textMultiLine"/>  <!-- PARA EL SALTO DE LINEA -->
 
             </LinearLayout>
 

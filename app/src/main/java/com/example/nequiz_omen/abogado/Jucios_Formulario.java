@@ -21,8 +21,8 @@ import java.text.BreakIterator;
 public class Jucios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables
     private Spinner spinnerPro, spinnerLoc;
-    private LinearLayout layoutP;
-    private ImageView imagenP;
+    private LinearLayout layout_Cliente;
+    private ImageView addimage_cliente,addimage_contrario,getAddimage_cliente;
     EditText fecha_pago;
 
     @Override
@@ -30,11 +30,10 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jucios__formulario);
 
-        imagenP = (ImageView) findViewById(R.id.imagenP);
-        layoutP = (LinearLayout) findViewById(R.id.layoutP);
-        imagenP.setOnClickListener(onClick());
-
-
+        //agrega un linear al layout de layout_Cliente al darclcik en la imagen  addimage_cliente
+        addimage_cliente = (ImageView) findViewById(R.id.addimage_cliente);
+        layout_Cliente = (LinearLayout) findViewById(R.id.layout_Cliente);
+        addimage_cliente.setOnClickListener(onClick());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -48,7 +47,6 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 //regresar...
@@ -71,7 +69,6 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         //Se aplica listener para saber que item ha sido seleccionado
         //y poder usarlo en el método "onItemSelected"
         spinnerPro.setOnItemSelectedListener(this);
-
     }//end ON CREATE
 
   
@@ -79,7 +76,8 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
 
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         //Se guarda en array de enteros los arrays de los Juicios
-        int[] Etapas = {R.array.array_Juicio_Ordinario_Civil,
+        int[] Etapas = {R.array.array_seleccione,
+                R.array.array_Juicio_Ordinario_Civil,
                 R.array.array_Juicio_Ordinario_Mercantil,
                 R.array.array_Juicio_Oral_Mercantil,
                 R.array.array_Juicio_Ejecutivo_Mercantil_Oral,
@@ -99,7 +97,7 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         //Se aplica el adaptador al Spinner de Juicios
         spinnerLoc.setAdapter(adapter);
 
-        Toast.makeText(this, "Haz seleccionado el Juicio: " + position , Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Seleccionaste el Juicio:" + position + "  id:" +id, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -140,20 +138,19 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
 
             @Override
             public void onClick(View v) {
-                layoutP.addView(createEditText());
+                layout_Cliente.addView(createEditText());
             }
         };
     }
 
-  
-
     private EditText createEditText() {
-        final LinearLayout.LayoutParams lparams =
-                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        final LinearLayout.LayoutParams lparams =  new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         final EditText textView = new EditText(this);
         textView.setLayoutParams(lparams);
         return textView;
     }
+
+
 
 
 
@@ -176,7 +173,6 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         };
     }
 
-
     private void showDatePickerDialog() {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -189,6 +185,5 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         });
         newFragment.show(getFragmentManager(), "datePicker");
     }
-
 
 }//end class

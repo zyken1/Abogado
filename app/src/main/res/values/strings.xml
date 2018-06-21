@@ -29,6 +29,7 @@
 
     <!-- Cadena de texto o array list para meterlo en el spinner -->
     <string-array name="array_Juicios">
+        <item>Selecciona un Tipo de Juicio</item>
         <item>Juicio Ordinario Civil</item>
         <item>Juicio Ordinario Mercantil</item>
         <item>Juicio Oral Mercantil</item>
@@ -41,7 +42,9 @@
         <item>Juicio Ordinario Laboral</item>
     </string-array>
 
-
+<string-array name="array_seleccione">
+    <item>Seleccione un Tipo de Juicio</item>
+</string-array>
 
     <string-array name="array_Juicio_Ordinario_Civil">
         <item>Demanda</item>

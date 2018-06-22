@@ -25,7 +25,7 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
     //Declaración de variables
     private Spinner spinnerPro, spinnerLoc;
     private LinearLayout layout_Cliente,layout_Contrario;
-    private ImageView agregar_cliente,addimage_contrario,getAddimage_cliente;
+    private ImageView agregar_cliente,addimage_contrario;
     EditText fecha_pago;
 
     @Override
@@ -96,21 +96,17 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
                 Etapas[position], /*En función del Juicio, se carga el array que corresponda del XML */ android.R.layout.simple_spinner_item);
-
         //Se carga el tipo de vista para el adaptadori
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Se aplica el adaptador al Spinner de Juicios
         spinnerLoc.setAdapter(adapter);
-
-        Toast.makeText(this, "Seleccionaste el Juicio:" + position + "  id:" +id, Toast.LENGTH_SHORT).show();
-    }
-
+        //Toast.makeText(this, "Seleccionaste el Juicio:" + position + "  id:" +id, Toast.LENGTH_SHORT).show();
+    } // end array
 
     @Override  // este spinner  es para la solucion en caso de que no se seleccione nada
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -134,40 +130,49 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         return super.onOptionsItemSelected(item);
     }
 
+                                          /*
+                                            //  ===================   Par de metodos para crear EditText
+                                            private View.OnClickListener onClick() {
+                                                return new View.OnClickListener() {
 
-
-    /*
-    //  ===================   Par de metodos para crear EditText
-    private View.OnClickListener onClick() {
-        return new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                layout_Cliente.addView(createEditText());
-            }
-        };
-    }
-
-    private EditText createEditText() {
-        final LinearLayout.LayoutParams lparams =  new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        final EditText textView = new EditText(this);
-        textView.setLayoutParams(lparams);
-        return textView;
-}
-    */
-
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        layout_Cliente.addView(createEditText());
+                                                    }
+                                                };
+                                            }
+                                            private EditText createEditText() {
+                                                final LinearLayout.LayoutParams lparams =  new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                                                final EditText textView = new EditText(this);
+                                                textView.setLayoutParams(lparams);
+                                                return textView;
+                                        }
+                                            */
     /* Metodos para crear y eliminar nuevos editText*/
-    public void onAddField(View view) {
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            final View rowView = inflater.inflate(R.layout.add_linear_trash, null);
-            // Add the new row before the add field button.
-            layout_Cliente.addView(rowView);
-        System.out.println("Se ha activado el metodo "  );
-    }
+    public void onAddField(View v) {
+      /*if (v.getId()== agregar_cliente.getId())
+      {
+          Toast.makeText(this, "Click en la primer opcion", Toast.LENGTH_SHORT).show();
+      }*/
+      switch(v.getId())
+      {
+          case R.id.addimage_cliente:
+              Toast.makeText(this, "Se ha creado nuevo cliente", Toast.LENGTH_SHORT).show();
+              LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+              final View rowView = inflater.inflate(R.layout.add_linear_trash, null);
+              // Add the new row before the add field button.
+              layout_Cliente.addView(rowView);
+          break;
+          case R.id.addimage_contrario:
+              Toast.makeText(this, "Click en la Segunda opcion", Toast.LENGTH_SHORT).show();
+          break;
+       }
+    }//end del metodo onAddField
 
 
     public void onDelete(View v) {
         layout_Cliente.removeView((View) v.getParent());
+        Toast.makeText(this, "Se ha eliminado el cliente" , Toast.LENGTH_SHORT).show();
         System.out.println("haz eliminado un linear"  );
     }
 

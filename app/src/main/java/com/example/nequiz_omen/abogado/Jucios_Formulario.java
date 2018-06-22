@@ -164,7 +164,7 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
               layout_Cliente.addView(rowView);
           break;
           case R.id.addimage_contrario:
-              Toast.makeText(this, "Click en la Segunda opcion", Toast.LENGTH_SHORT).show();
+              Toast.makeText(this, "Click ", Toast.LENGTH_SHORT).show();
           break;
        }
     }//end del metodo onAddField

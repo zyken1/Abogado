@@ -24,8 +24,8 @@ import java.text.BreakIterator;
 public class Jucios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables
     private Spinner spinnerPro, spinnerLoc;
-    private LinearLayout layout_Cliente,layout_Contrario;
-    private ImageView agregar_cliente,addimage_contrario;
+    private LinearLayout layout_Cliente,layout_Contrario,layout_Tramite;
+    private ImageView agregar_cliente,agregar_contrario,agregar_tramite;
     EditText fecha_pago;
 
     @Override
@@ -34,8 +34,10 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         setContentView(R.layout.activity_jucios__formulario);
 
         //abusqueda de imagen y layout con el id
-        agregar_cliente = (ImageView) findViewById(R.id.addimage_cliente);
+        agregar_cliente = (ImageView) findViewById(R.id.add_linear_cliente);
         layout_Cliente = (LinearLayout) findViewById(R.id.layout_Cliente);
+        layout_Contrario = (LinearLayout) findViewById(R.id.layout_Contrario);
+        layout_Tramite = (LinearLayout) findViewById(R.id.layout_Etapa_procesal);
 
 
         //addimage_cliente.setOnClickListener(onClick());
@@ -156,16 +158,27 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
       }*/
       switch(v.getId())
       {
-          case R.id.addimage_cliente:
+          case R.id.add_linear_cliente:
               Toast.makeText(this, "Se ha creado nuevo cliente", Toast.LENGTH_SHORT).show();
               LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
               final View rowView = inflater.inflate(R.layout.add_linear_trash, null);
               // Add the new row before the add field button.
               layout_Cliente.addView(rowView);
           break;
-          case R.id.addimage_contrario:
-              Toast.makeText(this, "Click ", Toast.LENGTH_SHORT).show();
+          case R.id.add_linear_contrario:
+              Toast.makeText(this, "Contrario Añadido", Toast.LENGTH_SHORT).show();
+              LayoutInflater infl = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+              final View row = infl.inflate(R.layout.add_linear_trash, null);
+              // Add the new row before the add field button.
+              layout_Contrario.addView(row);
           break;
+          case R.id.add_linear_tramite:
+              Toast.makeText(this, "Nuevo Tramite Añadido", Toast.LENGTH_SHORT).show();
+              LayoutInflater dus = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+              final View fila = dus.inflate(R.layout.add_linear_trash, null);
+              // Add the new row before the add field button.
+              layout_Tramite.addView(fila);
+              break;
        }
     }//end del metodo onAddField
 

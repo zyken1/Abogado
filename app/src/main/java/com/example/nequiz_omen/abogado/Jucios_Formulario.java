@@ -35,6 +35,8 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
 
         //abusqueda de imagen y layout con el id
         agregar_cliente = (ImageView) findViewById(R.id.add_linear_cliente);
+        agregar_contrario = (ImageView) findViewById(R.id.add_linear_contrario);
+        agregar_tramite = (ImageView) findViewById(R.id.add_linear_tramite);
         layout_Cliente = (LinearLayout) findViewById(R.id.layout_Cliente);
         layout_Contrario = (LinearLayout) findViewById(R.id.layout_Contrario);
         layout_Tramite = (LinearLayout) findViewById(R.id.layout_Etapa_procesal);
@@ -184,9 +186,24 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
 
 
     public void onDelete(View v) {
+        System.out.println(v );
+        switch(v.getId())
+        {
+            case R.id.add_linear_cliente:
+                Toast.makeText(this, " Se ha eliminado cliente", Toast.LENGTH_SHORT).show();
+                layout_Cliente.removeView((View) v.getParent());
+                break;
+            case R.id.add_linear_contrario:
+                Toast.makeText(this, " Contrario Eliminado", Toast.LENGTH_SHORT).show();
+                layout_Contrario.removeView((View) v.getParent());
+                break;
+            case R.id.add_linear_tramite:
+                Toast.makeText(this, " Tramite Eliminado", Toast.LENGTH_SHORT).show();
+                layout_Tramite.removeView((View) v.getParent());
+                break;
+        }
         layout_Cliente.removeView((View) v.getParent());
-        Toast.makeText(this, "Se ha eliminado el cliente" , Toast.LENGTH_SHORT).show();
-        System.out.println("haz eliminado un linear"  );
+        System.out.println("SWITCH TERMINADO ONDELETE JUICIOS"  );
     }
 
 

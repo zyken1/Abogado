@@ -2,7 +2,6 @@ package com.example.nequiz_omen.abogado;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -32,7 +31,6 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jucios__formulario);
-        findViewById(R.id.addimage_cliente).setOnClickListener((View.OnClickListener) this);
 
         //abusqueda de imagen y layout con el id
         addimage_cliente = (ImageView) findViewById(R.id.addimage_cliente);
@@ -128,6 +126,7 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_save) {
             return true;
@@ -160,33 +159,11 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
 
     /* Metodos para crear y eliminar nuevos editText*/
     public void onAddField(View v) {
-            int color;
-
-            View contenedor = v.getRootView();
-
-            switch (v.getId()) {
-                case R.id.addimage_cliente:
-                    color = Color.parseColor("#80CBC4"); // Verde azulado
-                    break;
-              /*  case R.id.button2:
-                    color = Color.parseColor("#A5D6A7"); // Verde
-                    break;
-                case R.id.button3:
-                    color = Color.parseColor("#C5E1A5"); // Verde claro
-                    break;
-                case R.id.button4:
-                    color = Color.parseColor("#E6EE9C"); // Lima
-                    break;  */
-                default:
-                    color = Color.WHITE; // Blano
-            }
-
-            contenedor.setBackgroundColor(color);
-            Toast.makeText(this, "Seleccionaste :" + color  , Toast.LENGTH_SHORT).show();
-        }
-
-
-
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final View rowView = inflater.inflate(R.layout.add_linear_trash, null);
+            // Add the new row before the add field button.
+            layout_Cliente.addView(rowView);
+    }
 
 
     public void onDelete(View v) {

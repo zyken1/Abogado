@@ -25,7 +25,7 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
     //Declaración de variables
     private Spinner spinnerPro, spinnerLoc;
     private LinearLayout layout_Cliente,layout_Contrario;
-    private ImageView addimage_cliente,addimage_contrario,getAddimage_cliente;
+    private ImageView agregar_cliente,addimage_contrario,getAddimage_cliente;
     EditText fecha_pago;
 
     @Override
@@ -34,7 +34,7 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         setContentView(R.layout.activity_jucios__formulario);
 
         //abusqueda de imagen y layout con el id
-        addimage_cliente = (ImageView) findViewById(R.id.addimage_cliente);
+        agregar_cliente = (ImageView) findViewById(R.id.addimage_cliente);
         layout_Cliente = (LinearLayout) findViewById(R.id.layout_Cliente);
 
 

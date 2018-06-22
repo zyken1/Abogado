@@ -12,8 +12,10 @@
     <ScrollView
         android:id="@+id/scrollViewDatos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar">
+        android:layout_height="0dp"
+        android:layout_below="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <!--   NO.  de Expediente  -->
@@ -52,7 +54,7 @@
                     android:inputType="textPersonName" />
             </LinearLayout>
 
-            <!-- CLIENTE  -->
+            <!-- CLIENTE   layout  -->
             <LinearLayout
                 android:id="@+id/layout_Cliente"
                 android:layout_width="match_parent"
@@ -84,15 +86,14 @@
                     <ImageView
                         android:id="@+id/addimage_cliente"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         app:srcCompat="@drawable/ic_mas_fb003f"
-                        android:onClick="onAddField" />
+                        android:onClick="onAddField"/>
                 </LinearLayout>
 
             </LinearLayout>
             <!-- CONTRARIO -->
             <LinearLayout
-                android:id="@+id/layout_Contrario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -115,18 +116,18 @@
                         android:id="@+id/editText9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="2"
                         android:ems="10"
-                        android:inputType="textPersonName"
-                        android:layout_weight="2"/>
+                        android:inputType="textPersonName" />
 
                     <ImageView
                         android:id="@+id/addimage_contrario"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        app:srcCompat="@drawable/ic_mas_fb003f"
-                        android:onClick="onAddField" />
+                        app:srcCompat="@drawable/ic_mas_fb003f" />
                 </LinearLayout>
             </LinearLayout>
+
 
             <!--  TIPO DE JUICIO  -->
             <LinearLayout
@@ -147,8 +148,8 @@
                     android:id="@+id/spinner_Juicio"
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
-                    android:popupBackground="#ffff"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:popupBackground="#ffff" />
 
                 <TextView
                     android:id="@+id/textView3"
@@ -225,9 +226,9 @@
                         android:id="@+id/editText12"
                         android:layout_width="312dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="2"
                         android:ems="10"
-                        android:inputType="textPersonName"
-                        android:layout_weight="2"/>
+                        android:inputType="textPersonName" />
 
                     <ImageView
                         android:id="@+id/addimage_tramite"
@@ -242,31 +243,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:baselineAligned="true"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/border_label_gris"
-                android:padding="10dp"
-                android:orientation="vertical">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal" >
-
-                        <TextView
-                            android:id="@+id/textView8"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="50dp"
-                            android:text="Costo de Juicio" />
-
-                        <TextView
-                            android:id="@+id/textovista"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Resta por Pagar" />
-                    </LinearLayout>
+                android:baselineAligned="true"
+                android:orientation="vertical"
+                android:padding="10dp">
 
 
                 <LinearLayout
@@ -275,75 +256,121 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="130dp"
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Costo del Juicio" />
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Resta por Pagar" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:allowUndo="false"
                         android:background="#4db6ac"
                         android:ems="10"
+                        android:hapticFeedbackEnabled="false"
                         android:hint="$ 0.00"
                         android:inputType="number"
-                        android:layout_marginEnd="70dp"
+                        android:padding="10dp"
                         android:textColor="#FFFF" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
                         android:layout_weight="1"
-                        android:layout_marginRight="10dp"
                         android:background="#ef5350"
                         android:ems="10"
                         android:hint="$ 0.00"
                         android:inputType="number"
-                        android:layout_marginEnd="10dp"
+                        android:padding="10dp"
                         android:textColor="#FFFF" />
+
                 </LinearLayout>
 
 
                 <LinearLayout
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:id="@+id/textView15"
-                        android:layout_width="170dp"
-                        android:layout_height="wrap_content"
-                        android:text="Abono Cliente" />
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView14"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:text="Fecha" />
+                        android:layout_weight="1"
+                        android:text="Abono" />
 
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Fecha" />
                 </LinearLayout>
 
-                        <EditText
-                            android:id="@+id/editText18"
-                            android:background="#fbc02d"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:hint="$ 0.00"
-                            android:inputType="number"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editText18"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="#fbc02d"
+                        android:ems="10"
+                        android:hint="$ 0.00"
+                        android:inputType="number"
+                        android:padding="10dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
 
                         <EditText
                             android:id="@+id/fecha_pago"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
                             android:clickable="true"
                             android:ems="10"
                             android:focusable="false"
-                            android:inputType="date"/>
+                            android:inputType="date" />
 
                         <ImageView
-                            android:id="@+id/imageView7"
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            app:srcCompat="@drawable/ic_icono_mas"/>
+                            android:id="@+id/addimage_tramite2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_weight="0"
+                            app:srcCompat="@drawable/ic_mas_fb003f" />
 
-             </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout> <!-- end linear   -->
     </ScrollView>
 

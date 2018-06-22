@@ -89,11 +89,8 @@ public class MainActivity extends AppCompatActivity
             i = new Intent(this, Juicios.class);
             startActivity(i);
 
-
-
    /*
         int id = item.getItemId();
-
         if (id == R.id.nav_inicio) {
             // Handle the camera action
         } else if (id == R.id.nav_clientes) {
@@ -105,14 +102,9 @@ public class MainActivity extends AppCompatActivity
                 break;
 
         } else if (id == R.id.nav_plazos) {
-
         } else if (id == R.id.nav_share) {
-
         } else if (id == R.id.nav_send) {
-
         */
-
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

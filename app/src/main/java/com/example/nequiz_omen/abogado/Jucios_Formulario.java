@@ -1,5 +1,6 @@
 package com.example.nequiz_omen.abogado;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -36,8 +37,6 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         addimage_cliente = (ImageView) findViewById(R.id.addimage_cliente);
         layout_Cliente = (LinearLayout) findViewById(R.id.layout_Cliente);
 
-        addimage_contrario = (ImageView) findViewById(R.id.addimage_contrario);
-        layout_Contrario = (LinearLayout) findViewById(R.id.layout_Contrario);
 
         //addimage_cliente.setOnClickListener(onClick());
 
@@ -158,16 +157,18 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
     */
 
     /* Metodos para crear y eliminar nuevos editText*/
-    public void onAddField(View v) {
+    public void onAddField(View view) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View rowView = inflater.inflate(R.layout.add_linear_trash, null);
             // Add the new row before the add field button.
             layout_Cliente.addView(rowView);
+        System.out.println("Se ha activado el metodo "  );
     }
 
 
     public void onDelete(View v) {
         layout_Cliente.removeView((View) v.getParent());
+        System.out.println("haz eliminado un linear"  );
     }
 
 

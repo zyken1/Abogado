@@ -8,4 +8,6 @@
     tools:context="com.example.nequiz_omen.abogado.Cliente"
     tools:showIn="@layout/activity_cliente">
 
+
+
 </android.support.constraint.ConstraintLayout>

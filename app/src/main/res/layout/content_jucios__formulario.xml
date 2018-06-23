@@ -124,7 +124,7 @@
 
                     <ImageView
                         android:id="@+id/add_linear_contrario"
-                        android:layout_width="wrap_content"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:onClick="onAddField"
                         app:srcCompat="@drawable/ic_mas_fb003f" />

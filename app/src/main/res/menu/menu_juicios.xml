@@ -9,7 +9,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <item android:id="@+id/action_add"
-        android:icon="@drawable/ic_add_black"
+        android:icon="@drawable/ic_agregar_nuevo"
         android:title="Guardar"
         app:showAsAction="always" />
 

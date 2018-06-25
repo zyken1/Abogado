@@ -41,9 +41,6 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
         layout_Contrario = (LinearLayout) findViewById(R.id.layout_Contrario);
         layout_Tramite = (LinearLayout) findViewById(R.id.layout_Etapa_procesal);
 
-
-        //addimage_cliente.setOnClickListener(onClick());
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

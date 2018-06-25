@@ -164,6 +164,7 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
               // Add the new row before the add field button.
               layout_Cliente.addView(rowView);
           break;
+
           case R.id.add_linear_contrario:
               //Toast.makeText(this, "Contrario Añadido", Toast.LENGTH_SHORT).show();
               LayoutInflater infl = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -171,6 +172,7 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
               // Add the new row before the add field button.
               layout_Contrario.addView(row);
           break;
+
           case R.id.add_linear_tramite:
               //Toast.makeText(this, "Nuevo Tramite Añadido", Toast.LENGTH_SHORT).show();
               LayoutInflater dus = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);

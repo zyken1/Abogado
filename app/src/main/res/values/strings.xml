@@ -42,9 +42,9 @@
         <item>Juicio Ordinario Laboral</item>
     </string-array>
 
-<string-array name="array_seleccione">
-    <item>Seleccione un Tipo de Juicio</item>
-</string-array>
+    <string-array name="array_seleccione">
+        <item>Seleccione un Tipo de Juicio</item>
+    </string-array>
 
     <string-array name="array_Juicio_Ordinario_Civil">
         <item>Demanda</item>
@@ -157,6 +157,9 @@
         <item>Laudo</item>
         <item>Ejecución</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
 

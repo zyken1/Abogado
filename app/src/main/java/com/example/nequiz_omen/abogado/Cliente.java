@@ -59,10 +59,10 @@ public class Cliente extends AppCompatActivity {
     }
 
 
+    //Eventos a ejecutar al darle click alguna de las imagenes que se muestran en CLIENTES
     public void Editar_cliente(View v) {
         Intent i = new Intent(this, Cliente_Edicion.class);
         startActivity(i);
-        Toast.makeText(this, "CLICK", Toast.LENGTH_SHORT).show();
     }
 
 }//END  CLASS

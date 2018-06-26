@@ -3,16 +3,17 @@ package com.example.nequiz_omen.abogado;
 /**
  * Created by abhiandroid on 9/10/17.
  */
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class AppleFragment extends Fragment {
+public class HonorariosFragment extends Fragment {
 
-    public AppleFragment() {
+
+
+    public HonorariosFragment() {
         // Required empty public constructor
     }
 
@@ -25,7 +26,7 @@ public class AppleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_juicios, container, false);
+        return inflater.inflate(R.layout.fragment_honorarios, container, false);
     }
 
 

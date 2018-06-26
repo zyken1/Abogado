@@ -25,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bk_boton_plano"
+            android:theme="@style/Toolbar"
             app:tabMode="fixed" />
     </android.support.design.widget.AppBarLayout>
 

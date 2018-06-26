@@ -1,6 +1,5 @@
 package com.example.nequiz_omen.abogado;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,9 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +65,7 @@ public class Juicios_Edicion extends AppCompatActivity {
     @Override  // SE AÑADE MENU DE SETTINGS
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_juicios_edicion, menu);
         return true;
     }
 
@@ -82,11 +79,16 @@ public class Juicios_Edicion extends AppCompatActivity {
 
     private void addTabs(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new AppleFragment(), "Juicios");
-        adapter.addFrag(new OrangeFragment(), "Tramites");
-        adapter.addFrag(new GrapesFragment(), "Honorarios");
+        adapter.addFrag(new JuiciosFragment(), "Juicios");
+        adapter.addFrag(new TramitesFragment(), "Tramites");
+        adapter.addFrag(new HonorariosFragment(), "Honorarios");
         //adapter.addFrag(new BananaFragment(), "Banana");
         viewPager.setAdapter(adapter);
+    }
+
+    //Aqui van los eventos del click en la imagen de editar  "ic_menu_lapiz"
+    public void editar_juicio(MenuItem item) {
+        Toast.makeText(this, "Le diste Un click", Toast.LENGTH_SHORT).show();
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -117,6 +119,7 @@ public class Juicios_Edicion extends AppCompatActivity {
             return mFragmentTitleList.get(position);
         }
     }
+
 
 
 }

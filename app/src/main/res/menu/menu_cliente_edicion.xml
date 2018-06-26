@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--<item
+    android:id="@+id/action_settings"
+    android:orderInCategory="100"
+    android:title="@string/action_settings"
+    app:showAsAction="never" />-->
+
+<item android:id="@+id/action_edith"
+    android:icon="@drawable/ic_menu_lapiz"
+    android:title="Editar Cliente"
+    app:showAsAction="always"
+    android:onClick="Eliminar_cliente"/>
+
+    <item android:id="@+id/action_delete"
+        android:icon="@drawable/ic_delete"
+        android:title="Eliminar Cliente"
+        app:showAsAction="always"
+        android:onClick="eliminar_jucio"/>
+</menu>

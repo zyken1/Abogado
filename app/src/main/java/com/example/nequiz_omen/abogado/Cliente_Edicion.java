@@ -9,7 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +65,7 @@ public class Cliente_Edicion extends AppCompatActivity {
     @Override  // SE AÑADE MENU DE SETTINGS
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_cliente_edicion, menu);
         return true;
     }
 
@@ -78,10 +80,20 @@ public class Cliente_Edicion extends AppCompatActivity {
         Cliente_Edicion.ViewPagerAdapter adapter = new Cliente_Edicion.ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new ClienteFragment(), "Datos del Cliente");
         adapter.addFrag(new ClienteJuiciosFragment(), "Juicios del Cliente");
-        //adapter.addFrag(new GrapesFragment(), "Honorarios");
+        //adapter.addFrag(new HonorariosFragment(), "Honorarios");
         //adapter.addFrag(new BananaFragment(), "Banana");
         viewPager.setAdapter(adapter);
     }
+
+
+    //Aqui vna los metodos a ejecutar en el menu para cliente_edicion
+    public void eliminar_jucio(MenuItem item) {
+        Toast.makeText(this, "Boton para eliminar", Toast.LENGTH_SHORT).show();
+    }
+    public void Eliminar_cliente(MenuItem item) {
+        Toast.makeText(this, "Boton para editar", Toast.LENGTH_SHORT).show();
+    }
+
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();

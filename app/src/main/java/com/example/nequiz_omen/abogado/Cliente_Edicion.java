@@ -1,29 +1,24 @@
 package com.example.nequiz_omen.abogado;
 
-import android.content.Context;
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Juicios_Edicion extends AppCompatActivity {
+public class Cliente_Edicion extends AppCompatActivity {
+
     /*  ESTE ES EL ORDEN DE LOS FRAGMENT
-    * Juicios
-    * tramites
-    * Honorarios*/
+    * Datos del Cliente
+    * Juicios del cliente*/
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -38,8 +33,7 @@ public class Juicios_Edicion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_juicios__edicion);
-
+        setContentView(R.layout.activity_cliente__edicion);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);  //soportar  el manifest de la barra de accion
 
@@ -65,6 +59,7 @@ public class Juicios_Edicion extends AppCompatActivity {
         });
     }
 
+
     @Override  // SE AÑADE MENU DE SETTINGS
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -72,8 +67,7 @@ public class Juicios_Edicion extends AppCompatActivity {
         return true;
     }
 
-
-    /*private void setupTabIcons() {
+     /*private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
@@ -81,10 +75,10 @@ public class Juicios_Edicion extends AppCompatActivity {
     }*/
 
     private void addTabs(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new AppleFragment(), "Juicios");
-        adapter.addFrag(new OrangeFragment(), "Tramites");
-        adapter.addFrag(new GrapesFragment(), "Honorarios");
+        Cliente_Edicion.ViewPagerAdapter adapter = new Cliente_Edicion.ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFrag(new ClienteFragment(), "Datos del Cliente");
+        adapter.addFrag(new ClienteJuiciosFragment(), "Juicios del Cliente");
+        //adapter.addFrag(new GrapesFragment(), "Honorarios");
         //adapter.addFrag(new BananaFragment(), "Banana");
         viewPager.setAdapter(adapter);
     }
@@ -117,6 +111,4 @@ public class Juicios_Edicion extends AppCompatActivity {
             return mFragmentTitleList.get(position);
         }
     }
-
-
-}
+}//end CLASS

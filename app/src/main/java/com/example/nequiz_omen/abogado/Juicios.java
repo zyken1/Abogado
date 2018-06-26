@@ -52,7 +52,7 @@ public class Juicios extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_add) {
-            Intent i = new Intent(this, Jucios_Formulario.class);
+            Intent i = new Intent(this, Juicios_Formulario.class);
             startActivity(i);
             return true;
         }

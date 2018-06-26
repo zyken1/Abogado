@@ -1,6 +1,5 @@
 package com.example.nequiz_omen.abogado;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -19,9 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.text.BreakIterator;
-
-public class Jucios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class Juicios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables
     private Spinner spinnerPro, spinnerLoc;
     private LinearLayout layout_Cliente,layout_Contrario,layout_Tramite;
@@ -31,7 +28,7 @@ public class Jucios_Formulario extends AppCompatActivity implements AdapterView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jucios__formulario);
+        setContentView(R.layout.activity_juicios__formulario);
 
         //abusqueda de imagen y layout con el id
         agregar_cliente = (ImageView) findViewById(R.id.add_linear_cliente);

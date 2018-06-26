@@ -7,25 +7,25 @@
     tools:context="com.example.nequiz_omen.abogado.Juicios_Edicion">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-             android:id="@+id/toolbar"
-             android:layout_width="match_parent"
-             android:layout_height="?attr/actionBarSize"
-             android:background="?attr/colorPrimary"
-             app:layout_scrollFlags="scroll|enterAlways" />
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabMode="fixed"
-            android:background="@color/color_suavecito_gris"
-            android:textColor="@color/colorSeleccion"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored" />
+            android:background="@drawable/bk_boton_plano"
+            app:tabMode="fixed" />
     </android.support.design.widget.AppBarLayout>
 
 
@@ -33,6 +33,9 @@
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_marginTop="103dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
 </android.support.constraint.ConstraintLayout>

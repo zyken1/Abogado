@@ -79,15 +79,15 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_inicio) {
 
         } else if (id == R.id.nav_cliente) {
-
             i = new Intent(this, Cliente.class);
             startActivity(i);
-
-
         } else if (id == R.id.nav_juicios) {
-
             i = new Intent(this, Juicios.class);
             startActivity(i);
+
+        }  else if (id == R.id.nav_acerca_de) {
+                i = new Intent(this, Acerca_De.class);
+                startActivity(i);
 
    /*
         int id = item.getItemId();

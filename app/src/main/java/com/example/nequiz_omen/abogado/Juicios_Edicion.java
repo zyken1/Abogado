@@ -52,13 +52,19 @@ public class Juicios_Edicion extends AppCompatActivity {
 
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 //regresar...
                 finish();
             }
         });
+    }
+
+    @Override  // SE AÑADE MENU DE SETTINGS
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
 
 

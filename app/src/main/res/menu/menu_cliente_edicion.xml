@@ -12,11 +12,11 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
     android:icon="@drawable/ic_menu_lapiz"
     android:title="Editar Cliente"
     app:showAsAction="always"
-    android:onClick="Eliminar_cliente"/>
+    android:onClick="editar_cliente"/>
 
     <item android:id="@+id/action_delete"
         android:icon="@drawable/ic_delete"
         android:title="Eliminar Cliente"
         app:showAsAction="always"
-        android:onClick="eliminar_jucio"/>
+        android:onClick="eliminar_cliente"/>
 </menu>

@@ -87,10 +87,10 @@ public class Cliente_Edicion extends AppCompatActivity {
 
 
     //Aqui vna los metodos a ejecutar en el menu para cliente_edicion
-    public void eliminar_jucio(MenuItem item) {
+    public void eliminar_cliente(MenuItem item) {
         Toast.makeText(this, "Boton para eliminar", Toast.LENGTH_SHORT).show();
     }
-    public void Eliminar_cliente(MenuItem item) {
+    public void editar_cliente(MenuItem item) {
         Toast.makeText(this, "Boton para editar", Toast.LENGTH_SHORT).show();
     }
 

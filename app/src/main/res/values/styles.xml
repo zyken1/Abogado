@@ -20,14 +20,13 @@
         <item name="colorAccent">@color/colorSeleccion</item>
     </style>
 
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
     <style name="Error" parent="TextAppearance.AppCompat.Caption">
         <item name="android:textColor">#FF9800</item>
-        <item name="colorPrimary">@color/color_Gris</item>
     </style>
-
 
     <style name="Base.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>

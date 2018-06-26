@@ -22,7 +22,10 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabMode="fixed"/>
+            app:tabMode="fixed"
+            android:background="@color/color_suavecito_gris"
+            android:textColor="@color/colorSeleccion"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored" />
     </android.support.design.widget.AppBarLayout>
 
 

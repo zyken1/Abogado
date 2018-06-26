@@ -60,7 +60,7 @@ public class Juicios extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //BOTON DE ACCION PARA LAS IMAGENES DE JUICIOS
+    //BOTON DE ACCION PARA Acitivity DE JUICIOS_EDICION
      public void editar_juicio(View view) {
          Intent i = new Intent(this, Juicios_Edicion.class);
          startActivity(i);

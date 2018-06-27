@@ -19,6 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- AQUI VA EL ACTIVITY PRINCIPAL DE LA APP-->
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

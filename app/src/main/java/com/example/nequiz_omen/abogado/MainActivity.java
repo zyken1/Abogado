@@ -89,22 +89,6 @@ public class MainActivity extends AppCompatActivity
                 i = new Intent(this, Acerca_De.class);
                 startActivity(i);
 
-   /*
-        int id = item.getItemId();
-        if (id == R.id.nav_inicio) {
-            // Handle the camera action
-        } else if (id == R.id.nav_clientes) {
-
-        }
-          case R.id.nav_juicios:
-                Intent j= new Intent(MainActivity.this,Basic.class);
-                startActivity(j);
-                break;
-
-        } else if (id == R.id.nav_plazos) {
-        } else if (id == R.id.nav_share) {
-        } else if (id == R.id.nav_send) {
-        */
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

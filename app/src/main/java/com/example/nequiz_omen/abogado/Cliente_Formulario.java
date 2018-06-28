@@ -1,10 +1,12 @@
 package com.example.nequiz_omen.abogado;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -98,7 +100,7 @@ public class Cliente_Formulario extends AppCompatActivity {
 
 
     //evento on click de  menu_cliente_formulario.xml
-    public void addCliente(MenuItem item) {
 
-    }
+
+
 }

@@ -1,6 +1,7 @@
 package com.example.nequiz_omen.abogado;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,15 +10,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class Cliente_Formulario extends AppCompatActivity {
+    // declaracionde vriables locales
     EditText fecha_nacimiento;
-
+    LinearLayout layout_for_sides;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cliente__formulario);
+
+                //Busqueda del layout con el id
+        layout_for_sides = (LinearLayout) findViewById(R.id.layout_for_sides);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -89,4 +96,9 @@ public class Cliente_Formulario extends AppCompatActivity {
         newFragment.show(getFragmentManager(), "datePicker");
     }
 
+
+    //evento on click de  menu_cliente_formulario.xml
+    public void addCliente(MenuItem item) {
+
+    }
 }

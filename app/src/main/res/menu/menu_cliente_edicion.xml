@@ -8,13 +8,15 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
     android:title="@string/action_settings"
     app:showAsAction="never" />-->
 
-<item android:id="@+id/action_edith"
+<item
+    android:id="@+id/action_edit"
     android:icon="@drawable/ic_menu_lapiz"
     android:title="Editar Cliente"
     app:showAsAction="always"
     android:onClick="editar_cliente"/>
 
-    <item android:id="@+id/action_delete"
+    <item
+        android:id="@+id/action_delete"
         android:icon="@drawable/ic_delete"
         android:title="Eliminar Cliente"
         app:showAsAction="always"

@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Cliente_Formulario extends AppCompatActivity {
     // declaracionde vriables locales
@@ -100,6 +101,9 @@ public class Cliente_Formulario extends AppCompatActivity {
 
 
     //evento on click de  menu_cliente_formulario.xml
+    public void guardarCliente(MenuItem item) {
+        Toast.makeText(this, "Cliente Guardado ", Toast.LENGTH_SHORT).show();
+    }
 
 
 

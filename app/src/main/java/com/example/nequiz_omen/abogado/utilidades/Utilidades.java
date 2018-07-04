@@ -24,7 +24,7 @@ public class Utilidades {
 
 
     /*public static String CREAR_TABLA_JUICIOS ="CREATE TABLE    usuarios     (id INTEGER, nombre TEXT, telefono TEXT)" ;*/
-    public static String CREAR_TABLA_JUICIOS = "CREATE TABLE " +TABLA_JUICIOS+ " (" +CAMPO_ID+ " INTEGER ," +CAMPO_EXPEDIENTE+ " TEXT,)";
+    public static String CREAR_TABLA_JUICIOS = "CREATE TABLE " +TABLA_JUICIOS+ " (" +CAMPO_ID+ " INTEGER, " +CAMPO_EXPEDIENTE+ " TEXT)";
 
 
             /*+CAMPO_CLIENTE + " TEXT,"

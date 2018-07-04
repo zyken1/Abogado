@@ -244,8 +244,9 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
      /*==================== METODO PARA GUARDAR FORMULARIO======================*/
      public void Guardar(MenuItem item) {
+         registrarUsuariosSQL();
          /*SE INSTANCIA UNA CONEXION Y SE LE COLOCAN LOS PARAMETROS */
-         ConexionSQLiteHelper conn=new ConexionSQLiteHelper(this,"bd_juicios",null,1);
+         ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this,"bd_juicios",null,1);
 
          //Se abre la conexion para poder der editada
          SQLiteDatabase  db = conn .getWritableDatabase();
@@ -258,9 +259,37 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
          //INSERTAR EN LA BASE DE DATOS
          Long idResultante = db.insert(Utilidades.TABLA_JUICIOS,Utilidades.CAMPO_ID,values);
 
-         Toast.makeText(getApplicationContext(),"Id Registro:" + idResultante,Toast.LENGTH_SHORT).show();
+         Toast.makeText(getApplicationContext(),"Id Registro: " + idResultante,Toast.LENGTH_SHORT).show();
+         System.out.println("*********Ruta de Conexion en la BD  ====>  " + conn);
+         System.out.println("*********Valores en la BD  ====>  " + values);
          db.close();   //se cierra la conexion
      }
+
+    private void registrarUsuariosSQL() {
+        //Se define cual e sla base de datos
+        ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this,"bd_usuarios",null,1);
+        //Abrir conexion para escritura
+        SQLiteDatabase  db = conn .getWritableDatabase();
+
+        //insert into usuario (id,nombre,telefono) value (123,'Cristian','123456789')
+       /* String insert ="INSERT INTO "+Utilidades.TABLA_USUARIO+" ("+
+                                      Utilidades.CAMPO_ID+","+
+                                      Utilidades.CAMPO_NOMBRE+","+
+                                      Utilidades.CAMPO_TELEFONO+" )" +
+                "VALUES("+campoId.getText().toString() +",'"+
+                          campoNombre.getText().toString()+ "','"+
+                          campoTelefono.getText().toString()+"' )" ;*/
+
+        String insert="INSERT INTO "+Utilidades.TABLA_JUICIOS+" ( " +Utilidades.CAMPO_ID+ "," +Utilidades.CAMPO_EXPEDIENTE+ "," +Utilidades.CAMPO_CONTRARIO+ ")" +
+                      " VALUES (" +campoId.getText().toString()+ ", '" +campoExpediente.getText().toString()+ "','" +campoContrario.getText().toString()+ "')" ;
+
+        db.execSQL(insert);  //ejecuta lo que hay en el insert
+
+        Toast.makeText(getApplicationContext(),"USUARIO REGISTRADO",Toast.LENGTH_SHORT).show();
+        System.out.println("*********  Query ejecutado en la base  ====>  " + insert);
+        System.out.println("*********  BASE DE DATOS ====>   " + conn);
+        db.close();
+    }
 
 
 }//end class

@@ -3,6 +3,7 @@ package com.example.nequiz_omen.abogado;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -37,7 +38,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juicios__formulario);
 
-        //abusqueda de imagen y layout con el id
+        //busqueda de imagen y layout con el id
         agregar_cliente = (ImageView) findViewById(R.id.add_linear_cliente);
         agregar_contrario = (ImageView) findViewById(R.id.add_linear_contrario);
         agregar_tramite = (ImageView) findViewById(R.id.add_linear_tramite);
@@ -72,6 +73,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("*********** SE CERRO LA ACTIVIDAD ======> Juicios_Formulario");
                 //regresar...
                 finish();
             }
@@ -241,29 +243,40 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
 
 
+    public void Guardar(MenuItem item) {
+        //registrarUsuariosSQL();
+        registrarUsuarios();
+    }
+
+
+
 
      /*==================== METODO PARA GUARDAR FORMULARIO======================*/
-     public void Guardar(MenuItem item) {
-         registrarUsuariosSQL();
+
+    private void registrarUsuarios() {
          /*SE INSTANCIA UNA CONEXION Y SE LE COLOCAN LOS PARAMETROS */
-         ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this,"bd_juicios",null,1);
+        ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this,"bd_juicios",null,1);
 
-         //Se abre la conexion para poder der editada
-         SQLiteDatabase  db = conn .getWritableDatabase();
+        //Se abre la conexion para poder der editada
+        SQLiteDatabase  db = conn .getWritableDatabase();
+          //se incluye al final del query
 
-         ContentValues values= new ContentValues();
-         values.put(Utilidades.CAMPO_ID,campoCliente.getText().toString());
-         values.put(Utilidades.CAMPO_EXPEDIENTE,campoExpediente.getText().toString());
-         //values.put(Utilidades.CAMPO_TELEFONO,campoTelefono.getText().toString());
+        ContentValues values= new ContentValues();
+        //values.put(Utilidades.CAMPO_ID,);
+        values.put(Utilidades.CAMPO_EXPEDIENTE,campoExpediente.getText().toString());
+        //values.put(Utilidades.CAMPO_TELEFONO,campoTelefono.getText().toString());
 
-         //INSERTAR EN LA BASE DE DATOS
-         Long idResultante = db.insert(Utilidades.TABLA_JUICIOS,Utilidades.CAMPO_ID,values);
+        //INSERTAR EN LA BASE DE DATOS
+        Long idResultante = db.insert(Utilidades.TABLA_JUICIOS,Utilidades.CAMPO_ID,values);
 
-         Toast.makeText(getApplicationContext(),"Id Registro: " + idResultante,Toast.LENGTH_SHORT).show();
-         System.out.println("*********Ruta de Conexion en la BD  ====>  " + conn);
-         System.out.println("*********Valores en la BD  ====>  " + values);
-         db.close();   //se cierra la conexion
-     }
+        Toast.makeText(getApplicationContext(),"Id Registro: " + idResultante,Toast.LENGTH_SHORT).show();
+        System.out.println("*********Ruta de Conexion en la BD  ====>  " + conn);
+        db.close();   //se cierra la conexion
+    }
+
+
+
+
 
     private void registrarUsuariosSQL() {
         //Se define cual e sla base de datos
@@ -272,22 +285,14 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         SQLiteDatabase  db = conn .getWritableDatabase();
 
         //insert into usuario (id,nombre,telefono) value (123,'Cristian','123456789')
-       /* String insert ="INSERT INTO "+Utilidades.TABLA_USUARIO+" ("+
-                                      Utilidades.CAMPO_ID+","+
-                                      Utilidades.CAMPO_NOMBRE+","+
-                                      Utilidades.CAMPO_TELEFONO+" )" +
-                "VALUES("+campoId.getText().toString() +",'"+
-                          campoNombre.getText().toString()+ "','"+
-                          campoTelefono.getText().toString()+"' )" ;*/
-
         String insert="INSERT INTO "+Utilidades.TABLA_JUICIOS+" ( " +Utilidades.CAMPO_ID+ "," +Utilidades.CAMPO_EXPEDIENTE+ "," +Utilidades.CAMPO_CONTRARIO+ ")" +
-                      " VALUES (" +campoId.getText().toString()+ ", '" +campoExpediente.getText().toString()+ "','" +campoContrario.getText().toString()+ "')" ;
+                      " VALUES (" +campoCliente.getText().toString()+ ", '" +campoExpediente.getText().toString()+ "','" +campoContrario.getText().toString()+ "')" ;
 
         db.execSQL(insert);  //ejecuta lo que hay en el insert
-
         Toast.makeText(getApplicationContext(),"USUARIO REGISTRADO",Toast.LENGTH_SHORT).show();
         System.out.println("*********  Query ejecutado en la base  ====>  " + insert);
         System.out.println("*********  BASE DE DATOS ====>   " + conn);
+
         db.close();
     }
 

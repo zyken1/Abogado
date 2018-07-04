@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 public class E_juicio implements Serializable{
     private Integer id;
+    private String expediente;
     private String cliente;
     private String contrario;
     private String tipo_juicio;
@@ -20,8 +21,9 @@ public class E_juicio implements Serializable{
     private String fecha;
 
    /*CONSTRUCTOR CON LOS PARAMETROS*/
-    public E_juicio(Integer id, String cliente, String contrario,String tipo_juicio,String asunto,String instancia,String etapa_procesal,String tramite,Integer costo_juicio,Integer resta_pago,Integer abono,String fecha) {
+    public E_juicio(Integer id,String expediente, String cliente, String contrario,String tipo_juicio,String asunto,String instancia,String etapa_procesal,String tramite,Integer costo_juicio,Integer resta_pago,Integer abono,String fecha) {
         this.id = id;
+        this.expediente = expediente;
         this.cliente = cliente;
         this.contrario = contrario;
         this.tipo_juicio = tipo_juicio;
@@ -45,7 +47,10 @@ public class E_juicio implements Serializable{
 
 
 
+
+
      /* ===================       SE GENERAN METODOS GET Y SET          =================*/
+
 
     public Integer getId() {
         return id;
@@ -53,6 +58,14 @@ public class E_juicio implements Serializable{
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getExpediente() {
+        return expediente;
+    }
+
+    public void setExpediente(String expediente) {
+        this.expediente = expediente;
     }
 
     public String getCliente() {

@@ -9,6 +9,7 @@ public class Utilidades {
 
     public static final String TABLA_JUICIOS = "juicios";    //se pone final para que sea constante  &  Se pone statico para que pueda ser accedido desde otra parte del codigo
     public static final String CAMPO_ID = "id";
+    public static final String CAMPO_EXPEDIENTE = "expediente";
     public static final String CAMPO_CLIENTE = "cliente";
     public static final String CAMPO_CONTRARIO = "contrario";
     public static final String CAMPO_TIPO_JUICIO = "tipo_juicio";
@@ -23,10 +24,10 @@ public class Utilidades {
 
 
     /*public static String CREAR_TABLA_JUICIOS ="CREATE TABLE    usuarios     (id INTEGER, nombre TEXT, telefono TEXT)" ;*/
-    public static String CREAR_TABLA_JUICIOS = "CREATE TABLE " + TABLA_JUICIOS +
-             " ("
-            +CAMPO_ID + " INTEGER,"
-            +CAMPO_CLIENTE + " TEXT,"
+    public static String CREAR_TABLA_JUICIOS = "CREATE TABLE " +TABLA_JUICIOS+ " (" +CAMPO_ID+ " INTEGER ," +CAMPO_EXPEDIENTE+ " TEXT,)";
+
+
+            /*+CAMPO_CLIENTE + " TEXT,"
             +CAMPO_CONTRARIO+ " TEXT,"
             +CAMPO_TIPO_JUICIO+ " TEXT,"
             +CAMPO_ASUNTO+ " TEXT,"
@@ -36,7 +37,7 @@ public class Utilidades {
             +CAMPO_COSTO_JUICIO+ " INTEGER,"
             +CAMPO_RESTA_PAGO+ " INTEGER,"
             +CAMPO_ABONO+ " INTEGER,"
-            +CAMPO_FECHA+ " TEXT   )";
+            +CAMPO_FECHA+ " TEXT   )"; */
 
 
 

@@ -41,7 +41,7 @@
 
 
                 <TextView
-                    android:id="@+id/campoId"
+                    android:id="@+id/textView1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="No. de Expediente" />
@@ -161,7 +161,7 @@
                     android:text="Asunto" />
 
                 <EditText
-                    android:id="@+id/editText14"
+                    android:id="@+id/campoAsunto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -186,7 +186,7 @@
                     android:text="Instancia" />
 
                 <EditText
-                    android:id="@+id/editText11"
+                    android:id="@+id/campoInstancia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -227,7 +227,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/editText12"
+                        android:id="@+id/campoTramite"
                         android:layout_width="312dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -280,7 +280,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/campoCosto_juicio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
@@ -294,7 +295,8 @@
                         android:padding="10dp"
                         android:textColor="#FFFF" />
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/campoResta_pago"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
@@ -335,7 +337,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/editText18"
+                        android:id="@+id/campoAbono"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"

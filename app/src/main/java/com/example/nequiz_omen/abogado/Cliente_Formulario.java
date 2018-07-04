@@ -42,7 +42,6 @@ public class Cliente_Formulario extends AppCompatActivity {
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 //regresar...
@@ -61,9 +60,6 @@ public class Cliente_Formulario extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement

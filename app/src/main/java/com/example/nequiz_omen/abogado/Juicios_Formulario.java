@@ -1,7 +1,9 @@
 package com.example.nequiz_omen.abogado;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,7 +18,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.nequiz_omen.abogado.utilidades.Utilidades;
 
 public class Juicios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables
@@ -25,7 +30,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
     private ImageView agregar_cliente,agregar_contrario,agregar_tramite;
 
     /* variables para busqueda */
-    EditText campoId,campoCliente,campoContrario,campoTipo_juicio,campoAsunto,campoInstancia,campoEtapa_procesal,campoTramite,campoCosto_juicio,campoResta_pago,campoAbono,fecha_pago;
+    EditText campoId,campoExpediente,campoCliente,campoContrario,campoTipo_juicio,campoAsunto,campoInstancia,campoEtapa_procesal,campoTramite,campoCosto_juicio,campoResta_pago,campoAbono,fecha_pago;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,20 +45,20 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         layout_Contrario = (LinearLayout) findViewById(R.id.layout_Contrario);
         layout_Tramite = (LinearLayout) findViewById(R.id.layout_Etapa_procesal);
 
-                /*==========================    BUSQUEDA DE ID PARA LA BD    ===========================
-                campoId = (EditText)findViewById(R.id.campoId);
+                /*==========================    BUSQUEDA DE ID PARA LA BD    ===========================*/
+                campoExpediente = (EditText)findViewById(R.id.campoExpediente);
                 campoCliente = (EditText)findViewById(R.id.cliente);
                 campoContrario = (EditText)findViewById(R.id.campoContrario);
                 //campoTipo_juicio = (EditText)findViewById(R.id.campoTipo_juicio);
                 campoAsunto = (EditText)findViewById(R.id.campoAsunto);
                 campoInstancia = (EditText)findViewById(R.id.campoInstancia);
-                campoEtapa_procesal = (EditText)findViewById(R.id.campoEtapa_procesal);
+                //campoEtapa_procesal = (EditText)findViewById(R.id.campoEtapa_procesal);
                 campoTramite = (EditText)findViewById(R.id.campoTramite);
                 campoCosto_juicio = (EditText)findViewById(R.id.campoCosto_juicio);
                 campoResta_pago = (EditText)findViewById(R.id.campoResta_pago);
-                campoAbono = (EditText)findViewById(R.id.clicampoAbonoente);
+                campoAbono = (EditText)findViewById(R.id.campoAbono);
                 fecha_pago = (EditText) findViewById(R.id.fecha_pago);
-                ==========================    FIN DE DE LA BUSQUEDA    ===========================*/
+                /*==========================    FIN DE DE LA BUSQUEDA    ===========================*/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 ;
@@ -114,6 +119,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         //Se aplica el adaptador al Spinner de Juicios
         spinnerLoc.setAdapter(adapter);
         //Toast.makeText(this, "Seleccionaste el Juicio:" + position + "  id:" +id, Toast.LENGTH_SHORT).show();
+        System.out.println("**********Array posicion  =====> " +position+ "  Id ===> " +id);
     } // end array
 
     @Override  // este spinner  es para la solucion en caso de que no se seleccione nada
@@ -124,17 +130,13 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_cliente_formulario, menu);
+        getMenuInflater().inflate(R.menu.menu_juicios_formulario, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_save) {
             return true;
@@ -143,25 +145,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         return super.onOptionsItemSelected(item);
     }
 
-                                          /*
-                                            //  ===================   Par de metodos para crear EditText
-                                            private View.OnClickListener onClick() {
-                                                return new View.OnClickListener() {
 
-                                                    @Override
-                                                    public void onClick(View v) {
-                                                        layout_Cliente.addView(createEditText());
-                                                    }
-                                                };
-                                            }
-                                            private EditText createEditText() {
-                                                final LinearLayout.LayoutParams lparams =  new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                                                final EditText textView = new EditText(this);
-                                                textView.setLayoutParams(lparams);
-                                                return textView;
-                                        }
-                                            */
-    /* Metodos para crear y eliminar nuevos editText*/
+    /*========   Metodos para crear y eliminar nuevos editText ==================*/
     public void onAddField(View v) {
       /*if (v.getId()== agregar_cliente.getId())
       {
@@ -248,11 +233,34 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 // +1 because january is zero
                 final String selectedDate = day + " / " + (month+1) + " / " + year;
-
                 fecha_pago.setText(selectedDate);
             }
         });
         newFragment.show(getFragmentManager(), "datePicker");
     }
+
+
+
+
+     /*==================== METODO PARA GUARDAR FORMULARIO======================*/
+     public void Guardar(MenuItem item) {
+         /*SE INSTANCIA UNA CONEXION Y SE LE COLOCAN LOS PARAMETROS */
+         ConexionSQLiteHelper conn=new ConexionSQLiteHelper(this,"bd_juicios",null,1);
+
+         //Se abre la conexion para poder der editada
+         SQLiteDatabase  db = conn .getWritableDatabase();
+
+         ContentValues values= new ContentValues();
+         values.put(Utilidades.CAMPO_ID,campoCliente.getText().toString());
+         values.put(Utilidades.CAMPO_EXPEDIENTE,campoExpediente.getText().toString());
+         //values.put(Utilidades.CAMPO_TELEFONO,campoTelefono.getText().toString());
+
+         //INSERTAR EN LA BASE DE DATOS
+         Long idResultante = db.insert(Utilidades.TABLA_JUICIOS,Utilidades.CAMPO_ID,values);
+
+         Toast.makeText(getApplicationContext(),"Id Registro:" + idResultante,Toast.LENGTH_SHORT).show();
+         db.close();   //se cierra la conexion
+     }
+
 
 }//end class

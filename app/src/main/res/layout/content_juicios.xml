@@ -5,12 +5,13 @@
     android:id="@+id/activity_consultar_lista_list_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="5dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.nequiz_omen.abogado.Juicios"
     tools:showIn="@layout/activity_juicios">
 
-<!--
+    <!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -82,9 +83,11 @@
             android:textStyle="bold|italic"/>
     </LinearLayout>  -->
 
-    <ListView
-        android:id="@+id/vistaJuicios"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerJuicios"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:paddingTop="5dp" />
 
 </RelativeLayout>

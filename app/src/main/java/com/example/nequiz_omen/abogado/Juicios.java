@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.nequiz_omen.abogado.adaptadores.ListaJuiciosAdapter;
 import com.example.nequiz_omen.abogado.entidades.E_juicio;
 import com.example.nequiz_omen.abogado.utilidades.Utilidades;
 
@@ -23,8 +26,10 @@ public class Juicios extends AppCompatActivity {
 
     ListView vistaJuicios;
     ArrayList<String> listaInformacion;
-    ArrayList<E_juicio> listaUsuarios;
 
+
+    ArrayList<E_juicio> listaUsuario;
+    RecyclerView recyclerViewUsuarios;
     ConexionSQLiteHelper conn;
 
     @Override
@@ -33,32 +38,17 @@ public class Juicios extends AppCompatActivity {
         setContentView(R.layout.activity_juicios);
                      /*=============   PARA LA BD   ===========*/
         conn = new ConexionSQLiteHelper(getApplicationContext(), "bd_juicios", null, 1);
-        vistaJuicios = (ListView) findViewById(R.id.vistaJuicios);
+        listaUsuario = new ArrayList<>();
+
+        recyclerViewUsuarios= (RecyclerView) findViewById(R.id.recyclerJuicios);
+        recyclerViewUsuarios.setLayoutManager(new LinearLayoutManager(this));
+
         consultarListaPersonas();
 
-        ArrayAdapter adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaInformacion);
-        vistaJuicios.setAdapter(adaptador);
+        ListaJuiciosAdapter adapter = new ListaJuiciosAdapter(listaUsuario);
+        recyclerViewUsuarios.setAdapter(adapter);
 
-        vistaJuicios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String informacion = "id: " + listaUsuarios.get(position).getId() + "\n";
-                informacion += "Expediente: " + listaUsuarios.get(position).getExpediente() + "\n";
-                informacion += "Cliente: " + listaUsuarios.get(position).getCliente() + "\n";
 
-                //LANZA UN MENSAJE  CON LOS DATOS SOLICITADOS
-                Toast.makeText(getApplicationContext(), informacion, Toast.LENGTH_LONG).show();
-
-                E_juicio juicio = listaUsuarios.get(position);
-
-                //Intent intent = new Intent(ConsultarListaListViewActivity.this, DetalleUsuarioActivity.class);
-
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("usuario", juicio);
-                //intent.putExtras(bundle);
-                //startActivity(intent);
-            }
-        });
                 /*=============   AQUI TERMINA LO DE  LA BD   ===========*/
 
 
@@ -85,29 +75,23 @@ public class Juicios extends AppCompatActivity {
     private void consultarListaPersonas() {
         SQLiteDatabase db=conn.getReadableDatabase();
 
-        E_juicio usuario = null;
-        listaUsuarios=new ArrayList<E_juicio>();
+        E_juicio usuario=null;
+        // listaUsuarios=new ArrayList<Usuario>();
         //select * from usuarios
         Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_JUICIOS,null);
 
-        while (cursor.moveToNext()){
-            usuario=new E_juicio();
+        while (cursor.moveToNext()){  /*CICLO  WHILE  PARA REPETIR LA SENTENCIA*/
+            usuario = new E_juicio();
             usuario.setId(cursor.getInt(0));
             usuario.setExpediente(cursor.getString(1));
             usuario.setCliente(cursor.getString(2));
 
-            listaUsuarios.add(usuario);
-        }
-        obtenerLista();
-    }
 
-    private void obtenerLista() {
-        listaInformacion=new ArrayList<String>();
-
-        for (int i=0; i<listaUsuarios.size();i++){
-            listaInformacion.add(listaUsuarios.get(i).getId()+" - "
-                    +listaUsuarios.get(i).getExpediente());
+            listaUsuario.add(usuario);
         }
+
+        //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
+        //llenarListaUsuarios();
     }
          /*=====================     AQUI TENMINAN LOS METODOS DE LA BD    ========================*/
 
@@ -135,13 +119,15 @@ public class Juicios extends AppCompatActivity {
             startActivity(i);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-    //BOTON DE ACCION PARA Acitivity DE JUICIOS_EDICION
-     public void editar_juicio(View view) {
-         Intent i = new Intent(this, Juicios_Edicion.class);
-         startActivity(i);
+    
+    //Eventos a ejecutar al darle click alguna de las imagenes que se muestran en CLIENTES
+    public void Editar_juicios(View v) {
+        Intent i = new Intent(this,Juicios_Edicion.class);
+        startActivity(i);
     }
+
+
 }

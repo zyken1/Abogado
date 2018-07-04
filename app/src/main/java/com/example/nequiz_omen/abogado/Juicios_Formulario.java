@@ -180,7 +180,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
               layout_Tramite.addView(fila);
               break;
        }
-        System.out.println("SWITCH DE CREACION"  );
+            System.out.println("SWITCH DE CREACION"  );
             System.out.println("EL ID QUE SE CREO FUE: " + v   );
     }//end del metodo onAddField
 
@@ -202,10 +202,12 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
                 layout_Tramite.removeView((View) v.getParent());
                 break;
         }
+
         //layout_Cliente.removeView((View) v.getParent());
         System.out.println("SWITCH TERMINADO ONDELETE"  );
         System.out.println( "EL ID QUE SE ELIMINO FUE: " + v  );
     }
+
 
 
     // Metodos para insertar fecha de de pagos en un fragment
@@ -246,6 +248,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
     public void Guardar(MenuItem item) {
         //registrarUsuariosSQL();
         registrarUsuarios();
+
+        finish(); //Finaliza la actividad
     }
 
 
@@ -264,7 +268,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         ContentValues values= new ContentValues();
         //values.put(Utilidades.CAMPO_ID,);
         values.put(Utilidades.CAMPO_EXPEDIENTE,campoExpediente.getText().toString());
-        //values.put(Utilidades.CAMPO_TELEFONO,campoTelefono.getText().toString());
+        values.put(Utilidades.CAMPO_CLIENTE,campoCliente.getText().toString());
 
         //INSERTAR EN LA BASE DE DATOS
         Long idResultante = db.insert(Utilidades.TABLA_JUICIOS,Utilidades.CAMPO_ID,values);
@@ -278,6 +282,9 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
 
 
+
+
+
     private void registrarUsuariosSQL() {
         //Se define cual e sla base de datos
         ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this,"bd_usuarios",null,1);
@@ -286,7 +293,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
         //insert into usuario (id,nombre,telefono) value (123,'Cristian','123456789')
         String insert="INSERT INTO "+Utilidades.TABLA_JUICIOS+" ( " +Utilidades.CAMPO_ID+ "," +Utilidades.CAMPO_EXPEDIENTE+ "," +Utilidades.CAMPO_CONTRARIO+ ")" +
-                      " VALUES (" +campoCliente.getText().toString()+ ", '" +campoExpediente.getText().toString()+ "','" +campoContrario.getText().toString()+ "')" ;
+                      " VALUES (" +campoCliente.getText().toString()+ ", '" +campoExpediente.getText().toString()+ "','" +campoCliente.getText().toString()+ "')" ;
 
         db.execSQL(insert);  //ejecuta lo que hay en el insert
         Toast.makeText(getApplicationContext(),"USUARIO REGISTRADO",Toast.LENGTH_SHORT).show();

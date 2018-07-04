@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,10 +28,10 @@ public class Juicios extends AppCompatActivity {
     ListView vistaJuicios;
     ArrayList<String> listaInformacion;
 
-
     ArrayList<E_juicio> listaUsuario;
     RecyclerView recyclerViewUsuarios;
     ConexionSQLiteHelper conn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,10 +90,10 @@ public class Juicios extends AppCompatActivity {
 
             listaUsuario.add(usuario);
         }
-
         //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
         //llenarListaUsuarios();
     }
+
          /*=====================     AQUI TENMINAN LOS METODOS DE LA BD    ========================*/
 
 
@@ -117,16 +118,25 @@ public class Juicios extends AppCompatActivity {
         } else if (id == R.id.action_add) {
             Intent i = new Intent(this, Juicios_Formulario.class);
             startActivity(i);
+            //finish(); //Finaliza la actividad
             return true;
-        }
+    }
         return super.onOptionsItemSelected(item);
     }
 
-    
-    //Eventos a ejecutar al darle click alguna de las imagenes que se muestran en CLIENTES
+
+
+
+
+    //Eventos a ejecutar al darle click alguna de las imagenes que se muestran en JUICIOS
     public void Editar_juicios(View v) {
-        Intent i = new Intent(this,Juicios_Edicion.class);
-        startActivity(i);
+
+        Toast toastCenter = Toast.makeText(getApplicationContext(),"POSICION CENTRO",Toast.LENGTH_SHORT);
+        toastCenter.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toastCenter.show();
+
+        //Intent i = new Intent(this,Juicios_Edicion.class);
+        //startActivity(i);
     }
 
 

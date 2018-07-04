@@ -41,7 +41,7 @@
 
 
                 <TextView
-                    android:id="@+id/textView1"
+                    android:id="@+id/campoId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="No. de Expediente" />
@@ -115,7 +115,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/contrario"
+                        android:id="@+id/campoContrario"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"

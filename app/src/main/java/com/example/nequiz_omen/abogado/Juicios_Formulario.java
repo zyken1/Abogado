@@ -23,7 +23,9 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
     private Spinner spinnerPro, spinnerLoc;
     private LinearLayout layout_Cliente,layout_Contrario,layout_Tramite;
     private ImageView agregar_cliente,agregar_contrario,agregar_tramite;
-    EditText fecha_pago;
+
+    /* variables para busqueda */
+    EditText campoId,campoCliente,campoContrario,campoTipo_juicio,campoAsunto,campoInstancia,campoEtapa_procesal,campoTramite,campoCosto_juicio,campoResta_pago,campoAbono,fecha_pago;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +40,23 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         layout_Contrario = (LinearLayout) findViewById(R.id.layout_Contrario);
         layout_Tramite = (LinearLayout) findViewById(R.id.layout_Etapa_procesal);
 
+                /*==========================    BUSQUEDA DE ID PARA LA BD    ===========================
+                campoId = (EditText)findViewById(R.id.campoId);
+                campoCliente = (EditText)findViewById(R.id.cliente);
+                campoContrario = (EditText)findViewById(R.id.campoContrario);
+                //campoTipo_juicio = (EditText)findViewById(R.id.campoTipo_juicio);
+                campoAsunto = (EditText)findViewById(R.id.campoAsunto);
+                campoInstancia = (EditText)findViewById(R.id.campoInstancia);
+                campoEtapa_procesal = (EditText)findViewById(R.id.campoEtapa_procesal);
+                campoTramite = (EditText)findViewById(R.id.campoTramite);
+                campoCosto_juicio = (EditText)findViewById(R.id.campoCosto_juicio);
+                campoResta_pago = (EditText)findViewById(R.id.campoResta_pago);
+                campoAbono = (EditText)findViewById(R.id.clicampoAbonoente);
+                fecha_pago = (EditText) findViewById(R.id.fecha_pago);
+                ==========================    FIN DE DE LA BUSQUEDA    ===========================*/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        fecha_pago = (EditText) findViewById(R.id.fecha_pago);
+;
         fecha_pago.setOnClickListener(fecha_pago());
         
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

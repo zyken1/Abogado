@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Cliente_Formulario extends AppCompatActivity {
-    // declaracionde vriables locales
+    // declaracionde variables locales
     EditText fecha_nacimiento;
     LinearLayout layout_for_sides;
 

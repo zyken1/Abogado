@@ -47,7 +47,7 @@
                     android:text="No. de Expediente" />
 
                 <EditText
-                    android:id="@+id/editText1"
+                    android:id="@+id/campoExpediente"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -76,7 +76,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/cliente_name"
+                        android:id="@+id/cliente"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -115,7 +115,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/editText9"
+                        android:id="@+id/contrario"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"

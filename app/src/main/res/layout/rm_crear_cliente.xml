@@ -7,7 +7,7 @@
     android:orientation="horizontal"
     android:background="@drawable/border_label_gris"
     android:id="@+id/editar_C"
-    android:onClick="Editar_juicios"
+    android:onClick="Editar_cliente"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 

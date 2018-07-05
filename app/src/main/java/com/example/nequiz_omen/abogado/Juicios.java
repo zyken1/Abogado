@@ -48,8 +48,6 @@ public class Juicios extends AppCompatActivity {
 
         ListaJuiciosAdapter adapter = new ListaJuiciosAdapter(listaUsuario);
         recyclerViewUsuarios.setAdapter(adapter);
-
-
                 /*=============   AQUI TERMINA LO DE  LA BD   ===========*/
 
 
@@ -74,9 +72,9 @@ public class Juicios extends AppCompatActivity {
 
              /*   ==============   METODO CONSULTAR PERSONAS EN LA BD  ==================0*/
     private void consultarListaPersonas() {
-        SQLiteDatabase db=conn.getReadableDatabase();
+        SQLiteDatabase db = conn.getReadableDatabase();
 
-        E_juicio usuario=null;
+        E_juicio usuario = null;
         // listaUsuarios=new ArrayList<Usuario>();
         //select * from usuarios
         Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_JUICIOS,null);
@@ -107,9 +105,6 @@ public class Juicios extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -138,6 +133,7 @@ public class Juicios extends AppCompatActivity {
         //Intent i = new Intent(this,Juicios_Edicion.class);
         //startActivity(i);
     }
+
 
 
 }

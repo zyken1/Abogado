@@ -25,9 +25,10 @@ public class ListaJuiciosAdapter extends RecyclerView.Adapter<ListaJuiciosAdapte
 
     @Override
     public JuiciosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rm_crear_cliente,null,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rm_crear_juicio,null,false);
         return new JuiciosViewHolder(view);
     }
+
 
     @Override
     public void onBindViewHolder(JuiciosViewHolder holder, int position) {
@@ -40,6 +41,7 @@ public class ListaJuiciosAdapter extends RecyclerView.Adapter<ListaJuiciosAdapte
     public int getItemCount() {
         return listaUsuario.size();
     }
+
 
     public class JuiciosViewHolder extends RecyclerView.ViewHolder {
 

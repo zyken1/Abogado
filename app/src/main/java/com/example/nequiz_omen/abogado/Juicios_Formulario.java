@@ -124,10 +124,13 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         System.out.println("**********Array posicion  =====> " +position+ "  Id ===> " +id);
     } // end array
 
+
+
     @Override  // este spinner  es para la solucion en caso de que no se seleccione nada
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -135,6 +138,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         getMenuInflater().inflate(R.menu.menu_juicios_formulario, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -146,6 +150,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
     /*========   Metodos para crear y eliminar nuevos editText ==================*/
@@ -183,6 +189,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             System.out.println("SWITCH DE CREACION"  );
             System.out.println("EL ID QUE SE CREO FUE: " + v   );
     }//end del metodo onAddField
+
+
 
 
     public void onDelete(View v) {

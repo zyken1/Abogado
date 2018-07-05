@@ -46,7 +46,7 @@ public class ListaJuiciosAdapter extends RecyclerView.Adapter<ListaJuiciosAdapte
     public class JuiciosViewHolder extends RecyclerView.ViewHolder {
 
 
-        TextView ID,Expediente,Cliente;
+        TextView  ID,Expediente,Cliente;
 
         public JuiciosViewHolder(View itemView) {
             super(itemView);

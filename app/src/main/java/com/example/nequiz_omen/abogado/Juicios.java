@@ -37,17 +37,21 @@ public class Juicios extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juicios);
+
+
                      /*=============   PARA LA BD   ===========*/
+
         conn = new ConexionSQLiteHelper(getApplicationContext(), "bd_juicios", null, 1);
         listaUsuario = new ArrayList<>();
 
         recyclerViewUsuarios= (RecyclerView) findViewById(R.id.recyclerJuicios);
         recyclerViewUsuarios.setLayoutManager(new LinearLayoutManager(this));
 
-        consultarListaPersonas();
+        //consultarListaPersonas();             //SE MANDA ESTE MEOTODO A LLAMAR DESDE LA VIDA DEL ACTIVITY OnResume
 
         ListaJuiciosAdapter adapter = new ListaJuiciosAdapter(listaUsuario);
         recyclerViewUsuarios.setAdapter(adapter);
+
                 /*=============   AQUI TERMINA LO DE  LA BD   ===========*/
 
 
@@ -59,6 +63,7 @@ public class Juicios extends AppCompatActivity {
 
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
 
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +71,6 @@ public class Juicios extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 
 
@@ -76,7 +80,7 @@ public class Juicios extends AppCompatActivity {
 
         E_juicio usuario = null;
         // listaUsuarios=new ArrayList<Usuario>();
-        //select * from usuarios
+
         Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_JUICIOS,null);
 
         while (cursor.moveToNext()){  /*CICLO  WHILE  PARA REPETIR LA SENTENCIA*/
@@ -126,9 +130,9 @@ public class Juicios extends AppCompatActivity {
     //Eventos a ejecutar al darle click alguna de las imagenes que se muestran en JUICIOS
     public void Editar_juicios(View v) {
 
-        Toast toastCenter = Toast.makeText(getApplicationContext(),"POSICION CENTRO",Toast.LENGTH_SHORT);
-        toastCenter.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-        toastCenter.show();
+        //Toast toastCenter = Toast.makeText(getApplicationContext(),"POSICION CENTRO",Toast.LENGTH_SHORT);
+        //toastCenter.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        //toastCenter.show();
 
         //Intent i = new Intent(this,Juicios_Edicion.class);
         //startActivity(i);
@@ -136,4 +140,19 @@ public class Juicios extends AppCompatActivity {
 
 
 
+  /*===============   CICLOS DE VIDA DEL ACTIVITY   =================*/
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //Toast.makeText(getApplicationContext(),"onStop",Toast.LENGTH_SHORT).show();
+    }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        consultarListaPersonas();
+        Toast.makeText(getApplicationContext()," onResume ",Toast.LENGTH_SHORT).show();
+    }
 }

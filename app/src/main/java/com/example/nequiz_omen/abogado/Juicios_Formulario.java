@@ -113,9 +113,12 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
                 R.array.array_Incidente_de_Suspensión,
                 R.array.array_Juicio_Ordinario_Laboral};
         //Construcción del "adaptador" para el segundo Spinner
+
+
+
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                Etapas[position], /*En función del Juicio, se carga el array que corresponda del XML */ android.R.layout.simple_spinner_item);
+                this, Etapas[position], /*En función del Juicio, se carga el array que corresponda del XML */ android.R.layout.simple_spinner_item);
         //Se carga el tipo de vista para el adaptadori
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Se aplica el adaptador al Spinner de Juicios
@@ -256,13 +259,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
     public void Guardar(MenuItem item) {
         //registrarUsuariosSQL();
         registrarUsuarios();
-
         finish(); //Finaliza la actividad
     }
-
-
-
-
      /*==================== METODO PARA GUARDAR FORMULARIO======================*/
 
     private void registrarUsuarios() {
@@ -282,6 +280,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         Long idResultante = db.insert(Utilidades.TABLA_JUICIOS,Utilidades.CAMPO_ID,values);
 
         Toast.makeText(getApplicationContext(),"Id Registro: " + idResultante,Toast.LENGTH_SHORT).show();
+        System.out.println("*********Valores enviados a la BD  ====>  " + values);
         System.out.println("*********Ruta de Conexion en la BD  ====>  " + conn);
         db.close();   //se cierra la conexion
     }

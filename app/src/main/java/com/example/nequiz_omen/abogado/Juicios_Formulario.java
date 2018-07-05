@@ -73,7 +73,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("*********** SE CERRO LA ACTIVIDAD ======> Juicios_Formulario");
+                System.out.println("***********Activity Juicios_Formulario Destruida");
                 //regresar...
                 finish();
             }
@@ -83,9 +83,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         spinnerPro = (Spinner) findViewById(R.id.spinner_Juicio);
         spinnerLoc = (Spinner) findViewById(R.id.spinner_Etapa);
         //Construcción del "adaptador" para el primer Spinner
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.array_Juicios, /*Se carga el array definido en el XML */android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.array_Juicios, /*Se carga el array definido en el XML */android.R.layout.simple_spinner_item);
 
         //Se carga el tipo de vista para el adaptador
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -96,7 +94,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         spinnerPro.setOnItemSelectedListener(this);
     }//end ON CREATE
 
-  
 
 
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -113,8 +110,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
                 R.array.array_Incidente_de_Suspensión,
                 R.array.array_Juicio_Ordinario_Laboral};
         //Construcción del "adaptador" para el segundo Spinner
-
-
 
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(

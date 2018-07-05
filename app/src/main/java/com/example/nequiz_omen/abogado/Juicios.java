@@ -153,6 +153,8 @@ public class Juicios extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         consultarListaPersonas();
+
+        System.out.println("***********Activity JUICIOS onResume ");
         Toast.makeText(getApplicationContext()," onResume ",Toast.LENGTH_SHORT).show();
     }
 }

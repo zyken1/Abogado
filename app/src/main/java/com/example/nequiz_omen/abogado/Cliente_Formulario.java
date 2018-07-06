@@ -1,8 +1,10 @@
 package com.example.nequiz_omen.abogado;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +17,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.nequiz_omen.abogado.utilidades.Utilidades;
 
 public class Cliente_Formulario extends AppCompatActivity {
     // declaracionde variables locales
@@ -73,17 +77,35 @@ public class Cliente_Formulario extends AppCompatActivity {
 
 
     public void Guardadito_cliente(MenuItem item) {
-        //registrarUsuarios();     //SE CREA UN METODO DE LA ACCION QUE HARA  CUANDO SE DE CLICK
+        registrarUsuarios();     //SE CREA UN METODO DE LA ACCION QUE HARA  CUANDO SE DE CLICK
         //registrarUsuariosSQL();   //SE CRE AUN METODO PARA INSERTAR DATOS MEDIANTE SQL
         Toast.makeText(this, "Cliente Guardado ", Toast.LENGTH_SHORT).show();
         finish();
 
+        Intent i = new Intent(this, Cliente.class);
+        startActivity(i);
     }
 
 
 
-    /*=============== AQUI COMIENZA LA BASE DE DATOS  ====================================*/
-    private void registrarUsuariosSQL() {
+             /*=============== AQUI COMIENZA LA BASE DE DATOS  ====================================*/
+    private void registrarUsuarios() {
+       /*SE INSTANCIA UNA CONEXION Y SE LE COLOCAN LOS PARAMETROS */
+        ConexionSQLiteHelper conn=new ConexionSQLiteHelper(this,"bd_usuarios",null,1);
+
+        //Se abre la conexion para poder der editada
+        SQLiteDatabase  db = conn .getWritableDatabase();
+
+        ContentValues values= new ContentValues();    //con el content y el put se va agregar una clave y un valor  COMO EN EL HASH
+        values.put(Utilidades.CAMPO_ID,campoId.getText().toString());            //De utilidades escirbe en CAMPO_ID  lo que este en el Texto de campoId
+        values.put(Utilidades.CAMPO_NOMBRE,campoNombre.getText().toString());       //De utilidades escirbe en CAMPO_NOMBRE  lo que este en el Texto de campoNombre
+        values.put(Utilidades.CAMPO_TELEFONO,campoTelefono.getText().toString());   //De utilidades escirbe en CAMPO_TELEFONO  lo que este en el Texto de campoTelefono
+
+        //INSERTAR EN LA BASE DE DATOS
+        Long idResultante = db.insert(Utilidades.TABLA_USUARIO,Utilidades.CAMPO_ID,values);  //con values le mandamos todos los aparametros correspondientes a ese ID
+
+        Toast.makeText(getApplicationContext(),"Id Registro:" + idResultante,Toast.LENGTH_SHORT).show();
+        db.close();   //se cierra la conexion
     }
 
 

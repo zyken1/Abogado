@@ -2,17 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/action_serch"
+    <item
+        android:id="@+id/action_serch"
         android:icon="@drawable/ic_buscar"
         android:title="Guardar"
         app:showAsAction="always" />
-
-
-    <item android:id="@+id/action_add"
-        android:icon="@drawable/ic_agregar_nuevo"
+    <item
+        android:id="@+id/action_add"
+        android:icon="@drawable/ic_juicio_mas"
         android:title="Guardar"
         app:showAsAction="always" />
-
 
 
     <!--ACCIONES PARA ORDENAR LOS ICONOS -->

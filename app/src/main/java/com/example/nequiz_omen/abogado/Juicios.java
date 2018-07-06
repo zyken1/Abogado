@@ -47,7 +47,7 @@ public class Juicios extends AppCompatActivity {
         recyclerViewUsuarios= (RecyclerView) findViewById(R.id.recyclerJuicios);
         recyclerViewUsuarios.setLayoutManager(new LinearLayoutManager(this));
 
-        //consultarListaPersonas();             //SE MANDA ESTE MEOTODO A LLAMAR DESDE LA VIDA DEL ACTIVITY OnResume
+        consultarListaPersonas();             //SE MANDA ESTE MEOTODO A LLAMAR DESDE LA VIDA DEL ACTIVITY OnResume
 
         ListaJuiciosAdapter adapter = new ListaJuiciosAdapter(listaUsuario);
         recyclerViewUsuarios.setAdapter(adapter);
@@ -117,7 +117,7 @@ public class Juicios extends AppCompatActivity {
         } else if (id == R.id.action_add) {
             Intent i = new Intent(this, Juicios_Formulario.class);
             startActivity(i);
-            //finish(); //Finaliza la actividad
+              //finish(); //Finaliza la actividad
             return true;
     }
         return super.onOptionsItemSelected(item);
@@ -147,14 +147,16 @@ public class Juicios extends AppCompatActivity {
         //Toast.makeText(getApplicationContext(),"onStop",Toast.LENGTH_SHORT).show();
     }
 
-
-
     @Override
     protected void onResume() {
         super.onResume();
-        consultarListaPersonas();
+        //System.out.println("***********Activity JUICIOS onResume ");
+        //Toast.makeText(getApplicationContext()," onResume ",Toast.LENGTH_SHORT).show();
+    }
 
-        System.out.println("***********Activity JUICIOS onResume ");
-        Toast.makeText(getApplicationContext()," onResume ",Toast.LENGTH_SHORT).show();
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //System.out.println("***********PAUSA");
     }
 }

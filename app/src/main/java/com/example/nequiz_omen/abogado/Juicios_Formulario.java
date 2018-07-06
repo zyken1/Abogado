@@ -3,6 +3,7 @@ package com.example.nequiz_omen.abogado;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nequiz_omen.abogado.utilidades.Utilidades;
+
+import java.util.Objects;
 
 public class Juicios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables
@@ -251,36 +254,52 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
 
 
+ /*==================     Metodo guardar al dar click al icono de Guardar  ================*/
     public void Guardar(MenuItem item) {
         //registrarUsuariosSQL();
         registrarUsuarios();
-        finish(); //Finaliza la actividad
+
+        Intent i = new Intent(this, Juicios.class);
+        startActivity(i);
     }
      /*==================== METODO PARA GUARDAR FORMULARIO======================*/
 
     private void registrarUsuarios() {
-         /*SE INSTANCIA UNA CONEXION Y SE LE COLOCAN LOS PARAMETROS */
-        ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this,"bd_juicios",null,1);
+        String expediente = campoExpediente.getText().toString();
 
-        //Se abre la conexion para poder der editada
-        SQLiteDatabase  db = conn .getWritableDatabase();
-          //se incluye al final del query
+        if(campoExpediente.getText().toString().trim().equalsIgnoreCase("")){
+            campoExpediente.setError("Introducir un Numero de Expediente");
+            System.out.println("********* 11111111111111  ====> ");
+            //Toast.makeText(this, "LLena los campos " + expediente, Toast.LENGTH_SHORT).show();
+            }else if(campoCliente.getText().toString().trim().equalsIgnoreCase("")){
+            System.out.println("********* 22222222222222222222  ====> ");
+                campoCliente.setError("Introduce un Cliente");
+                //Toast.makeText(this, "LLena los campos " + expediente, Toast.LENGTH_SHORT).show();
+            }else {
 
-        ContentValues values= new ContentValues();
-        //values.put(Utilidades.CAMPO_ID,);
-        values.put(Utilidades.CAMPO_EXPEDIENTE,campoExpediente.getText().toString());
-        values.put(Utilidades.CAMPO_CLIENTE,campoCliente.getText().toString());
+            //SE INSTANCIA UNA CONEXION Y SE LE COLOCAN LOS PARAMETROS
+            ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this,"bd_juicios",null,1);
+            //Se abre la conexion para poder der editada
+            SQLiteDatabase  db = conn .getWritableDatabase();
+            //se incluye al final del query
 
-        //INSERTAR EN LA BASE DE DATOS
-        Long idResultante = db.insert(Utilidades.TABLA_JUICIOS,Utilidades.CAMPO_ID,values);
+            ContentValues values= new ContentValues();
+            //values.put(Utilidades.CAMPO_ID,);
+            values.put(Utilidades.CAMPO_EXPEDIENTE,campoExpediente.getText().toString());
+            values.put(Utilidades.CAMPO_CLIENTE,campoCliente.getText().toString());
 
-        Toast.makeText(getApplicationContext(),"Id Registro: " + idResultante,Toast.LENGTH_SHORT).show();
-        System.out.println("*********Valores enviados a la BD  ====>  " + values);
-        System.out.println("*********Ruta de Conexion en la BD  ====>  " + conn);
-        db.close();   //se cierra la conexion
+            //INSERTAR EN LA BASE DE DATOS
+            Long idResultante = db.insert(Utilidades.TABLA_JUICIOS,Utilidades.CAMPO_ID,values);
+            System.out.println("********* 3333333333333333333333333333  ====> ");
+            Toast.makeText(getApplicationContext(),"Id Registro: " + idResultante,Toast.LENGTH_SHORT).show();
+            System.out.println("*********Valores enviados a la BD  ====>  " + values);
+            System.out.println("*********Ruta de Conexion en la BD  ====>  " + conn);
+            db.close();   //se cierra la conexion
+
+            Toast.makeText(this, "Expediente Guardado ", Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
-
-
 
 
 

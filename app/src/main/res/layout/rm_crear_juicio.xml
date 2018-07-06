@@ -7,7 +7,6 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:id="@+id/editar_C"
-    android:onClick="Editar_juicios"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -18,8 +17,7 @@
             android:layout_marginRight="5dp"
             android:background="@drawable/border_label_gris"
             android:orientation="vertical"
-            android:padding="10dp"
-            android:onClick="editar_juicio">
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/textView2"

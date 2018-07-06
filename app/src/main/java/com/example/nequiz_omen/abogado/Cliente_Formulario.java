@@ -21,6 +21,9 @@ public class Cliente_Formulario extends AppCompatActivity {
     EditText fecha_nacimiento;
     LinearLayout layout_for_sides;
 
+    //se declaran las variables
+    EditText campoId,campoNombre,campoTelefono;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,12 @@ public class Cliente_Formulario extends AppCompatActivity {
 
                 //Busqueda del layout con el id
         layout_for_sides = (LinearLayout) findViewById(R.id.layout_for_sides);
+        //se buscan los ID
+        campoId = (EditText)findViewById(R.id.campoId);
+        campoNombre = (EditText) findViewById(R.id.campoNombre);
+        campoTelefono = (EditText) findViewById(R.id.campoTelefono);
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -49,7 +58,10 @@ public class Cliente_Formulario extends AppCompatActivity {
             }
         });
 
-    }
+    }  //END ON CREATE
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -58,20 +70,29 @@ public class Cliente_Formulario extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_save) {
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
+    public void Guardadito_cliente(MenuItem item) {
+        //registrarUsuarios();     //SE CREA UN METODO DE LA ACCION QUE HARA  CUANDO SE DE CLICK
+        //registrarUsuariosSQL();   //SE CRE AUN METODO PARA INSERTAR DATOS MEDIANTE SQL
+        Toast.makeText(this, "Cliente Guardado ", Toast.LENGTH_SHORT).show();
+        finish();
+
     }
 
 
-    // Metodos para insertar fecha de nacimiento
+
+    /*=============== AQUI COMIENZA LA BASE DE DATOS  ====================================*/
+    private void registrarUsuariosSQL() {
+    }
+
+
+
+
+
+
+
+    //  ================================= Metodos para insertar fecha de nacimiento   =======================================
     public View.OnClickListener fechaNacimiento() {
         return new View.OnClickListener() {
             @Override
@@ -80,8 +101,6 @@ public class Cliente_Formulario extends AppCompatActivity {
             }
         };
     }
-
-
 
     private void showDatePickerDialog() {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
@@ -94,13 +113,4 @@ public class Cliente_Formulario extends AppCompatActivity {
         });
         newFragment.show(getFragmentManager(), "datePicker");
     }
-
-
-    //evento on click de  menu_cliente_formulario.xml
-    public void guardarCliente(MenuItem item) {
-        Toast.makeText(this, "Cliente Guardado ", Toast.LENGTH_SHORT).show();
-    }
-
-
-
 }

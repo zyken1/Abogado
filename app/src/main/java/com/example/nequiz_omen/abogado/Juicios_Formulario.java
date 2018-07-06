@@ -257,12 +257,12 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
  /*==================     Metodo guardar al dar click al icono de Guardar  ================*/
     public void Guardar(MenuItem item) {
         //registrarUsuariosSQL();
-        registrarUsuarios();
+        //registrarUsuarios();
 
         Intent i = new Intent(this, Juicios.class);
         startActivity(i);
     }
-     /*==================== METODO PARA GUARDAR FORMULARIO======================*/
+     /*==================== METODO PARA GUARDAR FORMULARIO======================
 
     private void registrarUsuarios() {
         String expediente = campoExpediente.getText().toString();
@@ -299,13 +299,13 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             Toast.makeText(this, "Expediente Guardado ", Toast.LENGTH_SHORT).show();
             finish();
         }
-    }
+    }*/
 
 
 
 
 
-
+/*
     private void registrarUsuariosSQL() {
         //Se define cual e sla base de datos
         ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this,"bd_usuarios",null,1);
@@ -322,7 +322,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         System.out.println("*********  BASE DE DATOS ====>   " + conn);
 
         db.close();
-    }
+    }*/
 
 
 }//end class

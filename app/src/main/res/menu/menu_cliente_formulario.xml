@@ -7,6 +7,6 @@
         android:icon="@drawable/ic_menu_diskett"
         android:title="Guardar"
         app:showAsAction="always"
-        android:onClick="guardarCliente"/>
+        android:onClick="Guardadito_cliente"/>
 
 </menu>

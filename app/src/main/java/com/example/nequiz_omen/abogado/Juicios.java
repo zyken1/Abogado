@@ -8,17 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.example.nequiz_omen.abogado.adaptadores.ListaJuiciosAdapter;
-import com.example.nequiz_omen.abogado.entidades.E_juicio;
+import com.example.nequiz_omen.abogado.adaptadores.ListaPersonasAdapter;
+import com.example.nequiz_omen.abogado.entidades.Mascota;
 import com.example.nequiz_omen.abogado.utilidades.Utilidades;
 
 import java.util.ArrayList;
@@ -28,7 +24,7 @@ public class Juicios extends AppCompatActivity {
     ListView vistaJuicios;
     ArrayList<String> listaInformacion;
 
-    ArrayList<E_juicio> listaUsuario;
+    ArrayList<Mascota> listaUsuario;
     RecyclerView recyclerViewUsuarios;
     ConexionSQLiteHelper conn;
 
@@ -37,22 +33,6 @@ public class Juicios extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juicios);
-
-
-                     /*=============   PARA LA BD   ===========*/
-
-        conn = new ConexionSQLiteHelper(getApplicationContext(), "bd_juicios", null, 1);
-        listaUsuario = new ArrayList<>();
-
-        recyclerViewUsuarios= (RecyclerView) findViewById(R.id.recyclerJuicios);
-        recyclerViewUsuarios.setLayoutManager(new LinearLayoutManager(this));
-
-        consultarListaPersonas();             //SE MANDA ESTE MEOTODO A LLAMAR DESDE LA VIDA DEL ACTIVITY OnResume
-
-        ListaJuiciosAdapter adapter = new ListaJuiciosAdapter(listaUsuario);
-        recyclerViewUsuarios.setAdapter(adapter);
-
-                /*=============   AQUI TERMINA LO DE  LA BD   ===========*/
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -73,30 +53,6 @@ public class Juicios extends AppCompatActivity {
         });
     }
 
-
-             /*   ==============   METODO CONSULTAR PERSONAS EN LA BD  ==================0*/
-    private void consultarListaPersonas() {
-        SQLiteDatabase db = conn.getReadableDatabase();
-
-        E_juicio usuario = null;
-        // listaUsuarios=new ArrayList<Usuario>();
-
-        Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_JUICIOS,null);
-
-        while (cursor.moveToNext()){  /*CICLO  WHILE  PARA REPETIR LA SENTENCIA*/
-            usuario = new E_juicio();
-            usuario.setId(cursor.getInt(0));
-            usuario.setExpediente(cursor.getString(1));
-            usuario.setCliente(cursor.getString(2));
-
-
-            listaUsuario.add(usuario);
-        }
-        //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
-        //llenarListaUsuarios();
-    }
-
-         /*=====================     AQUI TENMINAN LOS METODOS DE LA BD    ========================*/
 
 
 

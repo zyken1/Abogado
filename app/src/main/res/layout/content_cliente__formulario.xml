@@ -48,7 +48,7 @@
                     tools:layout_editor_absoluteY="66dp" />
 
                 <EditText
-                    android:id="@+id/editText2"
+                    android:id="@+id/campoId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -104,7 +104,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/editText3"
+                        android:id="@+id/campoNombre"
                         android:layout_width="312dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -196,7 +196,7 @@
                     android:text="Dirección" />
 
                 <EditText
-                    android:id="@+id/editText4"
+                    android:id="@+id/campoTelefono"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"

@@ -78,6 +78,7 @@ public class Cliente_Formulario extends AppCompatActivity {
 
 
 
+
     public void Guardadito_cliente(MenuItem item) {
         //registrarUsuarios();     //SE CREA UN METODO DE LA ACCION QUE HARA  CUANDO SE DE CLICK
         //registrarUsuariosSQL();   //SE CRE AUN METODO PARA INSERTAR DATOS MEDIANTE SQL
@@ -91,8 +92,7 @@ public class Cliente_Formulario extends AppCompatActivity {
     }
 
 
-
-             /*=============== AQUI COMIENZA LA BASE DE DATOS  ====================================*/
+             /*======================  AQUI COMIENZA LA BASE DE DATOS  ====================================*/
     private void registrarUsuarios() {
        /*SE INSTANCIA UNA CONEXION Y SE LE COLOCAN LOS PARAMETROS */
         ConexionSQLiteHelper conn=new ConexionSQLiteHelper(this,"bd_usuarios",null,1);
@@ -111,6 +111,7 @@ public class Cliente_Formulario extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"Id Registro:" + idResultante,Toast.LENGTH_SHORT).show();
         db.close();   //se cierra la conexion
     }
+
 
 
 

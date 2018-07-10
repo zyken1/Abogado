@@ -55,7 +55,7 @@
                 android:text="Tipo de Juicio" />
 
             <TextView
-                android:id="@+id/textNombre"
+                android:id="@+id/textTipoJuicio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"

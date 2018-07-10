@@ -25,7 +25,7 @@ public class ListaJuiciosAdapter extends RecyclerView.Adapter<ListaJuiciosAdapte
 
     @Override
     public PersonasViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rm_crear_cliente,null,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rm_crear_juicio,null,false);
         return new PersonasViewHolder(view);
     }
 
@@ -51,8 +51,8 @@ public class ListaJuiciosAdapter extends RecyclerView.Adapter<ListaJuiciosAdapte
         public PersonasViewHolder(View itemView) {
             super(itemView);
             id = (TextView) itemView.findViewById(R.id.textExpediente);
-            nombre = (TextView) itemView.findViewById(R.id.textNombre);
-            telefono = (TextView) itemView.findViewById(R.id.textCorreo);
+            nombre = (TextView) itemView.findViewById(R.id.textCliente);
+            telefono = (TextView) itemView.findViewById(R.id.textTipoJuicio);
         }
     }
 

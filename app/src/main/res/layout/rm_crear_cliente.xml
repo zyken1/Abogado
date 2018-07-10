@@ -39,7 +39,7 @@
                             android:text="NOMBRE" />
 
                         <TextView
-                            android:id="@+id/textMovil"
+                            android:id="@+id/textTelefono"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignStart="@+id/textNombre"
@@ -51,8 +51,8 @@
                             android:id="@+id/textCorreo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/textMovil"
-                            android:layout_below="@+id/textMovil"
+                            android:layout_alignStart="@+id/textTelefono"
+                            android:layout_below="@+id/textTelefono"
                             android:layout_marginTop="4dp"
                             android:layout_marginBottom="5dp"
                             android:text="prueba000@gmail.com" />

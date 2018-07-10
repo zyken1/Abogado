@@ -10,9 +10,9 @@ public class Usuario implements Serializable {  /*Serializable permite que sea e
 
     private Integer id;
     private String nombre;
-    private int tipo_persona;        // si es 1 = fisica    2 = Moral
+    private String tipo_persona;        // si es 1 = fisica    2 = Moral
     private String e_mail;
-    private int genero;              // si es 1 = Hombre    2 = Mujer
+    private String genero;              // si es 3 = Hombre    4 = Mujer
     private String fechaNacimiento;
     private String direccion;
     private int tel_movil;
@@ -22,7 +22,7 @@ public class Usuario implements Serializable {  /*Serializable permite que sea e
     private String notas;
 
 
-    public Usuario(Integer id, String nombre, int tipo_persona, String e_mail, int genero, String fechaNacimiento, String direccion, int tel_movil, int tel_casa, int tel_oficina, String dependientes, String notas ) {         /*CONSTRUCTOR CON LOS PARAMETROS*/
+    public Usuario(Integer id, String nombre, String tipo_persona, String e_mail, String genero, String fechaNacimiento, String direccion, int tel_movil, int tel_casa, int tel_oficina, String dependientes, String notas ) {         /*CONSTRUCTOR CON LOS PARAMETROS*/
         this.id = id;
         this.nombre = nombre;
         this.tipo_persona = tipo_persona;
@@ -61,11 +61,11 @@ public class Usuario implements Serializable {  /*Serializable permite que sea e
     }
 
 
-    public int getTipo_persona() {
+    public String getTipo_persona() {
         return tipo_persona;
     }
 
-    public void setTipo_persona(int tipo_persona) {
+    public void setTipo_persona(String tipo_persona) {
         this.tipo_persona = tipo_persona;
     }
 
@@ -77,11 +77,11 @@ public class Usuario implements Serializable {  /*Serializable permite que sea e
         this.e_mail = e_mail;
     }
 
-    public int getGenero() {
+    public String getGenero() {
         return genero;
     }
 
-    public void setGenero(int genero) {
+    public void setGenero(String genero) {
         this.genero = genero;
     }
 

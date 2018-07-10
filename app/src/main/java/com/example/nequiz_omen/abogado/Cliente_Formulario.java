@@ -103,7 +103,7 @@ public class Cliente_Formulario extends AppCompatActivity {
         ContentValues values= new ContentValues();    //con el content y el put se va agregar una clave y un valor  COMO EN EL HASH
         values.put(Utilidades.CAMPO_ID,campoId.getText().toString());            //De utilidades escirbe en CAMPO_ID  lo que este en el Texto de campoId
         values.put(Utilidades.CAMPO_NOMBRE,campoNombre.getText().toString());       //De utilidades escirbe en CAMPO_NOMBRE  lo que este en el Texto de campoNombre
-        //values.put(Utilidades.CAMPO_TIPO,campoTelefono.getText().toString());   //De utilidades escirbe en CAMPO_TELEFONO  lo que este en el Texto de campoTelefono
+        values.put(Utilidades.CAMPO_TIPO,campotipo);   //De utilidades escirbe en CAMPO_TELEFONO  lo que este en el Texto de campoTelefono
 
         //INSERTAR EN LA BASE DE DATOS
         Long idResultante = db.insert(Utilidades.TABLA_USUARIO,Utilidades.CAMPO_ID,values);  //con values le mandamos todos los aparametros correspondientes a ese ID
@@ -132,6 +132,7 @@ public class Cliente_Formulario extends AppCompatActivity {
                 if (checked)
                     //MORAL
                     Toast.makeText(getApplicationContext(),"MORAL:" ,Toast.LENGTH_SHORT).show();
+                    campotipo = "MORAL";
                     break;
             case R.id.radioButton3:
                 if (checked)

@@ -34,7 +34,7 @@ public class ListaJuiciosAdapter extends RecyclerView.Adapter<ListaJuiciosAdapte
     public void onBindViewHolder(PersonasViewHolder holder, int position) {
         holder.id.setText(listaUsuario.get(position).getId().toString());
         holder.nombre.setText(listaUsuario.get(position).getNombre());
-        holder.telefono.setText(listaUsuario.get(position).getTelefono());
+        holder.telefono.setText(listaUsuario.get(position).getTipo_persona());
     }
 
 

@@ -35,7 +35,7 @@ public class ListaPersonasAdapter extends RecyclerView.Adapter<ListaPersonasAdap
     public void onBindViewHolder(PersonasViewHolder holder, int position) {
         holder.id.setText(listaUsuario.get(position).getId().toString());
         holder.nombre.setText(listaUsuario.get(position).getNombre());
-        holder.telefono.setText(listaUsuario.get(position).getTelefono());
+        holder.telefono.setText(listaUsuario.get(position).getE_mail());
     }
 
 
@@ -51,9 +51,9 @@ public class ListaPersonasAdapter extends RecyclerView.Adapter<ListaPersonasAdap
 
         public PersonasViewHolder(View itemView) {
             super(itemView);
-            id = (TextView) itemView.findViewById(R.id.textExpediente);
+            id = (TextView) itemView.findViewById(R.id.textCorreo);
             nombre = (TextView) itemView.findViewById(R.id.textNombre);
-            telefono = (TextView) itemView.findViewById(R.id.textCorreo);
+            telefono = (TextView) itemView.findViewById(R.id.textMovil);
         }
     }
 

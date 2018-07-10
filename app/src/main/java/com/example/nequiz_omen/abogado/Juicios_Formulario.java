@@ -29,7 +29,7 @@ import java.util.Objects;
 
 public class Juicios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables
-    private Spinner spinnerPro, spinnerLoc;
+    private Spinner spinnerJuicio, spinnerEtapa;
     private LinearLayout layout_Cliente,layout_Contrario,layout_Tramite;
     private ImageView agregar_cliente,agregar_contrario,agregar_tramite;
 
@@ -82,19 +82,19 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             }
         });
 
-        //Referenciado de variables del XML
-        spinnerPro = (Spinner) findViewById(R.id.spinner_Juicio);
-        spinnerLoc = (Spinner) findViewById(R.id.spinner_Etapa);
+        //==============================  Referenciado de variables del XML
+        spinnerJuicio = (Spinner) findViewById(R.id.spinner_Juicio);
+        spinnerEtapa = (Spinner) findViewById(R.id.spinner_Etapa);
         //Construcción del "adaptador" para el primer Spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.array_Juicios, /*Se carga el array definido en el XML */android.R.layout.simple_spinner_item);
 
         //Se carga el tipo de vista para el adaptador
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Se aplica el adaptador al Spinner de Juicios
-        spinnerPro.setAdapter(adapter);
+        spinnerJuicio.setAdapter(adapter);
         //Se aplica listener para saber que item ha sido seleccionado
         //y poder usarlo en el método "onItemSelected"
-        spinnerPro.setOnItemSelectedListener(this);
+        spinnerJuicio.setOnItemSelectedListener(this);
     }//end ON CREATE
 
 
@@ -112,18 +112,18 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
                 R.array.array_Amparo_Directo,
                 R.array.array_Incidente_de_Suspensión,
                 R.array.array_Juicio_Ordinario_Laboral};
+
         //Construcción del "adaptador" para el segundo Spinner
-
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this, Etapas[position], /*En función del Juicio, se carga el array que corresponda del XML */ android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, Etapas[position], /*En función del Juicio, se carga el array que corresponda del XML */ android.R.layout.simple_spinner_item);
         //Se carga el tipo de vista para el adaptadori
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Se aplica el adaptador al Spinner de Juicios
-        spinnerLoc.setAdapter(adapter);
+        spinnerEtapa.setAdapter(adapter);
         //Toast.makeText(this, "Seleccionaste el Juicio:" + position + "  id:" +id, Toast.LENGTH_SHORT).show();
-        System.out.println("**********Array posicion  =====> " +position+ "  Id ===> " +id);
+        System.out.println("**********Array posicion  =====> " + parent.getItemAtPosition(position).toString() + "  Id ===> " +id);
     } // end array
+
+
 
 
 
@@ -213,8 +213,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         }
 
         //layout_Cliente.removeView((View) v.getParent());
-        System.out.println("SWITCH TERMINADO ONDELETE"  );
-        System.out.println( "EL ID QUE SE ELIMINO FUE: " + v  );
+        System.out.println("****************SWITCH TERMINADO ONDELETE"  );
+        System.out.println( "**************+EL ID QUE SE ELIMINO FUE: " + v  );
     }
 
 
@@ -257,10 +257,13 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
  /*==================     Metodo guardar al dar click al icono de Guardar  ================*/
     public void Guardar(MenuItem item) {
         //registrarUsuariosSQL();
-        //registrarUsuarios();
+        //registrarUsuarios();spinnerPro
 
-        Intent i = new Intent(this, Juicios.class);
-        startActivity(i);
+        String textLoc = spinnerEtapa.getSelectedItem().toString();
+        Toast.makeText(this, textLoc, Toast.LENGTH_SHORT).show();
+
+        //Intent i = new Intent(this, Juicios.class);
+        //startActivity(i);
     }
      /*==================== METODO PARA GUARDAR FORMULARIO======================
 
@@ -279,7 +282,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
             //SE INSTANCIA UNA CONEXION Y SE LE COLOCAN LOS PARAMETROS
             ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this,"bd_juicios",null,1);
-            //Se abre la conexion para poder der editada
+            //Se abre la conexion para poder ser editada
             SQLiteDatabase  db = conn .getWritableDatabase();
             //se incluye al final del query
 

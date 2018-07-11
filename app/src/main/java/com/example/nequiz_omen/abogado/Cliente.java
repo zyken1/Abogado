@@ -66,7 +66,8 @@ public class Cliente extends AppCompatActivity {
     }
 
 
-    /*==================METODO PARA CONSUTLAR LAS PERSONAS DE LA BD  =================================*/
+
+    /*==================METODO PARA CONSULTAR LAS PERSONAS DE LA BD  =================================*/
     private void consultarListaPersonas() {
         SQLiteDatabase db=conn.getReadableDatabase();
 
@@ -79,21 +80,20 @@ public class Cliente extends AppCompatActivity {
             usuario=new Usuario();
             usuario.setId(cursor.getInt(0));
             usuario.setNombre(cursor.getString(1));
-            usuario.setTipo_persona(cursor.getString(2));
-
+            usuario.setE_mail(cursor.getString(3));
 
             listaUsuario.add(usuario);
         }
-
         //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
         llenarListaUsuarios();
     }
 
+
     private void llenarListaUsuarios() {
-        listaUsuario.add(new Usuario(10,"Daniel",2);
+        listaUsuario.add(new Usuario(100,"Prueba","MORAL","prueba@prueba.com","Masculino","00/00/00","siempre viva","121212","123456789","23456789","papa y mama","ninguna Nota de momento"));
         //listaUsuario.add(new Usuario(2,"josesito","1212121212"));
     }
-
+    /*==================FIN  DE LA BD  =================================*/
 
 
 
@@ -104,6 +104,7 @@ public class Cliente extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_cliente, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -126,5 +127,6 @@ public class Cliente extends AppCompatActivity {
         Intent i = new Intent(this, Cliente_Edicion.class);
         startActivity(i);
     }
+
 
 }//END  CLASS

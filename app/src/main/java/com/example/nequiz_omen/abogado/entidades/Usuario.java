@@ -15,14 +15,14 @@ public class Usuario implements Serializable {  /*Serializable permite que sea e
     private String genero;              // si es 3 = Hombre    4 = Mujer
     private String fechaNacimiento;
     private String direccion;
-    private int tel_movil;
-    private int tel_casa;
-    private int tel_oficina;
+    private String tel_movil;
+    private String tel_casa;
+    private String tel_oficina;
     private String dependientes;
     private String notas;
 
 
-    public Usuario(Integer id, String nombre, String tipo_persona, String e_mail, String genero, String fechaNacimiento, String direccion, int tel_movil, int tel_casa, int tel_oficina, String dependientes, String notas ) {         /*CONSTRUCTOR CON LOS PARAMETROS*/
+    public Usuario(Integer id, String nombre, String tipo_persona, String e_mail, String genero, String fechaNacimiento, String direccion, String tel_movil, String tel_casa, String tel_oficina, String dependientes, String notas ) {         /*CONSTRUCTOR CON LOS PARAMETROS*/
         this.id = id;
         this.nombre = nombre;
         this.tipo_persona = tipo_persona;
@@ -44,7 +44,6 @@ public class Usuario implements Serializable {  /*Serializable permite que sea e
 
 /*===========METODOS GET Y SET  ============================*/
 
-
     public Integer getId() {
         return id;
     }
@@ -60,7 +59,6 @@ public class Usuario implements Serializable {  /*Serializable permite que sea e
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
 
     public String getTipo_persona() {
         return tipo_persona;
@@ -102,27 +100,27 @@ public class Usuario implements Serializable {  /*Serializable permite que sea e
         this.direccion = direccion;
     }
 
-    public int getTel_movil() {
+    public String getTel_movil() {
         return tel_movil;
     }
 
-    public void setTel_movil(int tel_movil) {
+    public void setTel_movil(String tel_movil) {
         this.tel_movil = tel_movil;
     }
 
-    public int getTel_casa() {
+    public String getTel_casa() {
         return tel_casa;
     }
 
-    public void setTel_casa(int tel_casa) {
+    public void setTel_casa(String tel_casa) {
         this.tel_casa = tel_casa;
     }
 
-    public int getTel_oficina() {
+    public String getTel_oficina() {
         return tel_oficina;
     }
 
-    public void setTel_oficina(int tel_oficina) {
+    public void setTel_oficina(String tel_oficina) {
         this.tel_oficina = tel_oficina;
     }
 

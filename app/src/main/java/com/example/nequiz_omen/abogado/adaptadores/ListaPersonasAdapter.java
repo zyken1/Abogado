@@ -34,9 +34,10 @@ public class ListaPersonasAdapter extends RecyclerView.Adapter<ListaPersonasAdap
     @Override
     public void onBindViewHolder(PersonasViewHolder holder, int position) {
         holder.nombre.setText(listaUsuario.get(position).getId().toString());
-        holder.telefono.setText(listaUsuario.get(position).getNombre());
-        holder.correo.setText(listaUsuario.get(position).getTipo_persona());
-        /*holder.nombre.setText(listaUsuario.get(position).getNombre());
+        holder.telefono.setText(listaUsuario.get(position).getNombre().toUpperCase());
+        holder.correo.setText(listaUsuario.get(position).getE_mail());
+
+        /*holder.correo.setText(listaUsuario.get(position).getTipo_persona());
         holder.telefono.setText(listaUsuario.get(position).getTel_movil());
         holder.correo.setText(listaUsuario.get(position).getE_mail());  */  //holder.correo.setText(listaUsuario.get(position).getId().toString());
     }

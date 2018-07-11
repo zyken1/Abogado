@@ -54,7 +54,7 @@
                             android:layout_alignStart="@+id/textTelefono"
                             android:layout_below="@+id/textTelefono"
                             android:layout_marginTop="4dp"
-                            android:layout_marginBottom="5dp"
+                            android:layout_marginBottom="7dp"
                             android:text="prueba000@gmail.com" />
 
                 </RelativeLayout>

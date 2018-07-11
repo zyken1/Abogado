@@ -41,6 +41,7 @@ public class Usuario implements Serializable {  /*Serializable permite que sea e
     public Usuario() {  //se genera constructor en automatico para su funcionamiento
 
     }
+
 /*===========METODOS GET Y SET  ============================*/
 
 

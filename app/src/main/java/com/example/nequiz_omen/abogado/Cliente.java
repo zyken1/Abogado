@@ -79,7 +79,7 @@ public class Cliente extends AppCompatActivity {
             usuario=new Usuario();
             usuario.setId(cursor.getInt(0));
             usuario.setNombre(cursor.getString(1));
-            usuario.setE_mail(cursor.getString(2));
+            usuario.setTipo_persona(cursor.getString(2));
 
 
             listaUsuario.add(usuario);
@@ -90,7 +90,7 @@ public class Cliente extends AppCompatActivity {
     }
 
     private void llenarListaUsuarios() {
-        //listaUsuario.add(new Usuario(1,"Daniel","548526"));
+        listaUsuario.add(new Usuario(10,"Daniel",2);
         //listaUsuario.add(new Usuario(2,"josesito","1212121212"));
     }
 

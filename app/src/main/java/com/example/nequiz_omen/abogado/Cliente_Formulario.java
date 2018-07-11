@@ -27,8 +27,8 @@ public class Cliente_Formulario extends AppCompatActivity {
     LinearLayout layout_for_sides;
 
     //se declaran las variables
-    EditText campoId,campoNombre,campoTelefono;
-    String campotipo;
+    EditText campoId,campoNombre,campoCorreo,campoTelefono;
+    String campotipo, campoGenero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +38,9 @@ public class Cliente_Formulario extends AppCompatActivity {
                 //Busqueda del layout con el id
         layout_for_sides = (LinearLayout) findViewById(R.id.layout_for_sides);
         //se buscan los ID
-        campoId = (EditText)findViewById(R.id.campoId);
-        campoNombre = (EditText) findViewById(R.id.campoNombre);
-        campoTelefono = (EditText) findViewById(R.id.campoTelefono);
-
-
+        campoNombre = (EditText)findViewById(R.id.campoNombre);
+        campoCorreo = (EditText) findViewById(R.id.campoCorreo);
+        campoTelefono = (EditText) findViewById(R.id.fecha_nacimiento);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -80,9 +78,9 @@ public class Cliente_Formulario extends AppCompatActivity {
 
 
     public void Guardadito_cliente(MenuItem item) {
-        //registrarUsuarios();     //SE CREA UN METODO DE LA ACCION QUE HARA  CUANDO SE DE CLICK
+        registrarUsuarios();     //SE CREA UN METODO DE LA ACCION QUE HARA  CUANDO SE DE CLICK
         //registrarUsuariosSQL();   //SE CRE AUN METODO PARA INSERTAR DATOS MEDIANTE SQL
-        //Toast.makeText(this, "Cliente Guardado ", Toast.LENGTH_SHORT).show();
+         Toast.makeText(this, "Cliente Guardado ", Toast.LENGTH_SHORT).show();
         //finish();
 
         //Intent i = new Intent(this, Cliente.class);
@@ -101,7 +99,7 @@ public class Cliente_Formulario extends AppCompatActivity {
         SQLiteDatabase  db = conn .getWritableDatabase();
 
         ContentValues values= new ContentValues();    //con el content y el put se va agregar una clave y un valor  COMO EN EL HASH
-        values.put(Utilidades.CAMPO_ID,campoId.getText().toString());            //De utilidades escirbe en CAMPO_ID  lo que este en el Texto de campoId
+        //values.put(Utilidades.CAMPO_ID,campoId.getText().toString());            //De utilidades escirbe en CAMPO_ID  lo que este en el Texto de campoId
         values.put(Utilidades.CAMPO_NOMBRE,campoNombre.getText().toString());       //De utilidades escirbe en CAMPO_NOMBRE  lo que este en el Texto de campoNombre
         values.put(Utilidades.CAMPO_TIPO,campotipo);   //De utilidades escirbe en CAMPO_TELEFONO  lo que este en el Texto de campoTelefono
 
@@ -109,6 +107,7 @@ public class Cliente_Formulario extends AppCompatActivity {
         Long idResultante = db.insert(Utilidades.TABLA_USUARIO,Utilidades.CAMPO_ID,values);  //con values le mandamos todos los aparametros correspondientes a ese ID
 
         Toast.makeText(getApplicationContext(),"Id Registro:" + idResultante,Toast.LENGTH_SHORT).show();
+        System.out.println("****************Impresion en BD ====> " +values);
         db.close();   //se cierra la conexion
     }
 
@@ -139,11 +138,13 @@ public class Cliente_Formulario extends AppCompatActivity {
                 if (checked)
                     // HOMBRE
                     Toast.makeText(getApplicationContext(),"HOMBRE:" ,Toast.LENGTH_SHORT).show();
+                    campoGenero = "Hombre";
                     break;
             case R.id.radioButton4:
                 if (checked)
                     // MUJER
                     Toast.makeText(getApplicationContext(),"MUJER:" ,Toast.LENGTH_SHORT).show();
+                    campoGenero = "Mujer";
                     break;
         }
     }

@@ -163,6 +163,11 @@ public class Cliente_Formulario extends AppCompatActivity {
 
      /*================  VERIFICAR SI NO HAY CAMPOS VACIOS  ===========================*/
     private void validacionDatos() {
+        if (campoNombre.length()< 3) {
+            campoNombre.setError("Ingrese un nombre numero valido");
+        } else {
+            Toast.makeText(getApplicationContext(),"MUY BIEN" ,Toast.LENGTH_SHORT).show();
+        }
     }
 
 

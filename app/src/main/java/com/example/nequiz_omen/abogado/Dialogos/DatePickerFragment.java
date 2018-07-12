@@ -1,4 +1,4 @@
-package com.example.nequiz_omen.abogado;
+package com.example.nequiz_omen.abogado.Dialogos;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

@@ -1,11 +1,7 @@
 package com.example.nequiz_omen.abogado;
 
 import android.app.DatePickerDialog;
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,12 +16,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.nequiz_omen.abogado.utilidades.Utilidades;
-
-import java.util.Objects;
+import com.example.nequiz_omen.abogado.Dialogos.DatePickerFragment;
 
 public class Juicios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables

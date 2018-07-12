@@ -2,14 +2,11 @@ package com.example.nequiz_omen.abogado;
 
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,9 +14,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nequiz_omen.abogado.Dialogos.DatePickerFragment;
 import com.example.nequiz_omen.abogado.utilidades.Utilidades;
 
 public class Cliente_Formulario extends AppCompatActivity {
@@ -82,17 +79,19 @@ public class Cliente_Formulario extends AppCompatActivity {
 
 
 
-
+          /*  METODO GUARDAR EN EL FORMULARIO  */
     public void Guardadito_cliente(MenuItem item) {
-        createSimpleDialog();
-        //validacionDatos();
-        //registrarUsuarios();     //SE CREA UN METODO DE LA ACCION QUE HARA  CUANDO SE DE CLICK
-        //registrarUsuariosSQL();   //SE CRE AUN METODO PARA INSERTAR DATOS MEDIANTE SQL
+        if(campoNombre.length()< 3) {
+            campoNombre.setError("Ingrese un nombre valido");
+        } else{
+            //registrarUsuarios();     //SE CREA UN METODO DE LA ACCION QUE HARA  CUANDO SE DE CLICK
+            //registrarUsuariosSQL();   //SE CRE AUN METODO PARA INSERTAR DATOS MEDIANTE SQL
 
-        //Toast.makeText(this, "Cliente Guardado ", Toast.LENGTH_SHORT).show();
-        //finish();
-        //Intent i = new Intent(this, Cliente.class);
-        //startActivity(i);
+            Toast.makeText(this, "Cliente Guardado ", Toast.LENGTH_SHORT).show();
+            finish();
+            Intent i = new Intent(this, Cliente.class);
+            startActivity(i);
+        }
     }
 
     /*======================  AQUI COMIENZA LA BASE DE DATOS  ====================================*/
@@ -160,46 +159,6 @@ public class Cliente_Formulario extends AppCompatActivity {
                     campoGenero = "Mujer";
                     break;
         }
-    }
-
-
-     /*================  VERIFICAR SI NO HAY CAMPOS VACIOS  ===========================*/
-    private void validacionDatos() {
-        if (campoNombre.length()< 3) {
-            campoNombre.setError("Ingrese un nombre numero valido");
-        } else {
-            Toast.makeText(getApplicationContext(),"MUY BIEN" ,Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
-
-
-    /**
-     * Crea un diálogo de alerta sencillo
-     * @return Nuevo diálogo
-     */
-    public AlertDialog createSimpleDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
-        builder.setTitle("Titulo")
-                .setMessage("El Mensaje para el usuario")
-                .setPositiveButton("OK",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                listener.onPossitiveButtonClick();
-                            }
-                        })
-                .setNegativeButton("CANCELAR",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                listener.onNegativeButtonClick();
-                            }
-                        });
-
-        return builder.create();
     }
 
     //================================= Metodos para insertar fecha de nacimiento   =======================================

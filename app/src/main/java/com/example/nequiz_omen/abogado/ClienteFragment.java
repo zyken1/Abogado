@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.example.nequiz_omen.abogado.entidades.Usuario;
 
 
 /**
@@ -13,6 +16,7 @@ import android.view.ViewGroup;
  */
 public class ClienteFragment extends Fragment {
 
+    TextView campoId, campoNombre, campoTelefono;
 
     public ClienteFragment() {
         // Required empty public constructor
@@ -24,6 +28,8 @@ public class ClienteFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_cliente, container, false);
+
+
     }
 
 }

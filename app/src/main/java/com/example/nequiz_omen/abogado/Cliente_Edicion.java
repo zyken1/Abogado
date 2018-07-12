@@ -1,5 +1,6 @@
 package com.example.nequiz_omen.abogado;
 
+import android.database.Cursor;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,13 +12,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.nequiz_omen.abogado.entidades.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente_Edicion extends AppCompatActivity {
-
+    TextView campoId, campoNombre, campoTelefono;
     /*  ESTE ES EL ORDEN DE LOS FRAGMENT
     * Datos del Cliente
     * Juicios del cliente*/
@@ -38,6 +42,26 @@ public class Cliente_Edicion extends AppCompatActivity {
         setContentView(R.layout.activity_cliente__edicion);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);  //soportar  el manifest de la barra de accion
+
+        campoId = (TextView) findViewById(R.id.campoId);
+        campoNombre = (TextView) findViewById(R.id.campoNombre);
+        campoTelefono = (TextView) findViewById(R.id.campoTelefono);
+
+        /*===============Aqui va el Bundle ======================*/
+        Bundle objetoEnviado=getIntent().getExtras();  //instanciar el Bundle
+        Usuario user=null;
+
+        if(objetoEnviado!=null){
+
+            user= (Usuario) objetoEnviado.getSerializable("usuario");
+            campoId.setText(user.getId().toString());
+            campoNombre.setText(user.getNombre().toString());
+            campoTelefono.setText(user.getE_mail().toString());
+
+            System.out.println("********Objeto Recibido ====>  " +objetoEnviado);
+            System.out.println("********Bundle Recibido ====>  " + user);
+        }
+        /*===============Aqui va el Bundle ======================*/
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -90,6 +114,7 @@ public class Cliente_Edicion extends AppCompatActivity {
     public void eliminar_cliente(MenuItem item) {
         Toast.makeText(this, "Boton para eliminar", Toast.LENGTH_SHORT).show();
     }
+
     public void editar_cliente(MenuItem item) {
         Toast.makeText(this, "Boton para editar", Toast.LENGTH_SHORT).show();
     }

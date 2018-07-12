@@ -65,6 +65,7 @@ public class Cliente_Formulario extends AppCompatActivity {
             }
         });
 
+
     }  //END ON CREATE
 
 
@@ -84,7 +85,7 @@ public class Cliente_Formulario extends AppCompatActivity {
         if(campoNombre.length()< 3) {
             campoNombre.setError("Ingrese un nombre valido");
         } else{
-            //registrarUsuarios();     //SE CREA UN METODO DE LA ACCION QUE HARA  CUANDO SE DE CLICK
+            registrarUsuarios();     //SE CREA UN METODO DE LA ACCION QUE HARA  CUANDO SE DE CLICK
             //registrarUsuariosSQL();   //SE CRE AUN METODO PARA INSERTAR DATOS MEDIANTE SQL
 
             Toast.makeText(this, "Cliente Guardado ", Toast.LENGTH_SHORT).show();

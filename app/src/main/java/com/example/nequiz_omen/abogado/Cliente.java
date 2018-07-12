@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nequiz_omen.abogado.adaptadores.ListaPersonasAdapter;
@@ -20,9 +22,12 @@ import com.example.nequiz_omen.abogado.utilidades.Utilidades;
 import java.util.ArrayList;
 
 public class Cliente extends AppCompatActivity {
+    TextView campoId, campoNombre, campoTelefono;
     //VARIABLES
     ArrayList<Usuario> listaUsuario;
     RecyclerView recyclerViewUsuarios;
+
+    ArrayList<String> listaInformacion;
 
     ConexionSQLiteHelper conn;
 
@@ -63,8 +68,7 @@ public class Cliente extends AppCompatActivity {
 
         ListaPersonasAdapter adapter = new ListaPersonasAdapter(listaUsuario);
         recyclerViewUsuarios.setAdapter(adapter);
-    }
-
+}
 
 
     /*==================METODO PARA CONSULTAR LAS PERSONAS DE LA BD  =================================*/
@@ -72,6 +76,7 @@ public class Cliente extends AppCompatActivity {
         SQLiteDatabase db=conn.getReadableDatabase();
 
         Usuario usuario=null;
+        int var = 1;
         // listaUsuarios=new ArrayList<Usuario>();
         //select * from usuarios
         Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_USUARIO,null);
@@ -83,6 +88,7 @@ public class Cliente extends AppCompatActivity {
             usuario.setE_mail(cursor.getString(3));
 
             listaUsuario.add(usuario);
+            System.out.println("*********************  usuario " + usuario);
         }
         //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
         llenarListaUsuarios();
@@ -122,10 +128,41 @@ public class Cliente extends AppCompatActivity {
     }
 
 
-    //Eventos a ejecutar al darle click alguna de las imagenes que se muestran en CLIENTES
-    public void Editar_cliente(View v) {
-        Intent i = new Intent(this, Cliente_Edicion.class);
-        startActivity(i);
+
+    //========   Eventos a ejecutar al darle click alguna de las imagenes que se muestran en CLIENTES
+    public void Detalle_Cliente( View view) {
+
+        System.out.println("LE DISTE CLICK CHAVO ");
+        System.out.println("************  " + listaUsuario);
+
+        //Object[] nombres = listaUsuario.toArray();
+        //System.out.println(nombres[1]);
+        int user = 1;
+        System.out.println(listaUsuario.get(user).getNombre());
+
+       /* SQLiteDatabase db = conn.getReadableDatabase();
+        Usuario usuario = null;
+
+        //select * from usuarios
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Utilidades.TABLA_USUARIO + "WHERE USUARIO " + user , null);
+
+        while (cursor.moveToNext()) {
+            usuario = new Usuario();
+            usuario.setId(cursor.getInt(0));
+            usuario.setNombre(cursor.getString(1));
+            usuario.setE_mail(cursor.getString(3));
+            }
+
+        System.out.println("*********************  listaUsuario " + listaUsuario);
+        System.out.println("*********************  usuario " + usuario);  */
+
+
+        //LANZA UN MENSAJE  CON LOS DATOS SOLICITADOS
+        //Toast.makeText(getApplicationContext(), id , Toast.LENGTH_LONG).show();
+        //System.out.println("********************+  ID "+id);
+
+        //Intent i = new Intent(this, Cliente_Edicion.class);
+        //startActivity(i);
     }
 
 

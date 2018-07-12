@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -83,12 +84,13 @@ public class Cliente_Formulario extends AppCompatActivity {
 
 
     public void Guardadito_cliente(MenuItem item) {
-        validacionDatos();
+        createSimpleDialog();
+        //validacionDatos();
         //registrarUsuarios();     //SE CREA UN METODO DE LA ACCION QUE HARA  CUANDO SE DE CLICK
         //registrarUsuariosSQL();   //SE CRE AUN METODO PARA INSERTAR DATOS MEDIANTE SQL
+
         //Toast.makeText(this, "Cliente Guardado ", Toast.LENGTH_SHORT).show();
         //finish();
-
         //Intent i = new Intent(this, Cliente.class);
         //startActivity(i);
     }
@@ -170,6 +172,35 @@ public class Cliente_Formulario extends AppCompatActivity {
         }
     }
 
+
+
+
+    /**
+     * Crea un diálogo de alerta sencillo
+     * @return Nuevo diálogo
+     */
+    public AlertDialog createSimpleDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        builder.setTitle("Titulo")
+                .setMessage("El Mensaje para el usuario")
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                listener.onPossitiveButtonClick();
+                            }
+                        })
+                .setNegativeButton("CANCELAR",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                listener.onNegativeButtonClick();
+                            }
+                        });
+
+        return builder.create();
+    }
 
     //================================= Metodos para insertar fecha de nacimiento   =======================================
     public View.OnClickListener fechaNacimiento() {

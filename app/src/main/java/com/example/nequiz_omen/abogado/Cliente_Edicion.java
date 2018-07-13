@@ -65,6 +65,7 @@ public class Cliente_Edicion extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("e_mail", texto);
+        editor.putString("name", user.getNombre());
         editor.commit();
 
 

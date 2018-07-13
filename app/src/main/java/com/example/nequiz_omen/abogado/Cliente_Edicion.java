@@ -1,5 +1,7 @@
 package com.example.nequiz_omen.abogado;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.TabLayout;
@@ -24,11 +26,8 @@ import java.util.List;
 
 public class Cliente_Edicion extends AppCompatActivity {
     TextView campoId, campoNombre, campoTelefono;
-    ConexionSQLiteHelper conn ;   /*A LA CONEXION SE LE NOMBRE conn   Y ESA VARIABLE SE DECLARA NUEVAMENTE MAS ABAJO */
+    ConexionSQLiteHelper conn ;
 
-    /*  ESTE ES EL ORDEN DE LOS FRAGMENT
-    * Datos del Cliente
-    * Juicios del cliente*/
     private TabLayout tabLayout;
     private ViewPager viewPager;
     /*private int[] tabIcons = { R.drawable.apple, R.drawable.orange, R.drawable.grapes, R.drawable.banana  };*/
@@ -47,10 +46,12 @@ public class Cliente_Edicion extends AppCompatActivity {
         /*===============Aqui va el Bundle ======================*/
         Bundle objetoEnviado = getIntent().getExtras();  //instanciar el Bundle
         Usuario user=null;
+        String texto = "Este texto debe llegar";
 
             if(objetoEnviado!=null){
             user= (Usuario) objetoEnviado.getSerializable("usuario");
-                String nombre = user.getNombre();
+            String nombre = user.getNombre();
+
             //campoId.setText(user.getNombre());
             //campoNombre.setText(user.getNombre().toString());
             //campoTelefono.setText(user.getE_mail().toString());
@@ -59,6 +60,13 @@ public class Cliente_Edicion extends AppCompatActivity {
             System.out.println("********Bundle Recibido ====>  " + user);
             System.out.println("********Bundle Nombre ====>  " + nombre);
         }
+
+
+        SharedPreferences prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("e_mail", texto);
+        editor.commit();
+
 
         /*===============Aqui va el Bundle ======================*/
 
@@ -99,7 +107,6 @@ public class Cliente_Edicion extends AppCompatActivity {
     }
 
 
-
     private void addTabs(ViewPager viewPager) {
         Cliente_Edicion.ViewPagerAdapter adapter = new Cliente_Edicion.ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new ClienteFragment(), "Datos del Cliente");
@@ -117,10 +124,10 @@ public class Cliente_Edicion extends AppCompatActivity {
 
     public void editar_cliente(MenuItem item) {
         Toast.makeText(this, "Boton para editar", Toast.LENGTH_SHORT).show();
-        SQLiteDatabase db = conn.getReadableDatabase();
+        /*SQLiteDatabase db = conn.getReadableDatabase();
         String[] parametros = {campoId.getText().toString()};   //se incluye al final del query
 
-        try {  /*si  sale bien */
+        try {
             //select nombre,telefono from tablausuario where codigo = y
             Cursor cursor=db.rawQuery("SELECT " + Utilidades.CAMPO_NOMBRE+ "," +Utilidades.CAMPO_TIPO +" FROM " +Utilidades.TABLA_USUARIO+ " WHERE " +Utilidades.CAMPO_ID+ "=?",parametros);
 
@@ -128,10 +135,10 @@ public class Cliente_Edicion extends AppCompatActivity {
             campoNombre.setText(cursor.getString(0));     //lo primero que nos v a adevolver es CAMPO_NOMBRE
             campoTelefono.setText(cursor.getString(1));   //lo primero que nos v a adevolver es CAMPO_TELEFONO
 
-        } catch (Exception e) {   /* SI sale cualquier error */
+        } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "EL documento no existe", Toast.LENGTH_SHORT).show();
             //limpiar();
-        }
+        } */
     }
 
 

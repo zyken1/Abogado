@@ -131,8 +131,6 @@ public class Cliente extends AppCompatActivity {
 
     //========   Eventos a ejecutar al darle click alguna de las imagenes que se muestran en CLIENTES
     public void Detalle_Cliente( View view) {
-
-        System.out.println("LE DISTE CLICK CHAVO ");
         System.out.println("************  " + listaUsuario);
 
         //Object[] nombres = listaUsuario.toArray();
@@ -140,6 +138,7 @@ public class Cliente extends AppCompatActivity {
         Usuario user = listaUsuario.get(1);
         System.out.println(listaUsuario.get(1).getNombre());
         System.out.println(listaUsuario.get(2).getNombre());
+
        /* SQLiteDatabase db = conn.getReadableDatabase();
         Usuario usuario = null;
 
@@ -164,10 +163,8 @@ public class Cliente extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putSerializable("usuario", user);
 
-
         Intent intent = new Intent(this, Cliente_Edicion.class);
         intent.putExtras(bundle);
-
         //Intent intent = new Intent(this, Cliente_Edicion.class);
         startActivity(intent);
     }

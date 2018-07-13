@@ -1,6 +1,7 @@
 package com.example.nequiz_omen.abogado;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -32,10 +33,17 @@ public class ClienteFragment extends Fragment {
         campoNombre = (TextView) view.findViewById(R.id.campoNombre);
         campoTelefono = (TextView) view.findViewById(R.id.campoTelefono);
 
-
         campoId.setText("1");
         campoNombre.setText("PEDRO");
         campoTelefono.setText("correo@ejemplo.com ");
+
+
+        /*CON ESTE  METOO SE CAPTURA LOS DATOS DESDE CUALQUIIER FRAGMENT*/
+        SharedPreferences prefs = getActivity().getSharedPreferences("Preferences", 0);
+        String correo_e = prefs.getString("e_mail", "");
+        //tuTextView.setText(correo_e);
+
+        System.out.println(correo_e);
 
 
         //return inflater.inflate(R.layout.fragment_cliente, container, false);

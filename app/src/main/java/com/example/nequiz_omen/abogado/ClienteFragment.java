@@ -28,12 +28,18 @@ public class ClienteFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cliente, container, false);
 
+        campoId = (TextView) view.findViewById(R.id.campoId);
+        campoNombre = (TextView) view.findViewById(R.id.campoNombre);
+        campoTelefono = (TextView) view.findViewById(R.id.campoTelefono);
+
+
+        campoId.setText("1");
+        campoNombre.setText("PEDRO");
+        campoTelefono.setText("correo@ejemplo.com ");
 
 
         //return inflater.inflate(R.layout.fragment_cliente, container, false);
         return view;
-
-
 
     }
 

@@ -137,9 +137,9 @@ public class Cliente extends AppCompatActivity {
 
         //Object[] nombres = listaUsuario.toArray();
         //System.out.println(nombres[1]);
-        int user = 1;
-        System.out.println(listaUsuario.get(user).getNombre());
-
+        Usuario user = listaUsuario.get(1);
+        System.out.println(listaUsuario.get(1).getNombre());
+        System.out.println(listaUsuario.get(2).getNombre());
        /* SQLiteDatabase db = conn.getReadableDatabase();
         Usuario usuario = null;
 
@@ -161,8 +161,15 @@ public class Cliente extends AppCompatActivity {
         //Toast.makeText(getApplicationContext(), id , Toast.LENGTH_LONG).show();
         //System.out.println("********************+  ID "+id);
 
-        //Intent i = new Intent(this, Cliente_Edicion.class);
-        //startActivity(i);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("usuario", user);
+
+
+        Intent intent = new Intent(this, Cliente_Edicion.class);
+        intent.putExtras(bundle);
+
+        //Intent intent = new Intent(this, Cliente_Edicion.class);
+        startActivity(intent);
     }
 
 

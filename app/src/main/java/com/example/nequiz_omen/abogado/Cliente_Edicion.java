@@ -1,6 +1,7 @@
 package com.example.nequiz_omen.abogado;
 
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,25 +17,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nequiz_omen.abogado.entidades.Usuario;
+import com.example.nequiz_omen.abogado.utilidades.Utilidades;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente_Edicion extends AppCompatActivity {
     TextView campoId, campoNombre, campoTelefono;
+    ConexionSQLiteHelper conn ;   /*A LA CONEXION SE LE NOMBRE conn   Y ESA VARIABLE SE DECLARA NUEVAMENTE MAS ABAJO */
+
     /*  ESTE ES EL ORDEN DE LOS FRAGMENT
     * Datos del Cliente
     * Juicios del cliente*/
-
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private int[] tabIcons = {
-            R.drawable.apple,
-            R.drawable.orange,
-            R.drawable.grapes,
-            R.drawable.banana
-    };
-
+    /*private int[] tabIcons = { R.drawable.apple, R.drawable.orange, R.drawable.grapes, R.drawable.banana  };*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,19 +45,21 @@ public class Cliente_Edicion extends AppCompatActivity {
         campoTelefono = (TextView) findViewById(R.id.campoTelefono);
 
         /*===============Aqui va el Bundle ======================*/
-        Bundle objetoEnviado=getIntent().getExtras();  //instanciar el Bundle
+        Bundle objetoEnviado = getIntent().getExtras();  //instanciar el Bundle
         Usuario user=null;
 
-        if(objetoEnviado!=null){
-
+            if(objetoEnviado!=null){
             user= (Usuario) objetoEnviado.getSerializable("usuario");
-            campoId.setText(user.getId().toString());
-            campoNombre.setText(user.getNombre().toString());
-            campoTelefono.setText(user.getE_mail().toString());
+                String nombre = user.getNombre();
+            //campoId.setText(user.getNombre());
+            //campoNombre.setText(user.getNombre().toString());
+            //campoTelefono.setText(user.getE_mail().toString());
 
             System.out.println("********Objeto Recibido ====>  " +objetoEnviado);
             System.out.println("********Bundle Recibido ====>  " + user);
+            System.out.println("********Bundle Nombre ====>  " + nombre);
         }
+
         /*===============Aqui va el Bundle ======================*/
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -85,6 +84,12 @@ public class Cliente_Edicion extends AppCompatActivity {
         });
     }
 
+     /*private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+        //tabLayout.getTabAt(3).setIcon(tabIcons[3]);
+     }*/
 
     @Override  // SE AÑADE MENU DE SETTINGS
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -93,12 +98,7 @@ public class Cliente_Edicion extends AppCompatActivity {
         return true;
     }
 
-     /*private void setupTabIcons() {
-        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
-        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
-        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
-        //tabLayout.getTabAt(3).setIcon(tabIcons[3]);
-    }*/
+
 
     private void addTabs(ViewPager viewPager) {
         Cliente_Edicion.ViewPagerAdapter adapter = new Cliente_Edicion.ViewPagerAdapter(getSupportFragmentManager());
@@ -110,14 +110,31 @@ public class Cliente_Edicion extends AppCompatActivity {
     }
 
 
-    //Aqui vna los metodos a ejecutar en el menu para cliente_edicion
+    //==========Aqui vna los metodos a ejecutar en el menu para cliente_edicion
     public void eliminar_cliente(MenuItem item) {
         Toast.makeText(this, "Boton para eliminar", Toast.LENGTH_SHORT).show();
     }
 
     public void editar_cliente(MenuItem item) {
         Toast.makeText(this, "Boton para editar", Toast.LENGTH_SHORT).show();
+        SQLiteDatabase db = conn.getReadableDatabase();
+        String[] parametros = {campoId.getText().toString()};   //se incluye al final del query
+
+        try {  /*si  sale bien */
+            //select nombre,telefono from tablausuario where codigo = y
+            Cursor cursor=db.rawQuery("SELECT " + Utilidades.CAMPO_NOMBRE+ "," +Utilidades.CAMPO_TIPO +" FROM " +Utilidades.TABLA_USUARIO+ " WHERE " +Utilidades.CAMPO_ID+ "=?",parametros);
+
+            cursor.moveToFirst();
+            campoNombre.setText(cursor.getString(0));     //lo primero que nos v a adevolver es CAMPO_NOMBRE
+            campoTelefono.setText(cursor.getString(1));   //lo primero que nos v a adevolver es CAMPO_TELEFONO
+
+        } catch (Exception e) {   /* SI sale cualquier error */
+            Toast.makeText(getApplicationContext(), "EL documento no existe", Toast.LENGTH_SHORT).show();
+            //limpiar();
+        }
     }
+
+
 
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

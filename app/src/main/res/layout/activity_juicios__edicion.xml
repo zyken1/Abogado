@@ -39,4 +39,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
+    <!-- <include layout="@layout/fragment_cliente" /> -->
+
 </android.support.constraint.ConstraintLayout>

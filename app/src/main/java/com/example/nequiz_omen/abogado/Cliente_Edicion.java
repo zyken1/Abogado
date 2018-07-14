@@ -39,9 +39,9 @@ public class Cliente_Edicion extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);  //soportar  el manifest de la barra de accion
 
-        campoId = (TextView) findViewById(R.id.campoId);
-        campoNombre = (TextView) findViewById(R.id.campoNombre);
-        campoTelefono = (TextView) findViewById(R.id.campoTelefono);
+        //campoId = (TextView) findViewById(R.id.campoId);
+        //campoNombre = (TextView) findViewById(R.id.campoNombre);
+        //campoTelefono = (TextView) findViewById(R.id.campoTelefono);
 
         /*===============Aqui va el Bundle ======================*/
         Bundle objetoEnviado = getIntent().getExtras();  //instanciar el Bundle
@@ -64,8 +64,10 @@ public class Cliente_Edicion extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("e_mail", texto);
-        editor.putString("name", user.getNombre());
+        //editor.putString("e_mail", texto);
+        editor.putString("nombre", user.getNombre());
+        editor.putString("tipoPersona", user.getTipo_persona());
+        editor.putString("e-mail", user.getE_mail());
         editor.commit();
 
 

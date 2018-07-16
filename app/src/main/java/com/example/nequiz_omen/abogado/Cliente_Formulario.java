@@ -138,25 +138,25 @@ public class Cliente_Formulario extends AppCompatActivity {
             case R.id.radioButton:
                 if (checked)
                     //FISICA
-                    Toast.makeText(getApplicationContext(),"FISICA",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"FISICA",Toast.LENGTH_SHORT).show();
                     campotipo = "FISICA";
                     break;
             case R.id.radioButton2:
                 if (checked)
                     //MORAL
-                    Toast.makeText(getApplicationContext(),"MORAL" ,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"MORAL" ,Toast.LENGTH_SHORT).show();
                     campotipo = "MORAL";
                     break;
             case R.id.radioButton3:
                 if (checked)
                     // HOMBRE
-                    Toast.makeText(getApplicationContext(),"HOMBRE" ,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"HOMBRE" ,Toast.LENGTH_SHORT).show();
                     campoGenero = "Hombre";
                     break;
             case R.id.radioButton4:
                 if (checked)
                     // MUJER
-                    Toast.makeText(getApplicationContext(),"MUJER" ,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"MUJER" ,Toast.LENGTH_SHORT).show();
                     campoGenero = "Mujer";
                     break;
         }

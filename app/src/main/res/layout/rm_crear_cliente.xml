@@ -58,6 +58,16 @@
                             android:layout_marginBottom="7dp"
                             android:text="prueba000@gmail.com" />
 
+                        <TextView
+                            android:id="@+id/textid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/textNombre"
+                            android:layout_alignBottom="@+id/textNombre"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="14dp"
+                            android:text="View" />
+
                 </RelativeLayout>
         </LinearLayout>
 </RelativeLayout>

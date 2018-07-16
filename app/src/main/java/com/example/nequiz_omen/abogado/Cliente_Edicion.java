@@ -45,32 +45,37 @@ public class Cliente_Edicion extends AppCompatActivity {
 
         /*===============Aqui va el Bundle ======================*/
         Bundle objetoEnviado = getIntent().getExtras();  //instanciar el Bundle
-        Usuario user=null;
+        Usuario user = null;
         String texto = "Este texto debe llegar";
 
-            if(objetoEnviado!=null){
-            user= (Usuario) objetoEnviado.getSerializable("usuario");
+        if (objetoEnviado != null) {
+            user = (Usuario) objetoEnviado.getSerializable("usuario");
+            int id = user.getId();
             String nombre = user.getNombre();
+            String Tipo = user.getTipo_persona();
+            String email = user.getE_mail();
 
             //campoId.setText(user.getNombre());
             //campoNombre.setText(user.getNombre().toString());
             //campoTelefono.setText(user.getE_mail().toString());
 
-            System.out.println("********Objeto Recibido ====>  " +objetoEnviado);
+            System.out.println("********Objeto Recibido ====>  " + objetoEnviado);
             System.out.println("********Bundle Recibido ====>  " + user);
+            System.out.println("********Bundle ID ====>  " + id);
             System.out.println("********Bundle Nombre ====>  " + nombre);
-        }
 
 
         SharedPreferences prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         //editor.putString("e_mail", texto);
-        editor.putString("nombre", user.getNombre());
-        editor.putString("tipoPersona", user.getTipo_persona());
-        editor.putString("e-mail", user.getE_mail());
+        //editor.putString("nombre", user.getNombre());
+        editor.putString("id", String.valueOf(id));
+        editor.putString("nombre",nombre );
+        editor.putString("tipoPersona", Tipo);
+        editor.putString("e-mail", email);
         editor.commit();
 
-
+    }
         /*===============Aqui va el Bundle ======================*/
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

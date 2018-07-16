@@ -33,8 +33,10 @@ public class ListaPersonasAdapter extends RecyclerView.Adapter<ListaPersonasAdap
 
     @Override
     public void onBindViewHolder(PersonasViewHolder holder, int position) {
-        holder.nombre.setText(listaUsuario.get(position).getId().toString());
-        holder.telefono.setText(listaUsuario.get(position).getNombre().toUpperCase());
+        //System.out.println("***************Posicion  = " +position);
+        holder.textid.setText(listaUsuario.get(position).getId().toString());
+        holder.nombre.setText(listaUsuario.get(position).getNombre().toUpperCase());
+        holder.telefono.setText(listaUsuario.get(position).getTel_movil());
         holder.correo.setText(listaUsuario.get(position).getE_mail());
 
         /*holder.correo.setText(listaUsuario.get(position).getTipo_persona());
@@ -51,11 +53,12 @@ public class ListaPersonasAdapter extends RecyclerView.Adapter<ListaPersonasAdap
 
     public class PersonasViewHolder extends RecyclerView.ViewHolder {
 
-        TextView correo,nombre,telefono;
+        TextView correo,nombre,telefono,textid;
 
         public PersonasViewHolder(View itemView) {
 
             super(itemView);
+            textid = (TextView) itemView.findViewById(R.id.textid);
             nombre = (TextView) itemView.findViewById(R.id.textNombre);
             telefono = (TextView) itemView.findViewById(R.id.textTelefono);
             correo = (TextView) itemView.findViewById(R.id.textCorreo);

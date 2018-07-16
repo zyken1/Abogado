@@ -2,14 +2,18 @@ package com.example.nequiz_omen.abogado;
 
 
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nequiz_omen.abogado.entidades.Usuario;
+import com.example.nequiz_omen.abogado.utilidades.Utilidades;
 
 
 /**
@@ -17,7 +21,9 @@ import com.example.nequiz_omen.abogado.entidades.Usuario;
  */
 public class ClienteFragment extends Fragment {
 
-    TextView campoId,campoNombre,campoTipo, campoGenero,campoCorreo,fecha_nacimiento,campoDireccion,campoTelmovil,campoTelCasa,campoTelOficina,campoDependientes,campoNotas;
+    TextView campoNombre,campoTipo, campoGenero,campoCorreo,fecha_nacimiento,campoDireccion,campoTelmovil,campoTelCasa,campoTelOficina,campoDependientes,campoNotas;
+    String campoId;
+    ConexionSQLiteHelper conn ;
 
     public ClienteFragment() {
         // Required empty public constructor
@@ -47,24 +53,29 @@ public class ClienteFragment extends Fragment {
         /*CON ESTE  METOO SE CAPTURA LOS DATOS DESDE CUALQUIIER FRAGMENT*/
         SharedPreferences prefs = getActivity().getSharedPreferences("Preferences", 0);
 
-        String nombre1 = prefs.getString("nombre", "");
-        String tipoPersona = prefs.getString("tipoPersona", "");
-        String correo = prefs.getString("e-mail", "");
+        String ID = prefs.getString("id", "");
+        String nombre1 = prefs.getString("nombre", "0");
+        String tipoPersona = prefs.getString("tipoPersona", "0");
+        String correo = prefs.getString("e-mail", "0");
         //tuTextView.setText(correo_e);
+
+        ID = campoId;
+        System.out.println("****************************** ID = " + ID);
+        System.out.println("******************************  campoId = " + campoId);
+
+        //consultarSQL();
+
 
 
         //Se mandan los datos para que aparescan en en el fragment
         //campoId.setText("1");
-        campoNombre.setText(nombre1);
-        campoTipo.setText(tipoPersona);
-        campoCorreo.setText(correo);
+          campoNombre.setText(ID);
+          campoTipo.setText(tipoPersona);
+        //campoCorreo.setText(correo);
 
-        System.out.println(correo);
+        //System.out.println(correo);
 
 
-        //return inflater.inflate(R.layout.fragment_cliente, container, false);
-        return view;
-
+        return view;  //return inflater.inflate(R.layout.fragment_cliente, container, false);
     }
-
 }

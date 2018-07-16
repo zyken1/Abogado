@@ -1,5 +1,6 @@
 package com.example.nequiz_omen.abogado;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,10 +24,12 @@ import com.example.nequiz_omen.abogado.utilidades.Utilidades;
 import java.util.ArrayList;
 
 public class Cliente extends AppCompatActivity {
-    TextView campoId, campoNombre, campoTelefono;
     //VARIABLES
+    TextView campoId, campoNombre, campoTelefono,textid;
+
     ArrayList<Usuario> listaUsuario;
     RecyclerView recyclerViewUsuarios;
+
 
     ArrayList<String> listaInformacion;
 
@@ -55,8 +59,9 @@ public class Cliente extends AppCompatActivity {
             }
         });
 
-        //ADAPTADOR PAR APERSONAS
 
+
+        //ADAPTADOR PAR APERSONAS
         conn=new ConexionSQLiteHelper(getApplicationContext(),"bd_usuarios",null,1);
 
         listaUsuario=new ArrayList<>();
@@ -68,6 +73,17 @@ public class Cliente extends AppCompatActivity {
 
         ListaPersonasAdapter adapter = new ListaPersonasAdapter(listaUsuario);
         recyclerViewUsuarios.setAdapter(adapter);
+
+
+        //CICLO FOR PARA CONSULTAR CUANTOS  CLIENTES HAY EN LA BD
+        int contar = listaUsuario.size();
+        for(int i=0;i<contar;i++)
+        {
+            System.out.println("************ Usuarios en la BD " +i+" ==> " +listaUsuario.get(i).getNombre());
+            //System.out.println(listaUsuario.get(0).getNombre());
+            //System.out.println(listaUsuario.get(1).getNombre());
+        }
+
 }
 
 
@@ -75,8 +91,8 @@ public class Cliente extends AppCompatActivity {
     private void consultarListaPersonas() {
         SQLiteDatabase db=conn.getReadableDatabase();
 
-        Usuario usuario=null;
-        int var = 1;
+        Usuario usuario = null;
+        //int var = 1;
         // listaUsuarios=new ArrayList<Usuario>();
         //select * from usuarios
         Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_USUARIO,null);
@@ -85,10 +101,19 @@ public class Cliente extends AppCompatActivity {
             usuario=new Usuario();
             usuario.setId(cursor.getInt(0));
             usuario.setNombre(cursor.getString(1));
+            usuario.setTipo_persona(cursor.getString(2));
             usuario.setE_mail(cursor.getString(3));
+            usuario.setGenero(cursor.getString(4));
+            usuario.setFechaNacimiento(cursor.getString(5));
+            usuario.setDireccion(cursor.getString(6));
+            usuario.setTel_movil(cursor.getString(7));
+            usuario.setTel_casa(cursor.getString(8));
+            usuario.setTel_oficina(cursor.getString(9));
+            usuario.setDependientes(cursor.getString(10));
+            usuario.setNotas(cursor.getString(11));
 
             listaUsuario.add(usuario);
-            System.out.println("*********************  usuario " + usuario);
+            //System.out.println("*********************  usuario " + usuario);
         }
         //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
         llenarListaUsuarios();
@@ -130,43 +155,24 @@ public class Cliente extends AppCompatActivity {
 
 
     //========   Eventos a ejecutar al darle click alguna de las imagenes que se muestran en CLIENTES
-    public void Detalle_Cliente( View view) {
-        System.out.println("************  " + listaUsuario);
-
+    public void Detalle_Cliente(View view) {
         //Object[] nombres = listaUsuario.toArray();
         //System.out.println(nombres[1]);
-        Usuario user = listaUsuario.get(1);
-        System.out.println(listaUsuario.get(1).getNombre());
-        System.out.println(listaUsuario.get(2).getNombre());
 
-       /* SQLiteDatabase db = conn.getReadableDatabase();
-        Usuario usuario = null;
-
-        //select * from usuarios
-        Cursor cursor = db.rawQuery("SELECT * FROM " + Utilidades.TABLA_USUARIO + "WHERE USUARIO " + user , null);
-
-        while (cursor.moveToNext()) {
-            usuario = new Usuario();
-            usuario.setId(cursor.getInt(0));
-            usuario.setNombre(cursor.getString(1));
-            usuario.setE_mail(cursor.getString(3));
-            }
-
-        System.out.println("*********************  listaUsuario " + listaUsuario);
-        System.out.println("*********************  usuario " + usuario);  */
+        Usuario user = listaUsuario.get(0);   //Usuario user = listaUsuario.get(0);
+        //System.out.println("************ Numero Usuario" + listaUsuario.get(nro));
 
 
-        //LANZA UN MENSAJE  CON LOS DATOS SOLICITADOS
-        //Toast.makeText(getApplicationContext(), id , Toast.LENGTH_LONG).show();
-        //System.out.println("********************+  ID "+id);
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("usuario", user);
 
-        Intent intent = new Intent(this, Cliente_Edicion.class);
-        intent.putExtras(bundle);
+        //LANZA UN MENSAJE  CON LOS DATOS SOLICITADOS
+        //Toast.makeText(getApplication(), valor , Toast.LENGTH_LONG).show();
+
         //Intent intent = new Intent(this, Cliente_Edicion.class);
-        startActivity(intent);
+        //intent.putExtras(bundle);
+        //startActivity(intent);
     }
 
 

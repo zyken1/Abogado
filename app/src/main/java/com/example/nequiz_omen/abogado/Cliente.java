@@ -121,7 +121,7 @@ public class Cliente extends AppCompatActivity {
 
 
     private void llenarListaUsuarios() {
-        listaUsuario.add(new Usuario(100,"Prueba","MORAL","prueba@prueba.com","Masculino","00/00/00","siempre viva","121212","123456789","23456789","papa y mama","ninguna Nota de momento"));
+        listaUsuario.add(new Usuario(100,"Prueba","MORAL","prueba@prueba.com","Masculino","00/00/00","siempre viva","121212","123456789","23456789","papa y mama","ninguna Nota de momento, Pero se pueden anexar tantas notas como lo desee para cada persona"));
         //listaUsuario.add(new Usuario(2,"josesito","1212121212"));
     }
     /*==================FIN  DE LA BD  =================================*/
@@ -163,16 +163,15 @@ public class Cliente extends AppCompatActivity {
         //System.out.println("************ Numero Usuario" + listaUsuario.get(nro));
 
 
-
         Bundle bundle = new Bundle();
         bundle.putSerializable("usuario", user);
 
         //LANZA UN MENSAJE  CON LOS DATOS SOLICITADOS
         //Toast.makeText(getApplication(), valor , Toast.LENGTH_LONG).show();
 
-        //Intent intent = new Intent(this, Cliente_Edicion.class);
-        //intent.putExtras(bundle);
-        //startActivity(intent);
+        Intent intent = new Intent(this, Cliente_Edicion.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 

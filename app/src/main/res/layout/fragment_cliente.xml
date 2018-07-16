@@ -24,6 +24,7 @@
             android:paddingLeft="6dp"
             android:paddingRight="6dp"
             android:paddingTop="7dp"
+            android:paddingBottom="7dp"
             tools:context=".Cliente">
 
 
@@ -32,22 +33,23 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_label"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:paddingBottom="5dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/nombre"
                     tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="66dp"/>
+                    tools:layout_editor_absoluteY="66dp" />
 
                 <TextView
                     android:id="@+id/campoNombre"
+                    style="@style/CodeFont"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:text="Campo Nombre"
-                    style="@style/CodeFont"/>
+                    android:text="Campo Nombre" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -58,16 +60,16 @@
 
                 <TextView
                     android:id="@+id/campoTipo"
+                    style="@style/CodeFont"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tipo de persona"
-                    style="@style/CodeFont"/>
+                    android:text="Tipo de persona" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/correo_electronico"
-                    android:paddingLeft="45dp"/>
+                    android:paddingLeft="45dp"
+                    android:text="@string/correo_electronico" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -84,12 +86,12 @@
 
                     <TextView
                         android:id="@+id/campoCorreo"
+                        style="@style/CodeFont"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:text="Correo"
-                        style="@style/CodeFont"/>
+                        android:text="Correo" />
 
 
                 </LinearLayout>
@@ -104,12 +106,12 @@
 
                 <TextView
                     android:id="@+id/campoGenero"
+                    style="@style/CodeFont"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:text="Genero"
-                    style="@style/CodeFont"/>
+                    android:text="Genero" />
 
                 <TextView
                     android:id="@+id/textView2"
@@ -119,12 +121,12 @@
 
                 <TextView
                     android:id="@+id/campoNacimiento"
+                    style="@style/CodeFont"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:text="fecha nacimiento"
-                    style="@style/CodeFont"/>
+                    android:text="fecha nacimiento" />
 
             </LinearLayout>
 
@@ -133,10 +135,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/border_label"
                 android:orientation="vertical"
-                android:padding="@dimen/activity_horizontal_margin">
+                android:padding="@dimen/activity_horizontal_margin"
+                android:paddingTop="3dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -145,18 +148,18 @@
 
                 <TextView
                     android:id="@+id/campoDireccion"
+                    style="@style/CodeFont"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:text="DIreccion"
-                    style="@style/CodeFont"/>
+                    android:text="DIreccion" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tel. Movil"
-                    android:paddingLeft="45dp"/>
+                    android:paddingLeft="45dp"
+                    android:text="Tel. Movil" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -169,16 +172,16 @@
                         android:layout_height="40dp"
                         android:layout_weight="0"
                         app:srcCompat="@drawable/ic_celular_cliente"
-                        tools:ignore="VectorDrawableCompat"/>
+                        tools:ignore="VectorDrawableCompat" />
 
                     <TextView
                         android:id="@+id/campoTelMovil"
+                        style="@style/CodeFont"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:text="Telefono"
-                        style="@style/CodeFont"/>
+                        android:text="Telefono" />
 
 
                 </LinearLayout>
@@ -186,8 +189,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tel. Casa"
-                    android:paddingLeft="45dp"/>
+                    android:paddingLeft="45dp"
+                    android:text="Tel. Casa" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -203,12 +206,12 @@
 
                     <TextView
                         android:id="@+id/campoTelCasa"
+                        style="@style/CodeFont"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:text="Tel. Casa"
-                        style="@style/CodeFont" />
+                        android:text="Tel. Casa" />
 
                 </LinearLayout>
 
@@ -216,8 +219,8 @@
                     android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tel. Oficina"
-                    android:paddingLeft="45dp"/>
+                    android:paddingLeft="45dp"
+                    android:text="Tel. Oficina" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -228,23 +231,22 @@
                         android:layout_width="50dp"
                         android:layout_height="40dp"
                         android:layout_weight="0"
+                        android:contentDescription="TODO"
                         app:srcCompat="@drawable/ic_tel_oficina_cliente"
-                        tools:ignore="VectorDrawableCompat"
-                        android:contentDescription="TODO" />
+                        tools:ignore="VectorDrawableCompat" />
 
                     <TextView
                         android:id="@+id/campoTelOficina"
+                        style="@style/CodeFont"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:text="Tel. Oficina"
-                        style="@style/CodeFont" />
+                        android:text="Tel. Oficina" />
 
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/dependientes_economicos" />
@@ -256,11 +258,11 @@
 
                     <TextView
                         android:id="@+id/campoDependientes"
+                        style="@style/CodeFont"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="DEPENDIENTES"
-                        style="@style/CodeFont" />
+                        android:text="DEPENDIENTES" />
 
                 </LinearLayout>
 
@@ -272,10 +274,10 @@
 
                 <TextView
                     android:id="@+id/campoNotas"
+                    style="@style/CodeFont"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Notas"
-                    style="@style/CodeFont"/>  <!-- PARA EL SALTO DE LINEA -->
+                    android:text="Notas" />  <!-- PARA EL SALTO DE LINEA -->
 
             </LinearLayout>
 

@@ -41,7 +41,7 @@ public class ClienteFragment extends Fragment {
         campoTipo = (TextView) view.findViewById(R.id.campoTipo);
         campoCorreo = (TextView) view.findViewById(R.id.campoCorreo);
         campoGenero = (TextView) view.findViewById(R.id.campoGenero);
-        fecha_nacimiento = (TextView) view.findViewById(R.id.fecha_nacimiento);
+        fecha_nacimiento = (TextView) view.findViewById(R.id.campoNacimiento);
         campoDireccion = (TextView) view.findViewById(R.id.campoDireccion);
         campoTelmovil = (TextView) view.findViewById(R.id.campoTelMovil);
         campoTelCasa = (TextView) view.findViewById(R.id.campoTelCasa);
@@ -56,23 +56,36 @@ public class ClienteFragment extends Fragment {
         String ID = prefs.getString("id", "");
         String nombre1 = prefs.getString("nombre", "0");
         String tipoPersona = prefs.getString("tipoPersona", "0");
-        String correo = prefs.getString("e-mail", "0");
+        String correo = prefs.getString("e-mail", "S/N");
+        String genero = prefs.getString("genero", "");
+        String nacimiento = prefs.getString("nacimiento", "");
+        String direccion = prefs.getString("direccion", "");
+        String telMovil = prefs.getString("telMovil", "");
+        String telCasa = prefs.getString("telCasa", "");
+        String telOficina = prefs.getString("telOficina", "");
+        String dependientes = prefs.getString("dependientes", "");
+        String notas = prefs.getString("notas", "");
         //tuTextView.setText(correo_e);
 
-        ID = campoId;
-        System.out.println("****************************** ID = " + ID);
-        System.out.println("******************************  campoId = " + campoId);
-
+        //ID = campoId;
+        //System.out.println("****************************** ID = " + ID);
+        //System.out.println("******************************  campoId = " + campoId);
         //consultarSQL();
-
 
 
         //Se mandan los datos para que aparescan en en el fragment
         //campoId.setText("1");
-          campoNombre.setText(ID);
-          campoTipo.setText(tipoPersona);
-        //campoCorreo.setText(correo);
-
+        campoNombre.setText(nombre1);
+        campoTipo.setText(tipoPersona);
+        campoCorreo.setText(correo);
+        campoGenero .setText(genero);
+        fecha_nacimiento .setText(nacimiento);
+        campoDireccion .setText(direccion);
+        campoTelmovil .setText(telMovil);
+        campoTelCasa .setText(telCasa);
+        campoTelOficina .setText(telOficina);
+        campoDependientes .setText(dependientes);
+        campoNotas .setText(notas);
         //System.out.println(correo);
 
 

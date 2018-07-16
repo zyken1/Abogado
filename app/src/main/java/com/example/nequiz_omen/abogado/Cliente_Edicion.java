@@ -54,6 +54,14 @@ public class Cliente_Edicion extends AppCompatActivity {
             String nombre = user.getNombre();
             String Tipo = user.getTipo_persona();
             String email = user.getE_mail();
+            String genero =user.getGenero();
+            String nacimiento = user.getFechaNacimiento();
+            String direccion = user.getDireccion();
+            String telMovil = user.getTel_movil();
+            String telCasa = user.getTel_casa();
+            String telOficina = user.getTel_oficina();
+            String dependientes = user.getDependientes();
+            String notas = user.getNotas();
 
             //campoId.setText(user.getNombre());
             //campoNombre.setText(user.getNombre().toString());
@@ -73,6 +81,14 @@ public class Cliente_Edicion extends AppCompatActivity {
         editor.putString("nombre",nombre );
         editor.putString("tipoPersona", Tipo);
         editor.putString("e-mail", email);
+        editor.putString("genero", genero);
+        editor.putString("nacimiento", nacimiento);
+        editor.putString("direccion", direccion);
+        editor.putString("telMovil", telMovil);
+        editor.putString("telCasa", telCasa);
+        editor.putString("telOficina", telOficina);
+        editor.putString("dependientes", dependientes);
+        editor.putString("notas", notas);
         editor.commit();
 
     }
@@ -125,6 +141,7 @@ public class Cliente_Edicion extends AppCompatActivity {
     }
 
 
+
     //==========Aqui vna los metodos a ejecutar en el menu para cliente_edicion
     public void eliminar_cliente(MenuItem item) {
         Toast.makeText(this, "Boton para eliminar", Toast.LENGTH_SHORT).show();
@@ -132,22 +149,8 @@ public class Cliente_Edicion extends AppCompatActivity {
 
     public void editar_cliente(MenuItem item) {
         Toast.makeText(this, "Boton para editar", Toast.LENGTH_SHORT).show();
-        /*SQLiteDatabase db = conn.getReadableDatabase();
-        String[] parametros = {campoId.getText().toString()};   //se incluye al final del query
-
-        try {
-            //select nombre,telefono from tablausuario where codigo = y
-            Cursor cursor=db.rawQuery("SELECT " + Utilidades.CAMPO_NOMBRE+ "," +Utilidades.CAMPO_TIPO +" FROM " +Utilidades.TABLA_USUARIO+ " WHERE " +Utilidades.CAMPO_ID+ "=?",parametros);
-
-            cursor.moveToFirst();
-            campoNombre.setText(cursor.getString(0));     //lo primero que nos v a adevolver es CAMPO_NOMBRE
-            campoTelefono.setText(cursor.getString(1));   //lo primero que nos v a adevolver es CAMPO_TELEFONO
-
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "EL documento no existe", Toast.LENGTH_SHORT).show();
-            //limpiar();
-        } */
     }
+
 
 
 

@@ -1,6 +1,7 @@
 package com.example.nequiz_omen.abogado;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,16 +27,21 @@ import java.util.List;
 
 public class Cliente_Edicion extends AppCompatActivity {
     TextView campoId, campoNombre, campoTelefono;
-    ConexionSQLiteHelper conn ;
 
+    int globalId;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
+    ConexionSQLiteHelper conn ;
     /*private int[] tabIcons = { R.drawable.apple, R.drawable.orange, R.drawable.grapes, R.drawable.banana  };*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cliente__edicion);
+
+        conn = new ConexionSQLiteHelper(getApplicationContext(), "bd_usuarios",null,1);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);  //soportar  el manifest de la barra de accion
 
@@ -63,21 +69,19 @@ public class Cliente_Edicion extends AppCompatActivity {
             String dependientes = user.getDependientes();
             String notas = user.getNotas();
 
+            globalId = id;
             //campoId.setText(user.getNombre());
-            //campoNombre.setText(user.getNombre().toString());
-            //campoTelefono.setText(user.getE_mail().toString());
-
             System.out.println("********Objeto Recibido ====>  " + objetoEnviado);
             System.out.println("********Bundle Recibido ====>  " + user);
             System.out.println("********Bundle ID ====>  " + id);
-            System.out.println("********Bundle Nombre ====>  " + nombre);
+
 
 
         SharedPreferences prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         //editor.putString("e_mail", texto);
         //editor.putString("nombre", user.getNombre());
-        editor.putString("id", String.valueOf(id));
+        //editor.putString("id", String.valueOf(id));
         editor.putString("nombre",nombre );
         editor.putString("tipoPersona", Tipo);
         editor.putString("e-mail", email);
@@ -90,9 +94,8 @@ public class Cliente_Edicion extends AppCompatActivity {
         editor.putString("dependientes", dependientes);
         editor.putString("notas", notas);
         editor.commit();
-
     }
-        /*===============Aqui va el Bundle ======================*/
+        /*===============Aqui Termina el Bundle ======================*/
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -105,6 +108,7 @@ public class Cliente_Edicion extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         //setupTabIcons();
+
 
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -144,11 +148,23 @@ public class Cliente_Edicion extends AppCompatActivity {
 
     //==========Aqui vna los metodos a ejecutar en el menu para cliente_edicion
     public void eliminar_cliente(MenuItem item) {
-        Toast.makeText(this, "Boton para eliminar", Toast.LENGTH_SHORT).show();
+        //System.out.println("********GLOBAL ID ====>  " + globalId);
+        SQLiteDatabase db = conn.getReadableDatabase();
+
+        //String [] parametros = {campoId.getText().toString()};  /*PARAMETROS DE CONSULTA*/
+        String cadena = String.valueOf(globalId);
+        String [] parametros = {cadena};
+
+        //metodo de eliminar el registro y que tabla se eliminara
+        db.delete(Utilidades.TABLA_USUARIO,Utilidades.CAMPO_ID + "=?" ,parametros);
+        Toast.makeText(getApplicationContext(),"USUARIO ELIMINADO",Toast.LENGTH_SHORT).show();
+        db.close(); //cerrar conexion
+        finish();
     }
 
     public void editar_cliente(MenuItem item) {
         Toast.makeText(this, "Boton para editar", Toast.LENGTH_SHORT).show();
+        //System.out.println("********GLOBAL ID ====>  " + globalId);
     }
 
 
@@ -183,4 +199,6 @@ public class Cliente_Edicion extends AppCompatActivity {
             return mFragmentTitleList.get(position);
         }
     }
+
+
 }//end CLASS

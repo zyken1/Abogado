@@ -26,7 +26,7 @@ import java.util.ArrayList;
 public class Cliente extends AppCompatActivity {
     //VARIABLES
     TextView campoId, campoNombre, campoTelefono,textid;
-
+    int numero ;
     ArrayList<Usuario> listaUsuario;
     RecyclerView recyclerViewUsuarios;
 
@@ -53,13 +53,11 @@ public class Cliente extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {;
                 //regresar...
                 finish();
             }
         });
-
-
 
         //ADAPTADOR PAR APERSONAS
         conn=new ConexionSQLiteHelper(getApplicationContext(),"bd_usuarios",null,1);
@@ -69,24 +67,33 @@ public class Cliente extends AppCompatActivity {
         recyclerViewUsuarios= (RecyclerView) findViewById(R.id.recyclerPersonas);
         recyclerViewUsuarios.setLayoutManager(new LinearLayoutManager(this));
 
-        consultarListaPersonas();
-
         ListaPersonasAdapter adapter = new ListaPersonasAdapter(listaUsuario);
         recyclerViewUsuarios.setAdapter(adapter);
+
+
+        consultarListaPersonas();
+
+ //metodo On click para que desde ListaPersonasAdapter  TE MANDE LA POSICION
+        adapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numero = listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getId();
+                Toast.makeText(getApplication(), listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getNombre() + numero, Toast.LENGTH_LONG).show();
+                Detalle_Cliente();
+            }
+        });
 
 
         //CICLO FOR PARA CONSULTAR CUANTOS  CLIENTES HAY EN LA BD
         int contar = listaUsuario.size();
         for(int i=0;i<contar;i++)
         {
-            System.out.println("************ Usuarios en la BD " +i+" ==> " +listaUsuario.get(i).getNombre());
+            System.out.println("************ Usuarios en Pantalla " +i+" ==> " +listaUsuario.get(i).getNombre());
             //System.out.println(listaUsuario.get(0).getNombre());
             //System.out.println(listaUsuario.get(1).getNombre());
         }
 
-}
-
-
+    }
     /*==================METODO PARA CONSULTAR LAS PERSONAS DE LA BD  =================================*/
     private void consultarListaPersonas() {
         SQLiteDatabase db=conn.getReadableDatabase();
@@ -116,7 +123,7 @@ public class Cliente extends AppCompatActivity {
             //System.out.println("*********************  usuario " + usuario);
         }
         //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
-        llenarListaUsuarios();
+        //llenarListaUsuarios();
     }
 
 
@@ -126,6 +133,10 @@ public class Cliente extends AppCompatActivity {
     }
     /*==================FIN  DE LA BD  =================================*/
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 
 
 
@@ -154,17 +165,20 @@ public class Cliente extends AppCompatActivity {
 
 
 
+
     //========   Eventos a ejecutar al darle click alguna de las imagenes que se muestran en CLIENTES
-    public void Detalle_Cliente(View view) {
+    public void Detalle_Cliente() {
         //Object[] nombres = listaUsuario.toArray();
         //System.out.println(nombres[1]);
+        int myNum = 0;
 
-        Usuario user = listaUsuario.get(0);   //Usuario user = listaUsuario.get(0);
-        //System.out.println("************ Numero Usuario" + listaUsuario.get(nro));
+            myNum = Integer.parseInt(String.valueOf(numero));
 
+            Usuario user = listaUsuario.get(0);   //Usuario user = listaUsuario.get(0);
+            System.out.println("************ Numero de Usuario" + myNum);
 
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("usuario", user);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("usuario", user);
 
         //LANZA UN MENSAJE  CON LOS DATOS SOLICITADOS
         //Toast.makeText(getApplication(), valor , Toast.LENGTH_LONG).show();
@@ -172,6 +186,8 @@ public class Cliente extends AppCompatActivity {
         Intent intent = new Intent(this, Cliente_Edicion.class);
         intent.putExtras(bundle);
         startActivity(intent);
+
+        finish();
     }
 
 

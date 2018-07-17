@@ -88,7 +88,6 @@ public class ClienteFragment extends Fragment {
         campoNotas .setText(notas);
         //System.out.println(correo);
 
-
         return view;  //return inflater.inflate(R.layout.fragment_cliente, container, false);
     }
 }

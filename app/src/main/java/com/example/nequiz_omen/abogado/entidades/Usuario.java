@@ -7,7 +7,6 @@ import java.io.Serializable;
  */
 
 public class Usuario implements Serializable {  /*Serializable permite que sea enviado como objeto */
-
     private Integer id;
     private String nombre;
     private String tipo_persona;        // si es 1 = fisica    2 = Moral

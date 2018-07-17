@@ -39,7 +39,7 @@ implements View.OnClickListener{
     @Override
     public void onBindViewHolder(PersonasViewHolder holder, int position) {
         //System.out.println("***************Posicion  = " +position);
-        //holder.textid.setText(listaUsuario.get(position).getId().toString());
+        holder.textid.setText(listaUsuario.get(position).getId().toString());
         holder.nombre.setText(listaUsuario.get(position).getNombre().toUpperCase());
         holder.telefono.setText(listaUsuario.get(position).getTel_movil());
         holder.correo.setText(listaUsuario.get(position).getE_mail());     //holder.correo.setText(listaUsuario.get(position).getId().toString());
@@ -74,7 +74,7 @@ implements View.OnClickListener{
 
         public PersonasViewHolder(View itemView) {
             super(itemView);
-            //textid = (TextView) itemView.findViewById(R.id.textid);
+            textid = (TextView) itemView.findViewById(R.id.campoId);
             nombre = (TextView) itemView.findViewById(R.id.textNombre);
             telefono = (TextView) itemView.findViewById(R.id.textTelefono);
             correo = (TextView) itemView.findViewById(R.id.textCorreo);

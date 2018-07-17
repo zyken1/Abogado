@@ -61,6 +61,8 @@ public class Cliente_Formulario extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //regresar...
+                Intent i = new Intent(Cliente_Formulario.this,Cliente.class);
+                startActivity(i);
                 finish();
             }
         });
@@ -184,11 +186,4 @@ public class Cliente_Formulario extends AppCompatActivity {
         newFragment.show(getFragmentManager(), "datePicker");
     }
 
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Intent i = new Intent(this, Cliente.class);
-        startActivity(i);
-    }
 }

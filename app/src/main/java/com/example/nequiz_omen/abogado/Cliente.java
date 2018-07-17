@@ -26,12 +26,10 @@ import java.util.ArrayList;
 public class Cliente extends AppCompatActivity {
     //VARIABLES
     TextView campoId, campoNombre, campoTelefono,textid;
-    int numero ;
+    int numero,numero2 ;
     ArrayList<Usuario> listaUsuario;
     RecyclerView recyclerViewUsuarios;
-
-
-    ArrayList<String> listaInformacion;
+    ArrayList<String> listaUsuarios;
 
     ConexionSQLiteHelper conn;
 
@@ -41,6 +39,7 @@ public class Cliente extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cliente);
+        campoId = (TextView) findViewById(R.id.campoId);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -77,18 +76,11 @@ public class Cliente extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 numero = listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getId();
-                Toast.makeText(getApplication(), listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getNombre() + numero, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplication(), listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getNombre() + numero , Toast.LENGTH_LONG).show();
+                System.out.println("************ TAMAÑO " + listaUsuario.size());
                 //Detalle_Cliente();
             }
         });
-
-        //CICLO FOR PARA CONSULTAR CUANTOS  CLIENTES HAY EN LA BD
-        int contar = listaUsuario.size();
-        for(int i=0;i<contar;i++)
-        {
-            System.out.println("************ Usuarios en Pantalla " +i+" ==> " +listaUsuario.get(i).getNombre());
-            //System.out.println(listaUsuario.get(0).getNombre());
-        }
     }
     /*==================METODO PARA CONSULTAR LAS PERSONAS DE LA BD  =================================*/
     private void consultarListaPersonas() {
@@ -183,8 +175,6 @@ public class Cliente extends AppCompatActivity {
         Intent intent = new Intent(this, Cliente_Edicion.class);
         intent.putExtras(bundle);
         startActivity(intent);
-
-        finish();
     }
 
 

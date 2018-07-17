@@ -89,7 +89,6 @@ public class Cliente extends AppCompatActivity {
             System.out.println("************ Usuarios en Pantalla " +i+" ==> " +listaUsuario.get(i).getNombre());
             //System.out.println(listaUsuario.get(0).getNombre());
         }
-
     }
     /*==================METODO PARA CONSULTAR LAS PERSONAS DE LA BD  =================================*/
     private void consultarListaPersonas() {
@@ -117,7 +116,7 @@ public class Cliente extends AppCompatActivity {
             usuario.setNotas(cursor.getString(11));
 
             listaUsuario.add(usuario);
-            //System.out.println("*********************  usuario " + usuario);
+            System.out.println("*********************Usuario ==> " + usuario.getId());
         }
         //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
         //llenarListaUsuarios();

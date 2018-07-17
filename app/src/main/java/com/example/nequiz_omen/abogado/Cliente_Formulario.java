@@ -184,4 +184,11 @@ public class Cliente_Formulario extends AppCompatActivity {
         newFragment.show(getFragmentManager(), "datePicker");
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent i = new Intent(this, Cliente.class);
+        startActivity(i);
+    }
 }

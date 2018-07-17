@@ -70,7 +70,6 @@ public class Cliente extends AppCompatActivity {
         ListaPersonasAdapter adapter = new ListaPersonasAdapter(listaUsuario);
         recyclerViewUsuarios.setAdapter(adapter);
 
-
         consultarListaPersonas();
 
  //metodo On click para que desde ListaPersonasAdapter  TE MANDE LA POSICION
@@ -79,10 +78,9 @@ public class Cliente extends AppCompatActivity {
             public void onClick(View v) {
                 numero = listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getId();
                 Toast.makeText(getApplication(), listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getNombre() + numero, Toast.LENGTH_LONG).show();
-                Detalle_Cliente();
+                //Detalle_Cliente();
             }
         });
-
 
         //CICLO FOR PARA CONSULTAR CUANTOS  CLIENTES HAY EN LA BD
         int contar = listaUsuario.size();
@@ -90,7 +88,6 @@ public class Cliente extends AppCompatActivity {
         {
             System.out.println("************ Usuarios en Pantalla " +i+" ==> " +listaUsuario.get(i).getNombre());
             //System.out.println(listaUsuario.get(0).getNombre());
-            //System.out.println(listaUsuario.get(1).getNombre());
         }
 
     }
@@ -158,6 +155,7 @@ public class Cliente extends AppCompatActivity {
         } else if (id == R.id.action_add) {
             Intent i = new Intent(this, Cliente_Formulario.class);
             startActivity(i);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

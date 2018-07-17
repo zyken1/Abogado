@@ -141,13 +141,13 @@ public class Cliente_Formulario extends AppCompatActivity {
                 if (checked)
                     //FISICA
                     //Toast.makeText(getApplicationContext(),"FISICA",Toast.LENGTH_SHORT).show();
-                    campotipo = "FISICA";
+                    campotipo = "Fisica";
                     break;
             case R.id.radioButton2:
                 if (checked)
                     //MORAL
                     //Toast.makeText(getApplicationContext(),"MORAL" ,Toast.LENGTH_SHORT).show();
-                    campotipo = "MORAL";
+                    campotipo = "Moral";
                     break;
             case R.id.radioButton3:
                 if (checked)
@@ -179,7 +179,7 @@ public class Cliente_Formulario extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 // +1 because january is zero
-                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                final String selectedDate = day + " / 0" +(month+1)+ " / " + year;  //se agrego un cero a peticion
                 fecha_nacimiento.setText(selectedDate);
             }
         });

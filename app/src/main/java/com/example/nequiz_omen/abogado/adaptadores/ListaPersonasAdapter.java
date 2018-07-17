@@ -18,9 +18,10 @@ import java.util.ArrayList;
  */
 
 public class ListaPersonasAdapter extends RecyclerView.Adapter<ListaPersonasAdapter.PersonasViewHolder>
-implements View.OnClickListener{
+implements View.OnClickListener {
 
     ArrayList<Usuario> listaUsuario;
+    ArrayList<String> listaUsuarios;
     private View.OnClickListener listener;  // es nuestro escuchador
 
     public ListaPersonasAdapter(ArrayList<Usuario> listaUsuario) {
@@ -29,28 +30,29 @@ implements View.OnClickListener{
 
     @Override
     public PersonasViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rm_crear_cliente,null,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rm_crear_cliente, null, false);
 
         view.setOnClickListener(this);// este escuchara el evento de selccion
         return new PersonasViewHolder(view);
     }
 
-
     @Override
     public void onBindViewHolder(PersonasViewHolder holder, int position) {
         //System.out.println("***************Posicion  = " +position);
-        holder.textid.setText(listaUsuario.get(position).getId().toString());
+        //holder.textid.setText(listaUsuario.get(position).getId().toString());
+        holder.campoId.setText("");
         holder.nombre.setText(listaUsuario.get(position).getNombre().toUpperCase());
         holder.telefono.setText(listaUsuario.get(position).getTel_movil());
-        holder.correo.setText(listaUsuario.get(position).getE_mail());     //holder.correo.setText(listaUsuario.get(position).getId().toString());
-    }
+        holder.correo.setText(listaUsuario.get(position).getE_mail().toLowerCase());     //holder.correo.setText(listaUsuario.get(position).getId().toString());
 
+        System.out.println("************ position " + position);
+
+    }
 
     @Override
     public int getItemCount() {
         return listaUsuario.size();
     }
-
 
     public void setOnClickListener(View.OnClickListener listener){
         this.listener = listener; //el listener que se creo arriba en el metodo sea igual al listener que le llega
@@ -68,13 +70,14 @@ implements View.OnClickListener{
     }
 
 
+
     public class PersonasViewHolder extends RecyclerView.ViewHolder {
 
-        TextView correo,nombre,telefono,textid;
+        TextView correo,nombre,telefono,textid,campoId;
 
         public PersonasViewHolder(View itemView) {
             super(itemView);
-            textid = (TextView) itemView.findViewById(R.id.campoId);
+            campoId = (TextView) itemView.findViewById(R.id.campoId);
             nombre = (TextView) itemView.findViewById(R.id.textNombre);
             telefono = (TextView) itemView.findViewById(R.id.textTelefono);
             correo = (TextView) itemView.findViewById(R.id.textCorreo);

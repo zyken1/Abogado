@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,14 +27,13 @@ import java.util.ArrayList;
 public class Cliente extends AppCompatActivity {
     //VARIABLES
     TextView campoId, campoNombre, campoTelefono,textid;
-    int numero,numero2 ;
+    int numero;
+    Usuario numero2 ;
     ArrayList<Usuario> listaUsuario;
     RecyclerView recyclerViewUsuarios;
     ArrayList<String> listaUsuarios;
 
     ConexionSQLiteHelper conn;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,11 +77,13 @@ public class Cliente extends AppCompatActivity {
             public void onClick(View v) {
                 numero = listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getId();
                 Toast.makeText(getApplication(), listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getNombre() + numero , Toast.LENGTH_LONG).show();
-                System.out.println("************ TAMAÑO " + listaUsuario.size());
                 //Detalle_Cliente();
+                //Usuario user = listaUsuario.get(numero);   //Usuario user = listaUsuario.get(0);
             }
         });
-    }
+
+
+    }//  END onCreate
     /*==================METODO PARA CONSULTAR LAS PERSONAS DE LA BD  =================================*/
     private void consultarListaPersonas() {
         SQLiteDatabase db=conn.getReadableDatabase();
@@ -176,6 +178,7 @@ public class Cliente extends AppCompatActivity {
         intent.putExtras(bundle);
         startActivity(intent);
     }
+
 
 
 }//END  CLASS

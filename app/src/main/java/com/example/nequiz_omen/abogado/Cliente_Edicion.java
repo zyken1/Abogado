@@ -52,7 +52,6 @@ public class Cliente_Edicion extends AppCompatActivity {
         /*===============Aqui va el Bundle ======================*/
         Bundle objetoEnviado = getIntent().getExtras();  //instanciar el Bundle
         Usuario user = null;
-        String texto = "Este texto debe llegar";
 
         if (objetoEnviado != null) {
             user = (Usuario) objetoEnviado.getSerializable("usuario");

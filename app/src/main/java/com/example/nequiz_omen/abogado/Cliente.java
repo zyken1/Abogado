@@ -27,8 +27,7 @@ import java.util.ArrayList;
 public class Cliente extends AppCompatActivity {
     //VARIABLES
     TextView campoId, campoNombre, campoTelefono,textid;
-    int numero;
-    Usuario numero2 ;
+    int numero,numero2 ;
     ArrayList<Usuario> listaUsuario;
     RecyclerView recyclerViewUsuarios;
     ArrayList<String> listaUsuarios;
@@ -77,8 +76,11 @@ public class Cliente extends AppCompatActivity {
             public void onClick(View v) {
                 numero = listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getId();
                 Toast.makeText(getApplication(), listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getNombre() + numero , Toast.LENGTH_LONG).show();
+                System.out.println("************V  " + v.getContext());
+                System.out.println("************V  " + v.getId());
                 //Detalle_Cliente();
                 //Usuario user = listaUsuario.get(numero);   //Usuario user = listaUsuario.get(0);
+
             }
         });
 

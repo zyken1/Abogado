@@ -23,7 +23,6 @@ implements View.OnClickListener {
     ArrayList<Usuario> listaUsuario;
     ArrayList<String> listaUsuarios;
     private View.OnClickListener listener;  // es nuestro escuchador
-
     public ListaPersonasAdapter(ArrayList<Usuario> listaUsuario) {
         this.listaUsuario = listaUsuario;
     }

@@ -18,7 +18,7 @@ import java.util.List;
 
 public class Juicios_Edicion extends AppCompatActivity {
     /*  ESTE ES EL ORDEN DE LOS FRAGMENT
-    * Juicios
+    * JuiciosE
     * tramites
     * Honorarios*/
 
@@ -79,7 +79,7 @@ public class Juicios_Edicion extends AppCompatActivity {
 
     private void addTabs(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new JuiciosFragment(), "Juicios");
+        adapter.addFrag(new JuiciosFragment(), "JuiciosE");
         adapter.addFrag(new TramitesFragment(), "Tramites");
         adapter.addFrag(new HonorariosFragment(), "Honorarios");
         //adapter.addFrag(new BananaFragment(), "Banana");

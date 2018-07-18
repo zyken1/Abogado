@@ -24,7 +24,7 @@ public class ConexionSQLiteHelper  extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {           /*AQUI SE CREAN LOS SCRIPTS*/
         db.execSQL(Utilidades.CREAR_TABLA_USUARIOS);   // DE ESTA MANERA SE  PUEDEN EJECUTAR TODAS LAS SENTENCIAS QUE TENGAMOS  y se extiende a la carpeta utilidades
-        db.execSQL(Utilidades.CREAR_TABLA_MASCOTA);
+        db.execSQL(Utilidades.CREAR_TABLA_JUICIOS);
     }
 
 
@@ -32,7 +32,7 @@ public class ConexionSQLiteHelper  extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int versionAntigua, int nuevaVersion) {    /*AQUI REFRESCAMOS LLS SCRIPTS*/
         db.execSQL("DROP TABLE IF  EXISTS usuarios");
-        db.execSQL("DROP TABLE IF EXISTS "+Utilidades.TABLA_MASCOTA);
+        db.execSQL("DROP TABLE IF EXISTS "+Utilidades.TABLA_JUICIOS);
         onCreate(db);
     }
 

@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.example.nequiz_omen.abogado.adaptadores.ListaJuiciosAdapter;
-import com.example.nequiz_omen.abogado.entidades.Usuario;
+import com.example.nequiz_omen.abogado.entidades.JuiciosE;
 import com.example.nequiz_omen.abogado.utilidades.Utilidades;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class Juicios extends AppCompatActivity {
     ListView vistaJuicios;
     ArrayList<String> listaInformacion;
 
-    ArrayList<Usuario> listaUsuario;
+    ArrayList<JuiciosE> listaMascotas;
     RecyclerView recyclerViewUsuarios;
     ConexionSQLiteHelper conn;
 
@@ -34,6 +34,7 @@ public class Juicios extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juicios);
 
+        conn=new ConexionSQLiteHelper(getApplicationContext(),"bd_usuarios",null,1);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -53,18 +54,16 @@ public class Juicios extends AppCompatActivity {
         });
 
 
-        //ADAPTADOR PAR APERSONAS
+        //ADAPTADOR PARA JUICIOS
 
-        conn=new ConexionSQLiteHelper(getApplicationContext(),"bd_usuarios",null,1);
-
-        listaUsuario=new ArrayList<>();
+        listaMascotas=new ArrayList<>();
 
         recyclerViewUsuarios= (RecyclerView) findViewById(R.id.recyclerJuicios);
         recyclerViewUsuarios.setLayoutManager(new LinearLayoutManager(this));
 
         consultarListaPersonas();
 
-        ListaJuiciosAdapter adapter = new ListaJuiciosAdapter(listaUsuario);
+        ListaJuiciosAdapter adapter = new ListaJuiciosAdapter(listaMascotas);
         recyclerViewUsuarios.setAdapter(adapter);
     }
 
@@ -74,32 +73,42 @@ public class Juicios extends AppCompatActivity {
     private void consultarListaPersonas() {
         SQLiteDatabase db=conn.getReadableDatabase();
 
-        Usuario usuario=null;
-        // listaUsuarios=new ArrayList<Usuario>();
-        //select * from usuarios
-        Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_USUARIO,null);
+        JuiciosE juicios=null;
+        listaMascotas =new ArrayList<JuiciosE>();
+        //select * from JuiciosE
+        Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_JUICIOS,null);
 
-        while (cursor.moveToNext()){  /*CICLO  WHILE  PARA REPETIR LA SENTENCIA*/
-            usuario=new Usuario();
-            usuario.setId(cursor.getInt(0));
-            usuario.setNombre(cursor.getString(1));
-            //usuario.setTelefono(cursor.getString(2));
+        while (cursor.moveToNext()){
+            juicios=new JuiciosE();
+            juicios.setIdDuenio(cursor.getInt(0));
+            juicios.setIdJuicios(cursor.getInt(1));
+            juicios.setNombreExpediente(cursor.getString(2));
+            juicios.setClientes(cursor.getString(3));
 
 
-            listaUsuario.add(usuario);
+            listaMascotas.add(juicios);
         }
 
         //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
-        llenarListaUsuarios();
+        llenarListaJuicios();
+        //obtenerLista();
     }
 
-    private void llenarListaUsuarios() {
-        //listaUsuario.add(new Usuario(1,"Daniel","548526"));
+    private void llenarListaJuicios() {
+        listaMascotas.add(new JuiciosE(12,13,"Nombre de expediente","Cliente"));
         //listaUsuario.add(new Usuario(2,"josesito","1212121212"));
     }
 
 
+    private void obtenerLista() {
+        listaInformacion=new ArrayList<String>();
 
+        /*for (int i=0; i<listaMascotas.size();i++){
+            listaInformacion.add(listaMascotas.get(i).getIdMascota()+" - "
+                    +listaMascotas.get(i).getNombreMascota());
+        }*/
+
+    }
 
 
     @Override

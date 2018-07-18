@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.nequiz_omen.abogado.R;
-import com.example.nequiz_omen.abogado.entidades.Usuario;
+import com.example.nequiz_omen.abogado.entidades.JuiciosE;
 
 import java.util.ArrayList;
 
@@ -17,10 +17,10 @@ import java.util.ArrayList;
 
 public class ListaJuiciosAdapter extends RecyclerView.Adapter<ListaJuiciosAdapter.PersonasViewHolder> {
 
-    ArrayList<Usuario> listaUsuario;
+    ArrayList<JuiciosE> listaMascotas;
 
-    public ListaJuiciosAdapter(ArrayList<Usuario> listaUsuario) {
-        this.listaUsuario = listaUsuario;
+    public ListaJuiciosAdapter(ArrayList<JuiciosE> listaMascotas) {
+        this.listaMascotas = listaMascotas;
     }
 
     @Override
@@ -32,27 +32,28 @@ public class ListaJuiciosAdapter extends RecyclerView.Adapter<ListaJuiciosAdapte
 
     @Override
     public void onBindViewHolder(PersonasViewHolder holder, int position) {
-        holder.id.setText(listaUsuario.get(position).getId().toString());
-        holder.nombre.setText(listaUsuario.get(position).getNombre());
-        holder.telefono.setText(listaUsuario.get(position).getTipo_persona());
+        holder.id.setText(listaMascotas.get(position).getIdJuicios().toString());
+        holder.nombre.setText(listaMascotas.get(position).getNombreExpediente());
+        holder.cliente.setText(listaMascotas.get(position).getIdDuenio().toString());
     }
 
 
     @Override
     public int getItemCount() {
-        return listaUsuario.size();
+        return listaMascotas.size();
     }
 
 
     public class PersonasViewHolder extends RecyclerView.ViewHolder {
 
-        TextView id,nombre,telefono;
+        TextView id,nombre,cliente,tipoJuicio;
 
         public PersonasViewHolder(View itemView) {
             super(itemView);
-            id = (TextView) itemView.findViewById(R.id.textExpediente);
-            nombre = (TextView) itemView.findViewById(R.id.textCliente);
-            telefono = (TextView) itemView.findViewById(R.id.textTipoJuicio);
+            nombre = (TextView) itemView.findViewById(R.id.textExpediente);
+            id = (TextView) itemView.findViewById(R.id.textCliente);
+            cliente = (TextView) itemView.findViewById(R.id.textTipoJuicio);
+            //tipoJuicio = (TextView) itemView.findViewById(R.id.textAsunto);
         }
     }
 

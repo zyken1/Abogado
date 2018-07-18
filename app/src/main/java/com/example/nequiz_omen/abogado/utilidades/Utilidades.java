@@ -33,15 +33,14 @@ public class Utilidades {
 
 
     //=========================  Constantes campos tabla mascota
-    public static final String TABLA_MASCOTA="mascota";
-    public static final String CAMPO_ID_MASCOTA="id_mascota";
-    public static final String CAMPO_NOMBRE_MASCOTA="nombre_mascota";
-    public static final String CAMPO_RAZA_MASCOTA="raza_mascota";
+    public static final String TABLA_JUICIOS="juicios";
+    public static final String CAMPO_ID_JUICIO="id_juicio";
+    public static final String CAMPO_NOMBRE_EXPEDIENTE="nombreExpediente";
+    public static final String CAMPO_CLIENTES="clientes";
     public static final String CAMPO_ID_DUENIO="id_duenio";
 
-    public static final String CREAR_TABLA_MASCOTA="CREATE TABLE " +
-            ""+TABLA_MASCOTA+" ("+CAMPO_ID_MASCOTA+" INTEGER PRIMARY KEY AUTOINCREMENT, "
-            +CAMPO_NOMBRE_MASCOTA+" TEXT, "+CAMPO_RAZA_MASCOTA+" TEXT,"+CAMPO_ID_DUENIO+" INTEGER)";
+    public static final String CREAR_TABLA_JUICIOS="CREATE TABLE " +
+            ""+TABLA_JUICIOS+" ("+CAMPO_ID_JUICIO+" INTEGER PRIMARY KEY AUTOINCREMENT, "+CAMPO_NOMBRE_EXPEDIENTE+" TEXT, "+CAMPO_CLIENTES+" TEXT, "+CAMPO_ID_DUENIO+" INTEGER)";
 
 }
 

@@ -8,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.example.nequiz_omen.abogado.R;
-import com.example.nequiz_omen.abogado.entidades.Mascota;
 import com.example.nequiz_omen.abogado.entidades.Usuario;
 
 import java.util.ArrayList;
@@ -21,7 +20,6 @@ public class ListaPersonasAdapter extends RecyclerView.Adapter<ListaPersonasAdap
 implements View.OnClickListener {
 
     ArrayList<Usuario> listaUsuario;
-    ArrayList<String> listaUsuarios;
     private View.OnClickListener listener;  // es nuestro escuchador
     public ListaPersonasAdapter(ArrayList<Usuario> listaUsuario) {
         this.listaUsuario = listaUsuario;

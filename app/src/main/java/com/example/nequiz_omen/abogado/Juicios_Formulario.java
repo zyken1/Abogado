@@ -1,10 +1,14 @@
 package com.example.nequiz_omen.abogado;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,21 +23,31 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.nequiz_omen.abogado.Dialogos.DatePickerFragment;
+import com.example.nequiz_omen.abogado.entidades.Usuario;
+import com.example.nequiz_omen.abogado.utilidades.Utilidades;
+
+import java.util.ArrayList;
 
 public class Juicios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables
     private Spinner spinnerJuicio, spinnerEtapa;
+    Spinner comboDuenio;
     private LinearLayout layout_Cliente,layout_Contrario,layout_Tramite;
     private ImageView agregar_cliente,agregar_contrario,agregar_tramite;
 
     /* variables para busqueda */
     EditText campoId,campoExpediente,campoCliente,campoContrario,campoTipo_juicio,campoAsunto,campoInstancia,campoEtapa_procesal,campoTramite,campoCosto_juicio,campoResta_pago,campoAbono,fecha_pago;
 
+    ArrayList<String> listaPersonas;
+    ArrayList<Usuario> personasList;
+    ConexionSQLiteHelper conn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juicios__formulario);
 
+        comboDuenio= (Spinner) findViewById(R.id.comboCliente);
         //busqueda de imagen y layout con el id
         agregar_cliente = (ImageView) findViewById(R.id.add_linear_cliente);
         agregar_contrario = (ImageView) findViewById(R.id.add_linear_contrario);
@@ -44,7 +58,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
                 /*==========================    BUSQUEDA DE ID PARA LA BD    ===========================*/
                 campoExpediente = (EditText)findViewById(R.id.campoExpediente);
-                campoCliente = (EditText)findViewById(R.id.cliente);
+                //campoCliente = (EditText)findViewById(R.id.cliente);
                 campoContrario = (EditText)findViewById(R.id.campoContrario);
                 //campoTipo_juicio = (EditText)findViewById(R.id.campoTipo_juicio);
                 campoAsunto = (EditText)findViewById(R.id.campoAsunto);
@@ -69,31 +83,49 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("***********Activity Juicios_Formulario Destruida");
                 //regresar...
                 finish();
             }
         });
 
+        conn=new ConexionSQLiteHelper(getApplicationContext(),"bd_usuarios",null,1);
+        //==============================  ADAPTADOR PARA EL SPINNER
+        consultarListaPersonas();
+        ArrayAdapter<CharSequence> adaptador=new ArrayAdapter
+                (this,android.R.layout.simple_spinner_item,listaPersonas);
+
+        comboDuenio.setAdapter(adaptador);
+        comboDuenio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long idl) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+           });
+
         //==============================  Referenciado de variables del XML
-        spinnerJuicio = (Spinner) findViewById(R.id.spinner_Juicio);
+
+
+            spinnerJuicio = (Spinner) findViewById(R.id.spinner_Juicio);
         spinnerEtapa = (Spinner) findViewById(R.id.spinner_Etapa);
         //Construcción del "adaptador" para el primer Spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.array_Juicios, /*Se carga el array definido en el XML */android.R.layout.simple_spinner_item);
 
         //Se carga el tipo de vista para el adaptador
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Se aplica el adaptador al Spinner de Juicios
+        //Se aplica el adaptador al Spinner de JuiciosE
         spinnerJuicio.setAdapter(adapter);
-        //Se aplica listener para saber que item ha sido seleccionado
-        //y poder usarlo en el método "onItemSelected"
+
         spinnerJuicio.setOnItemSelectedListener(this);
     }//end ON CREATE
 
 
 
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        //Se guarda en array de enteros los arrays de los Juicios
+        //Se guarda en array de enteros los arrays de los JuiciosE
         int[] Etapas = {R.array.array_seleccione,
                 R.array.array_Juicio_Ordinario_Civil,
                 R.array.array_Juicio_Ordinario_Mercantil,
@@ -110,7 +142,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, Etapas[position], /*En función del Juicio, se carga el array que corresponda del XML */ android.R.layout.simple_spinner_item);
         //Se carga el tipo de vista para el adaptadori
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Se aplica el adaptador al Spinner de Juicios
+        //Se aplica el adaptador al Spinner de JuiciosE
         spinnerEtapa.setAdapter(adapter);
         //Toast.makeText(this, "Seleccionaste el Juicio:" + position + "  id:" +id, Toast.LENGTH_SHORT).show();
         System.out.println("**********Array posicion  =====> " + parent.getItemAtPosition(position).toString() + "  Id ===> " +id);
@@ -192,7 +224,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         switch(v.getId())
         {
             case R.id.addimage_cliente:
-                Toast.makeText(this, " Se ha eliminado cliente", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, " Cliente eliminado", Toast.LENGTH_SHORT).show();
                 layout_Cliente.removeView((View) v.getParent());
                 break;
             case R.id.addimage_cliente_contrario:
@@ -238,7 +270,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 // +1 because january is zero
-                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                final String selectedDate = day + " / 0" + (month+1) + " / " + year;
                 fecha_pago.setText(selectedDate);
             }
         });
@@ -249,76 +281,121 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
  /*==================     Metodo guardar al dar click al icono de Guardar  ================*/
     public void Guardar(MenuItem item) {
-        //registrarUsuariosSQL();
-        //registrarUsuarios();spinnerPro
-
+        registrarUsuarios();
+        //registrarMascota();
         String textLoc = spinnerEtapa.getSelectedItem().toString();
         Toast.makeText(this, textLoc, Toast.LENGTH_SHORT).show();
 
-        //Intent i = new Intent(this, Juicios.class);
+        //Intent i = new Intent(this, JuiciosE.class);
         //startActivity(i);
     }
-     /*==================== METODO PARA GUARDAR FORMULARIO======================
+     //==================== METODO PARA GUARDAR FORMULARIO======================
 
     private void registrarUsuarios() {
-        String expediente = campoExpediente.getText().toString();
 
         if(campoExpediente.getText().toString().trim().equalsIgnoreCase("")){
             campoExpediente.setError("Introducir un Numero de Expediente");
-            System.out.println("********* 11111111111111  ====> ");
-            //Toast.makeText(this, "LLena los campos " + expediente, Toast.LENGTH_SHORT).show();
-            }else if(campoCliente.getText().toString().trim().equalsIgnoreCase("")){
-            System.out.println("********* 22222222222222222222  ====> ");
-                campoCliente.setError("Introduce un Cliente");
-                //Toast.makeText(this, "LLena los campos " + expediente, Toast.LENGTH_SHORT).show();
-            }else {
+            }else {}
+        SQLiteDatabase db=conn.getWritableDatabase();
 
-            //SE INSTANCIA UNA CONEXION Y SE LE COLOCAN LOS PARAMETROS
-            ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this,"bd_juicios",null,1);
-            //Se abre la conexion para poder ser editada
-            SQLiteDatabase  db = conn .getWritableDatabase();
-            //se incluye al final del query
+        ContentValues values=new ContentValues();
+        values.put(Utilidades.CAMPO_NOMBRE_EXPEDIENTE,campoExpediente.getText().toString());
+        values.put(Utilidades.CAMPO_CLIENTES,campoCliente.getText().toString());
 
-            ContentValues values= new ContentValues();
-            //values.put(Utilidades.CAMPO_ID,);
-            values.put(Utilidades.CAMPO_EXPEDIENTE,campoExpediente.getText().toString());
-            values.put(Utilidades.CAMPO_CLIENTE,campoCliente.getText().toString());
+        int idCombo= (int) comboDuenio.getSelectedItemId();
+
+
+        //if (idCombo!=0){
+            Log.i("TAMAÑO",personasList.size()+"");
+            Log.i("id combo",idCombo+"");
+            Log.i("id combo - 1",(idCombo-1)+"");//se resta 1 ya que se quiere obtener la posicion de la lista, no del combo
+
+            int idDuenio = personasList.get(idCombo-1).getId();
+            Log.i("id DUEÑO",idDuenio+"");
+
+            values.put(Utilidades.CAMPO_ID_DUENIO,idDuenio);
+
+            Long idResultante=db.insert(Utilidades.TABLA_JUICIOS,Utilidades.CAMPO_ID_JUICIO,values);
 
             //INSERTAR EN LA BASE DE DATOS
-            Long idResultante = db.insert(Utilidades.TABLA_JUICIOS,Utilidades.CAMPO_ID,values);
-            System.out.println("********* 3333333333333333333333333333  ====> ");
             Toast.makeText(getApplicationContext(),"Id Registro: " + idResultante,Toast.LENGTH_SHORT).show();
             System.out.println("*********Valores enviados a la BD  ====>  " + values);
             System.out.println("*********Ruta de Conexion en la BD  ====>  " + conn);
             db.close();   //se cierra la conexion
 
             Toast.makeText(this, "Expediente Guardado ", Toast.LENGTH_SHORT).show();
-            finish();
+    }
+
+         /*========================================================================*/
+    private void consultarListaPersonas() {
+        SQLiteDatabase db=conn.getReadableDatabase();
+
+        Usuario persona=null;
+        personasList =new ArrayList<Usuario>();
+        //select * from usuarios
+        Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_USUARIO,null);
+
+        while (cursor.moveToNext()){
+            persona=new Usuario();
+            persona.setId(cursor.getInt(0));
+            persona.setNombre(cursor.getString(1));
+            persona.setTipo_persona(cursor.getString(2));
+
+            Log.i("id",persona.getId().toString());
+            Log.i("Nombre",persona.getNombre());
+            Log.i("Tipo",persona.getTipo_persona());
+
+            personasList.add(persona);
+
         }
-    }*/
+        obtenerLista();
+    }
+
+    private void obtenerLista() {
+        listaPersonas=new ArrayList<String>();
+        listaPersonas.add("Seleccione");
+
+        for(int i=0;i<personasList.size();i++){
+            listaPersonas.add(personasList.get(i).getId()+" - "+personasList.get(i).getNombre());
+        }
+
+    }
 
 
 
 
 
-/*
-    private void registrarUsuariosSQL() {
-        //Se define cual e sla base de datos
-        ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this,"bd_usuarios",null,1);
-        //Abrir conexion para escritura
-        SQLiteDatabase  db = conn .getWritableDatabase();
 
-        //insert into usuario (id,nombre,telefono) value (123,'Cristian','123456789')
-        String insert="INSERT INTO "+Utilidades.TABLA_JUICIOS+" ( " +Utilidades.CAMPO_ID+ "," +Utilidades.CAMPO_EXPEDIENTE+ "," +Utilidades.CAMPO_CONTRARIO+ ")" +
-                      " VALUES (" +campoCliente.getText().toString()+ ", '" +campoExpediente.getText().toString()+ "','" +campoCliente.getText().toString()+ "')" ;
+            /*========================================================================*/
+        private void registrarMascota() {
 
-        db.execSQL(insert);  //ejecuta lo que hay en el insert
-        Toast.makeText(getApplicationContext(),"USUARIO REGISTRADO",Toast.LENGTH_SHORT).show();
-        System.out.println("*********  Query ejecutado en la base  ====>  " + insert);
-        System.out.println("*********  BASE DE DATOS ====>   " + conn);
+            SQLiteDatabase db=conn.getWritableDatabase();
 
-        db.close();
-    }*/
+            ContentValues values=new ContentValues();
+            values.put(Utilidades.CAMPO_NOMBRE_EXPEDIENTE,campoExpediente.getText().toString());
+            values.put(Utilidades.CAMPO_CLIENTES,campoCliente.getText().toString());
 
+            int idCombo= (int) comboDuenio.getSelectedItemId();
+
+
+            if (idCombo!=0){
+                Log.i("TAMAÑO",personasList.size()+"");
+                Log.i("id combo",idCombo+"");
+                Log.i("id combo - 1",(idCombo-1)+"");//se resta 1 ya que se quiere obtener la posicion de la lista, no del combo
+
+                int idDuenio = personasList.get(idCombo-1).getId();
+                Log.i("id DUEÑO",idDuenio+"");
+
+                values.put(Utilidades.CAMPO_ID_DUENIO,idDuenio);
+
+                Long idResultante=db.insert(Utilidades.TABLA_JUICIOS,Utilidades.CAMPO_ID_JUICIO,values);
+
+                Toast.makeText(getApplicationContext(),"Id Registro: "+idResultante,Toast.LENGTH_SHORT).show();
+                db.close();
+
+            }else{
+                Toast.makeText(getApplicationContext(),"Debe seleccionar un Dueño",Toast.LENGTH_LONG).show();
+            }
+        }
 
 }//end class

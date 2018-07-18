@@ -35,7 +35,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
     private ImageView agregar_cliente,agregar_contrario,agregar_tramite;
 
     /* variables para busqueda */
-    EditText campoId,campoExpediente,campoCliente,campoContrario,campoTipo_juicio,campoAsunto,campoInstancia,campoEtapa_procesal,campoTramite,campoCosto_juicio,campoResta_pago,campoAbono,fecha_pago;
+    EditText campoId,campoExpediente,campoCliente,campoContrario,campoTipo_juicio,campoAsunto,campoInstancia,campoEtapa_procesal,campoTramite,campoCosto_juicio,campoResta_pago,campoAbono,fecha_pago,fecha_tramite;
 
     ArrayList<String> listaPersonas;
     ArrayList<Usuario> personasList;
@@ -75,11 +75,13 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
                 campoResta_pago = (EditText)findViewById(R.id.campoResta_pago);
                 campoAbono = (EditText)findViewById(R.id.campoAbono);
                 fecha_pago = (EditText) findViewById(R.id.fecha_pago);
+                fecha_tramite = (EditText) findViewById(R.id.fecha_tramite);
                 /*==========================    FIN DE DE LA BUSQUEDA    ===========================*/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 ;
         fecha_pago.setOnClickListener(fecha_pago());
+        fecha_tramite.setOnClickListener(fechaTramite());
         
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -337,17 +339,29 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
 
 
-    // Metodos para insertar fecha de de pagos en un fragment
-    public View.OnClickListener fechaNacimiento() {
+  /*===================0 Metodos para insertar fecha de de pagos en un fragment  ================================*/
+    public View.OnClickListener fechaTramite() {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDatePickerDialog();
+                showDatePickerDialog2();
             }
         };
     }
 
+    private void showDatePickerDialog2() {
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 because january is zero
+                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                fecha_tramite.setText(selectedDate);
+            }
+        });
+        newFragment.show(getFragmentManager(), "datePicker");
+    }
 
+    //=========================================================
     private View.OnClickListener fecha_pago() {
         return new View.OnClickListener() {
             @Override
@@ -357,20 +371,17 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         };
     }
 
-
     private void showDatePickerDialog() {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 // +1 because january is zero
-                final String selectedDate = day + " / 0" + (month+1) + " / " + year;
+                final String selectedDate = day + " / " + (month+1) + " / " + year;
                 fecha_pago.setText(selectedDate);
             }
         });
         newFragment.show(getFragmentManager(), "datePicker");
     }
-
-
 
 
 

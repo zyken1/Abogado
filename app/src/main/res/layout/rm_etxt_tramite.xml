@@ -6,13 +6,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <EditText
-        android:id="@+id/cliente_tramite"
-        android:layout_width="match_parent"
+        android:id="@+id/cliente_tramite2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:layout_marginTop="2dp"
-        android:ems="10"
+        android:ems="8"
         android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/fecha_Tramite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusable="false"
+        android:hint="  click para Fecha"
+        android:inputType="date"/>
 
     <ImageView
         android:id="@+id/addimage_cliente_tramite"

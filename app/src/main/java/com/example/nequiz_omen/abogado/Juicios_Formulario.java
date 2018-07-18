@@ -41,6 +41,11 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
     ArrayList<Usuario> personasList;
     ConexionSQLiteHelper conn;
 
+    //variables globales
+    int cliente = 0;
+    int cliente_contrario = 0;
+    int cliente_tramite = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +61,9 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
                 /*==========================    BUSQUEDA DE ID PARA LA BD    ===========================*/
 
-                comboDuenio= (Spinner) findViewById(R.id.comboCliente);
+
                 campoExpediente = (EditText)findViewById(R.id.campoExpediente);
+                comboDuenio= (Spinner) findViewById(R.id.comboCliente);
                 //campoCliente = (EditText)findViewById(R.id.cliente);
                 campoContrario = (EditText)findViewById(R.id.campoContrario);
                 //campoTipo_juicio = (EditText)findViewById(R.id.campoTipo_juicio);
@@ -228,11 +234,11 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             persona=new Usuario();
             persona.setId(cursor.getInt(0));
             persona.setNombre(cursor.getString(1));
-            persona.setTipo_persona(cursor.getString(2));
+            //persona.setTipo_persona(cursor.getString(2));
 
             Log.i("id",persona.getId().toString());
             Log.i("Nombre",persona.getNombre());
-            Log.i("Tipo",persona.getTipo_persona());
+            //Log.i("Tipo",persona.getTipo_persona());
 
             personasList.add(persona);
 
@@ -261,30 +267,44 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         switch(v.getId())
         {
             case R.id.add_linear_cliente:
-                //Toast.makeText(this, "Se ha creado nuevo cliente", Toast.LENGTH_SHORT).show();
-                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final View rowView = inflater.inflate(R.layout.rm_etxt_cliente, null);
-                // Add the new row before the add field button.
-                layout_Cliente.addView(rowView);
+                if(cliente == 0){
+                    cliente = 1;
+                    LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    final View rowView = inflater.inflate(R.layout.rm_etxt_cliente, null);
+                    // Add the new row before the add field button.
+                    layout_Cliente.addView(rowView);
+                }else{
+                    Toast.makeText(this, "Solo se puede agregar un Cliente", Toast.LENGTH_SHORT).show();
+                     }
                 break;
 
             case R.id.add_linear_contrario:
-                //Toast.makeText(this, "Contrario Añadido", Toast.LENGTH_SHORT).show();
-                LayoutInflater infl = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final View row = infl.inflate(R.layout.rm_etxt_contrario, null);
-                // Add the new row before the add field button.
-                layout_Contrario.addView(row);
+                if(cliente_contrario == 0)
+                {
+                    cliente_contrario = 1;
+                    LayoutInflater infl = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    final View row = infl.inflate(R.layout.rm_etxt_contrario, null);
+                    // Add the new row before the add field button.
+                    layout_Contrario.addView(row);
+                }else{
+                    Toast.makeText(this, "Solo se puede agregar un Contrario", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
             case R.id.add_linear_tramite:
-                //Toast.makeText(this, "Nuevo Tramite Añadido", Toast.LENGTH_SHORT).show();
-                LayoutInflater dus = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final View fila = dus.inflate(R.layout.rm_etxt_tramite, null);
-                // Add the new row before the add field button.
-                layout_Tramite.addView(fila);
+                if(cliente_tramite == 0)
+                {
+                    cliente_tramite = 1;
+                    LayoutInflater dus = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    final View fila = dus.inflate(R.layout.rm_etxt_tramite, null);
+                    // Add the new row before the add field button.
+                    layout_Tramite.addView(fila);
+                }else{
+                    Toast.makeText(this, "Solo se puede agregar un Tramite", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
-        System.out.println("SWITCH DE CREACION"  );
+
         System.out.println("EL ID QUE SE CREO FUE: " + v   );
     }//end del metodo onAddField
 
@@ -296,22 +316,23 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         switch(v.getId())
         {
             case R.id.addimage_cliente:
-                Toast.makeText(this, " Cliente eliminado", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, " Cliente eliminado", Toast.LENGTH_SHORT).show();
                 layout_Cliente.removeView((View) v.getParent());
+                cliente = 0;
                 break;
             case R.id.addimage_cliente_contrario:
-                Toast.makeText(this, " Contrario Eliminado", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, " Contrario Eliminado", Toast.LENGTH_SHORT).show();
                 layout_Contrario.removeView((View) v.getParent());
+                cliente_contrario = 0;
                 break;
             case R.id.addimage_cliente_tramite:
-                Toast.makeText(this, " Tramite Eliminado", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, " Tramite Eliminado", Toast.LENGTH_SHORT).show();
                 layout_Tramite.removeView((View) v.getParent());
+                cliente_tramite = 0;
                 break;
         }
-
         //layout_Cliente.removeView((View) v.getParent());
         System.out.println("****************SWITCH TERMINADO ONDELETE"  );
-        System.out.println( "**************+EL ID QUE SE ELIMINO FUE: " + v  );
     }
 
 

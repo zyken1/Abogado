@@ -182,7 +182,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
 
      //==================== METODO PARA GUARDAR FORMULARIO======================
-
     private void registrarUsuarios() {
 
         if (campoExpediente.getText().toString().trim().equalsIgnoreCase("")) {
@@ -217,8 +216,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
             Toast.makeText(this, "Expediente Guardado ", Toast.LENGTH_SHORT).show();
     }
-
-
 
 
          /*========================================================================*/

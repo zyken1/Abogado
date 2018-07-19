@@ -32,7 +32,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/campoAbono"
+            android:id="@+id/extra_campoAbono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
@@ -45,7 +45,7 @@
 
 
         <EditText
-            android:id="@+id/fecha_pago"
+            android:id="@+id/extra_fecha_pago"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"

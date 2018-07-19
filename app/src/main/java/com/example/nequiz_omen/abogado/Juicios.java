@@ -90,7 +90,7 @@ public class Juicios extends AppCompatActivity {
 
         //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
         llenarListaJuicios();
-        //obtenerLista();
+        obtenerLista();
     }
 
     private void llenarListaJuicios() {
@@ -101,12 +101,10 @@ public class Juicios extends AppCompatActivity {
 
     private void obtenerLista() {
         listaInformacion=new ArrayList<String>();
-
-        /*for (int i=0; i<listaMascotas.size();i++){
-            listaInformacion.add(listaMascotas.get(i).getIdMascota()+" - "
-                    +listaMascotas.get(i).getNombreMascota());
-        }*/
-
+        for (int i=0; i<listaMascotas.size();i++){
+            listaInformacion.add(listaMascotas.get(i).getIdJuicios()+" - "
+                    +listaMascotas.get(i).getNombreExpediente());
+        }
     }
 
 

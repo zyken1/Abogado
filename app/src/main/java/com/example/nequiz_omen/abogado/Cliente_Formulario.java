@@ -84,7 +84,7 @@ public class Cliente_Formulario extends AppCompatActivity {
 
           /*  METODO GUARDAR EN EL FORMULARIO  */
     public void Guardadito_cliente(MenuItem item) {
-        if(campoNombre.length()< 3) {
+        if(campoNombre.getText().toString().trim().length() < 3) {
             campoNombre.setError("Ingrese un nombre valido");
         } else{
             registrarUsuarios();     //SE CREA UN METODO DE LA ACCION QUE HARA  CUANDO SE DE CLICK

@@ -30,12 +30,12 @@ import java.util.ArrayList;
 
 public class Juicios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables
-    private Spinner spinnerJuicio, spinnerEtapa, comboDuenio;
+    private Spinner spinnerJuicio, spinnerEtapa, comboDuenio,comboCliente;
     private LinearLayout layout_Cliente,layout_Contrario,layout_Tramite,layout_Pago;
     private ImageView agregar_cliente,agregar_contrario,agregar_tramite,agregar_pago;
 
     /* variables para busqueda */
-    EditText campoId,campoExpediente,campoCliente,campoContrario,campoTipo_juicio,campoAsunto,campoInstancia,campoEtapa_procesal,campoTramite,campoCosto_juicio,campoResta_pago,campoAbono,fecha_pago,fecha_tramite;
+    EditText campoId,campoExpediente,extra_cliente,campoContrario,extra_contrario,campoAsunto,campoInstancia,campoTramite,fecha_tramite,extra_tramite,extra_fecha_tramite,campoCosto_juicio,campoResta_pago,campoAbono,fecha_pago,extra_campoAbono,extra_fecha_pago;
 
     ArrayList<String> listaPersonas;
     ArrayList<Usuario> personasList;
@@ -62,25 +62,31 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         layout_Tramite = (LinearLayout) findViewById(R.id.layout_Etapa_procesal);
         layout_Pago = (LinearLayout) findViewById(R.id.layout_Pago);
 
-                /*==========================    BUSQUEDA DE ID PARA LA BD    ===========================*/
-                campoExpediente = (EditText)findViewById(R.id.campoExpediente);
-                comboDuenio= (Spinner) findViewById(R.id.comboCliente);
-                //campoCliente = (EditText)findViewById(R.id.cliente);
-                campoContrario = (EditText)findViewById(R.id.campoContrario);
-                //campoTipo_juicio = (EditText)findViewById(R.id.campoTipo_juicio);
-                campoAsunto = (EditText)findViewById(R.id.campoAsunto);
-                campoInstancia = (EditText)findViewById(R.id.campoInstancia);
-                //campoEtapa_procesal = (EditText)findViewById(R.id.campoEtapa_procesal);
-                campoTramite = (EditText)findViewById(R.id.campoTramite);
-                campoCosto_juicio = (EditText)findViewById(R.id.campoCosto_juicio);
-                campoResta_pago = (EditText)findViewById(R.id.campoResta_pago);
-                campoAbono = (EditText)findViewById(R.id.campoAbono);
-                fecha_pago = (EditText) findViewById(R.id.fecha_pago);
-                fecha_tramite = (EditText) findViewById(R.id.fecha_tramite);
-                /*==========================    FIN DE DE LA BUSQUEDA    ===========================*/
+        /*==========================    BUSQUEDA DE ID PARA LA BD    ===========================*/
+        campoExpediente = (EditText)findViewById(R.id.campoExpediente);
+        extra_cliente = (EditText)findViewById(R.id.extra_cliente);     //extra
+        campoContrario = (EditText)findViewById(R.id.campoContrario);
+        extra_contrario = (EditText)findViewById(R.id.extra_contrario);     //pendiente ya que solo aparece cuando se infla
+        spinnerJuicio = (Spinner) findViewById(R.id.spinner_Juicio);     //Spinner
+        campoAsunto = (EditText)findViewById(R.id.campoAsunto);
+        campoInstancia = (EditText)findViewById(R.id.campoInstancia);
+        spinnerEtapa = (Spinner)findViewById(R.id.spinner_Etapa);    //Spinner
+        campoTramite = (EditText)findViewById(R.id.campoTramite);
+        fecha_tramite = (EditText)findViewById(R.id.fecha_tramite);
+        extra_tramite = (EditText)findViewById(R.id.extra_tramite);    //extra
+        extra_fecha_tramite = (EditText)findViewById(R.id.extra_fecha_tramite);  //extra
+        campoCosto_juicio = (EditText)findViewById(R.id.campoCosto_juicio);
+        campoResta_pago = (EditText)findViewById(R.id.campoResta_pago);
+        campoAbono = (EditText)findViewById(R.id.campoAbono);
+        fecha_pago = (EditText) findViewById(R.id.fecha_pago);
+        extra_campoAbono = (EditText) findViewById(R.id.extra_campoAbono);
+        extra_fecha_pago = (EditText) findViewById(R.id.extra_fecha_pago);
+        comboDuenio= (Spinner) findViewById(R.id.comboCliente);         //Spinner
+        /* ==========================    FIN DE DE LA BUSQUEDA    ===========================*/
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-;
+
         fecha_pago.setOnClickListener(fecha_pago());
         fecha_tramite.setOnClickListener(fechaTramite());
         
@@ -115,8 +121,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
            });
 
         //==============================  Referenciado de variables del XML
-        spinnerJuicio = (Spinner) findViewById(R.id.spinner_Juicio);
-        spinnerEtapa = (Spinner) findViewById(R.id.spinner_Etapa);
         //Construcción del "adaptador" para el primer Spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.array_Juicios, /*Se carga el array definido en el XML */android.R.layout.simple_spinner_item);
 
@@ -184,37 +188,55 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
      //==================== METODO PARA GUARDAR FORMULARIO======================
     private void registrarUsuarios() {
 
-        if (campoExpediente.getText().toString().trim().equalsIgnoreCase("")) {
-            campoExpediente.setError("Introducir un Numero de Expediente");
+        if (campoExpediente.getText().toString().trim().length() < 3) {
+            campoExpediente.setError("Introduce un Numero de Expediente");
         } else {
-        }
+
         SQLiteDatabase db = conn.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(Utilidades.CAMPO_NOMBRE_EXPEDIENTE, campoExpediente.getText().toString());
-        values.put(Utilidades.CAMPO_CLIENTES, campoCliente.getText().toString());
+        values.put(Utilidades.CAMPO_CLIENTE_EXTRA, extra_cliente.getText().toString());
+        values.put(Utilidades.CAMPO_CONTRARIO, campoContrario.getText().toString());
+        values.put(Utilidades.CAMPO_CONTRARIO_EXTRA, extra_contrario.getText().toString());
+        //values.put(Utilidades.CAMPO_JUICIO, spinner_Juicio.getText().toString());
+        values.put(Utilidades.CAMPO_ASUNTO, campoAsunto.getText().toString());
+        values.put(Utilidades.CAMPO_INSTANCIA, campoInstancia.getText().toString());
+        //values.put(Utilidades.CAMPO_ETAPA, spinner_Etapa.getText().toString());
+        values.put(Utilidades.CAMPO_TRAMITE, campoTramite.getText().toString());
+        values.put(Utilidades.CAMPO_FECHA_TRAMITE, fecha_tramite.getText().toString());
+        values.put(Utilidades.CAMPO_TRAMITE_EXTRA, extra_tramite.getText().toString());
+        values.put(Utilidades.CAMPO_FECHATRAMITE_EXTRA, extra_fecha_tramite.getText().toString());
+        values.put(Utilidades.CAMPO_COSTO_JUICIO, campoCosto_juicio.getText().toString());
+        values.put(Utilidades.CAMPO_RESTA_PAGO, campoResta_pago.getText().toString());
+        values.put(Utilidades.CAMPO_ABONO, campoAbono.getText().toString());
+        values.put(Utilidades.CAMPO_FECHA_PAGO, fecha_pago.getText().toString());
+        values.put(Utilidades.CAMPO_ABONO_EXTRA, extra_campoAbono.getText().toString());
+        values.put(Utilidades.CAMPO_FECHAABONO_EXTRA, extra_fecha_pago.getText().toString());
+        //values.put(Utilidades.CAMPO_ID_DUENIO,idDuenio);
 
         int idCombo = (int) comboDuenio.getSelectedItemId();
 
         //if (idCombo!=0){
-            Log.i("TAMAÑO",personasList.size()+"");
-            Log.i("id combo",idCombo+"");
-            Log.i("id combo - 1",(idCombo-1)+"");//se resta 1 ya que se quiere obtener la posicion de la lista, no del combo
+        Log.i("TAMAÑO", personasList.size() + "");
+        Log.i("id combo", idCombo + "");
+        Log.i("id combo - 1", (idCombo - 1) + "");//se resta 1 ya que se quiere obtener la posicion de la lista, no del combo
 
-            int idDuenio = personasList.get(idCombo-1).getId();
-            Log.i("id DUEÑO",idDuenio+"");
+        int idDuenio = personasList.get(idCombo - 1).getId();
+        Log.i("id DUEÑO", idDuenio + "");
 
-            values.put(Utilidades.CAMPO_ID_DUENIO,idDuenio);
-            Long idResultante=db.insert(Utilidades.TABLA_JUICIOS,Utilidades.CAMPO_ID_JUICIO,values);
+        values.put(Utilidades.CAMPO_ID_DUENIO, idDuenio);
+        Long idResultante = db.insert(Utilidades.TABLA_JUICIOS, Utilidades.CAMPO_ID_JUICIO, values);
 
 
-            //INSERTAR EN LA BASE DE DATOS
-            Toast.makeText(getApplicationContext(),"Id Registro: " + idResultante,Toast.LENGTH_SHORT).show();
-            System.out.println("*********Valores enviados a la BD  ====>  " + values);
-            System.out.println("*********Ruta de Conexion en la BD  ====>  " + conn);
-            db.close();   //se cierra la conexion
+        //INSERTAR EN LA BASE DE DATOS
+        Toast.makeText(getApplicationContext(), "Id Registro: " + idResultante, Toast.LENGTH_SHORT).show();
+        System.out.println("*********Valores enviados a la BD  ====>  " + values);
+        System.out.println("*********Ruta de Conexion en la BD  ====>  " + conn);
+        db.close();   //se cierra la conexion
 
-            Toast.makeText(this, "Expediente Guardado ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Expediente Guardado ", Toast.LENGTH_SHORT).show();
+       }
     }
 
 
@@ -392,7 +414,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
     /*==============================YA NO SE OCUPA PERO SE DEJA DE REFERENCIA==========================================*/
         private void registrarMascota() {
-
+        /*
             SQLiteDatabase db=conn.getWritableDatabase();
 
             ContentValues values=new ContentValues();
@@ -418,7 +440,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
             }else{
                 Toast.makeText(getApplicationContext(),"Debe seleccionar un Dueño",Toast.LENGTH_LONG).show();
-            }
-        }
+            }*/
 
+    }
 }//end class

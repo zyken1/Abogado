@@ -36,11 +36,55 @@ public class Utilidades {
     public static final String TABLA_JUICIOS="juicios";
     public static final String CAMPO_ID_JUICIO="id_juicio";
     public static final String CAMPO_NOMBRE_EXPEDIENTE="nombreExpediente";
-    public static final String CAMPO_CLIENTES="clientes";
-    public static final String CAMPO_ID_DUENIO="id_duenio";
+    public static final String CAMPO_CLIENTE_EXTRA="cliente_extra";
+    public static final String CAMPO_CONTRARIO="contrario";
+    public static final String CAMPO_CONTRARIO_EXTRA="contrario_extra";
+    public static final String CAMPO_JUICIO="juicio";
+    public static final String CAMPO_ASUNTO="asunto";
+    public static final String CAMPO_INSTANCIA = "instancia";
+    public static final String CAMPO_ETAPA = "etapa";
+    public static final String CAMPO_TRAMITE = "tramite";
+    public static final String CAMPO_FECHA_TRAMITE = "fecha_tramite";
+    public static final String CAMPO_TRAMITE_EXTRA = "tramite_extra";
+    public static final String CAMPO_FECHATRAMITE_EXTRA = "fechaTramite_extra";
+    public static final String CAMPO_COSTO_JUICIO = "costo_juicio";
+    public static final String CAMPO_RESTA_PAGO = "resta_pago";
+    public static final String CAMPO_ABONO = "abono";
+    public static final String CAMPO_FECHA_PAGO = "fecha_pago";
+    public static final String CAMPO_ABONO_EXTRA = "abono_extra";
+    public static final String CAMPO_FECHAABONO_EXTRA = "fechaAbono_extra";
+    public static final String CAMPO_ID_DUENIO = "id_duenio";
+
+
+
 
     public static final String CREAR_TABLA_JUICIOS="CREATE TABLE " +
-            ""+TABLA_JUICIOS+" ("+CAMPO_ID_JUICIO+" INTEGER PRIMARY KEY AUTOINCREMENT, "+CAMPO_NOMBRE_EXPEDIENTE+" TEXT, "+CAMPO_CLIENTES+" TEXT, "+CAMPO_ID_DUENIO+" INTEGER)";
+            ""+TABLA_JUICIOS+" ("+CAMPO_ID_JUICIO+" INTEGER PRIMARY KEY AUTOINCREMENT, "+CAMPO_NOMBRE_EXPEDIENTE+" TEXT, "+CAMPO_CLIENTE_EXTRA+" TEXT, "+CAMPO_CONTRARIO+" TEXT, "+CAMPO_CONTRARIO_EXTRA+" TEXT, "+CAMPO_JUICIO+" TEXT, "+CAMPO_ASUNTO+" TEXT, "+CAMPO_INSTANCIA+" TEXT, "+CAMPO_ETAPA+" TEXT, "+CAMPO_TRAMITE+" TEXT, "+CAMPO_FECHA_TRAMITE+" TEXT, "+CAMPO_TRAMITE_EXTRA+" TEXT, "+CAMPO_FECHATRAMITE_EXTRA+" TEXT, "+CAMPO_COSTO_JUICIO+" TEXT, "+CAMPO_RESTA_PAGO+" TEXT, "+CAMPO_ABONO+" TEXT, "+CAMPO_FECHA_PAGO+" TEXT, "+CAMPO_ABONO_EXTRA+" TEXT, "+CAMPO_FECHAABONO_EXTRA+" TEXT, "+CAMPO_ID_DUENIO+" INTEGER)";
 
+
+    /*orden de los campos en el formulario  de  JUICIOS_FORMULARIO
+    *
+    private Integer idJuicios;
+    private String nombreExpediente;
+    private String cliente_extra;
+    private String contrario;
+    private String contrario_extra;
+    private String juicio;
+    private String asunto;
+    private String instancia;
+    private String etapa;
+    private String tramite;
+    private String fecha_tramite;
+    private String tramite_extra;
+    private String fechaTramite_extra;
+    private String costo_juicio;
+    private String resta_pago;
+    private String abono;
+    private String fecha_pago;
+    private String abono_extra;
+    private String fechaAbono_extra;
+
+    private Integer idDuenio;
+     */
 }
 

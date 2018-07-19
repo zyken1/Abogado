@@ -251,8 +251,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         }
     }
 
-
-
     /*===========   Metodos para crear y eliminar nuevos editText ==================*/
     public void onAddField(View v) {
       /*if (v.getId()== agregar_cliente.getId())

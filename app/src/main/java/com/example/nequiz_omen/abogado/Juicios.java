@@ -82,7 +82,7 @@ public class Juicios extends AppCompatActivity {
             juicios.setIdDuenio(cursor.getInt(0));
             juicios.setIdJuicios(cursor.getInt(1));
             juicios.setNombreExpediente(cursor.getString(2));
-            juicios.setClientes(cursor.getString(3));
+            //juicios.setCliente_extra(cursor.getString(3));
 
 
             listaMascotas.add(juicios);
@@ -94,7 +94,7 @@ public class Juicios extends AppCompatActivity {
     }
 
     private void llenarListaJuicios() {
-        listaMascotas.add(new JuiciosE(12,13,"Nombre de expediente","Cliente"));
+        listaMascotas.add(new JuiciosE(10,11,"Expediente numero 00","","","","","","","","","","","","","","","","",""));
         //listaUsuario.add(new Usuario(2,"josesito","1212121212"));
     }
 

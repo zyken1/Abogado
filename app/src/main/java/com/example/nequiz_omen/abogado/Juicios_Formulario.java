@@ -31,8 +31,8 @@ import java.util.ArrayList;
 public class Juicios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables
     private Spinner spinnerJuicio, spinnerEtapa, comboDuenio;
-    private LinearLayout layout_Cliente,layout_Contrario,layout_Tramite;
-    private ImageView agregar_cliente,agregar_contrario,agregar_tramite;
+    private LinearLayout layout_Cliente,layout_Contrario,layout_Tramite,layout_Pago;
+    private ImageView agregar_cliente,agregar_contrario,agregar_tramite,agregar_pago;
 
     /* variables para busqueda */
     EditText campoId,campoExpediente,campoCliente,campoContrario,campoTipo_juicio,campoAsunto,campoInstancia,campoEtapa_procesal,campoTramite,campoCosto_juicio,campoResta_pago,campoAbono,fecha_pago,fecha_tramite;
@@ -45,6 +45,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
     int cliente = 0;
     int cliente_contrario = 0;
     int cliente_tramite = 0;
+    int cliente_pago = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +56,13 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         agregar_cliente = (ImageView) findViewById(R.id.add_linear_cliente);
         agregar_contrario = (ImageView) findViewById(R.id.add_linear_contrario);
         agregar_tramite = (ImageView) findViewById(R.id.add_linear_tramite);
+        agregar_pago = (ImageView) findViewById(R.id.add_linear_pago);
         layout_Cliente = (LinearLayout) findViewById(R.id.layout_Cliente);
         layout_Contrario = (LinearLayout) findViewById(R.id.layout_Contrario);
         layout_Tramite = (LinearLayout) findViewById(R.id.layout_Etapa_procesal);
+        layout_Pago = (LinearLayout) findViewById(R.id.layout_Pago);
 
                 /*==========================    BUSQUEDA DE ID PARA LA BD    ===========================*/
-
-
                 campoExpediente = (EditText)findViewById(R.id.campoExpediente);
                 comboDuenio= (Spinner) findViewById(R.id.comboCliente);
                 //campoCliente = (EditText)findViewById(R.id.cliente);
@@ -158,7 +159,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_juicios_formulario, menu);
@@ -205,8 +205,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             int idDuenio = personasList.get(idCombo-1).getId();
             Log.i("id DUEÑO",idDuenio+"");
 
-
-
             values.put(Utilidades.CAMPO_ID_DUENIO,idDuenio);
             Long idResultante=db.insert(Utilidades.TABLA_JUICIOS,Utilidades.CAMPO_ID_JUICIO,values);
 
@@ -243,7 +241,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             //Log.i("Tipo",persona.getTipo_persona());
 
             personasList.add(persona);
-
         }
         obtenerLista();
     }
@@ -255,7 +252,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         for(int i=0;i<personasList.size();i++){
             listaPersonas.add(personasList.get(i).getId()+" - "+personasList.get(i).getNombre());
         }
-
     }
 
 
@@ -269,7 +265,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         switch(v.getId())
         {
             case R.id.add_linear_cliente:
-                if(cliente == 0){
+                if(cliente == 0)
+                {
                     cliente = 1;
                     LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     final View rowView = inflater.inflate(R.layout.rm_etxt_cliente, null);
@@ -305,8 +302,19 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
                     Toast.makeText(this, "Solo se puede agregar un Tramite", Toast.LENGTH_SHORT).show();
                 }
                 break;
+            case R.id.add_linear_pago:
+                if(cliente_pago == 0)
+                {
+                    cliente_pago = 1;
+                    LayoutInflater nexxx = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    final View fila = nexxx.inflate(R.layout.rm_etxt_pago, null);
+                    // Add the new row before the add field button.
+                    layout_Pago.addView(fila);
+                }else{
+                    //Toast.makeText(this, "Solo se puede agregar un Tramite", Toast.LENGTH_SHORT).show();
+                }
+               break;
         }
-
         System.out.println("EL ID QUE SE CREO FUE: " + v   );
     }//end del metodo onAddField
 
@@ -314,27 +322,29 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
 
     public void onDelete(View v) {
-        System.out.println(v );
         switch(v.getId())
         {
             case R.id.addimage_cliente:
                 //Toast.makeText(this, " Cliente eliminado", Toast.LENGTH_SHORT).show();
                 layout_Cliente.removeView((View) v.getParent());
-                cliente = 0;
+                cliente = 0;  //se resetea para que entre en el if else  del case
                 break;
             case R.id.addimage_cliente_contrario:
                 //Toast.makeText(this, " Contrario Eliminado", Toast.LENGTH_SHORT).show();
                 layout_Contrario.removeView((View) v.getParent());
-                cliente_contrario = 0;
+                cliente_contrario = 0;  //se resetea para que entre en el if else  del case
                 break;
             case R.id.addimage_cliente_tramite:
                 //Toast.makeText(this, " Tramite Eliminado", Toast.LENGTH_SHORT).show();
                 layout_Tramite.removeView((View) v.getParent());
-                cliente_tramite = 0;
+                cliente_tramite = 0;  //se resetea para que entre en el if else  del case
+                break;
+            case R.id.addimage_cliente_pago:
+                //Toast.makeText(this, " CLICK", Toast.LENGTH_SHORT).show();
+                layout_Pago.removeView((View) v.getParent());
                 break;
         }
         //layout_Cliente.removeView((View) v.getParent());
-        System.out.println("****************SWITCH TERMINADO ONDELETE"  );
     }
 
 
@@ -395,7 +405,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             values.put(Utilidades.CAMPO_CLIENTES,campoCliente.getText().toString());
 
             int idCombo= (int) comboDuenio.getSelectedItemId();
-
 
             if (idCombo!=0){
                 Log.i("TAMAÑO",personasList.size()+"");

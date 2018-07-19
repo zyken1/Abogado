@@ -135,8 +135,6 @@ public class Juicios extends AppCompatActivity {
 
 
 
-
-
     //Eventos a ejecutar al darle click alguna de las imagenes que se muestran en JUICIOS
     public void Editar_juicios(View v) {
 

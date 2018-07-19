@@ -78,7 +78,7 @@ public class Cliente extends AppCompatActivity {
                 Toast.makeText(getApplication(), listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getNombre() + numero , Toast.LENGTH_LONG).show();
                 System.out.println("************V  " + v.getContext());
                 System.out.println("************V  " + v.getId());
-                //Detalle_Cliente();
+                Detalle_Cliente();
                 //Usuario user = listaUsuario.get(numero);   //Usuario user = listaUsuario.get(0);
 
             }
@@ -179,6 +179,7 @@ public class Cliente extends AppCompatActivity {
         Intent intent = new Intent(this, Cliente_Edicion.class);
         intent.putExtras(bundle);
         startActivity(intent);
+        finish();
     }
 
 

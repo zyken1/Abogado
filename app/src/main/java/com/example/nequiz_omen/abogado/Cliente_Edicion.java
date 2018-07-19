@@ -114,6 +114,8 @@ public class Cliente_Edicion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //regresar...
+                Intent i = new Intent(Cliente_Edicion.this, Cliente.class);
+                startActivity(i);
                 finish();
             }
         });
@@ -158,6 +160,8 @@ public class Cliente_Edicion extends AppCompatActivity {
         db.delete(Utilidades.TABLA_USUARIO,Utilidades.CAMPO_ID + "=?" ,parametros);
         Toast.makeText(getApplicationContext(),"USUARIO ELIMINADO",Toast.LENGTH_SHORT).show();
         db.close(); //cerrar conexion
+        Intent i = new Intent(this, Cliente.class);
+        startActivity(i);
         finish();
     }
 

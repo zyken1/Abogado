@@ -201,6 +201,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         SQLiteDatabase db = conn.getWritableDatabase();
         ContentValues values = new ContentValues();
 
+
         try{//Código que puede provocar errores
             extra_cliente = (EditText)findViewById(R.id.extra_cliente);
             values.put(Utilidades.CAMPO_CLIENTE_EXTRA, extra_cliente.getText().toString());
@@ -208,6 +209,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         catch(Exception e){
             //Gestión del error
             //ccuota[1]=	"extra_cliente vacio" ;
+            values.put(Utilidades.CAMPO_CLIENTE_EXTRA, "vacio");
         }
 
                     try{//Código que puede provocar errores
@@ -216,7 +218,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
                     }
                     catch(Exception e){
                         //Gestión del error
-                        //ccuota[3]= "extra_contrario vacio";
+                        values.put(Utilidades.CAMPO_CONTRARIO_EXTRA, "vacio");
                     }
 
         try{//Código que puede provocar errores
@@ -225,11 +227,12 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
             values.put(Utilidades.CAMPO_TRAMITE_EXTRA, extra_tramite.getText().toString());
             values.put(Utilidades.CAMPO_FECHATRAMITE_EXTRA, extra_fecha_tramite.getText().toString());
+
         }
         catch(Exception e){
             //Gestión del error
-            //ccuota[10]= "extra_tramite vacio";
-            //ccuota[11]= "extra_fecha_tramite vacio";
+            values.put(Utilidades.CAMPO_TRAMITE_EXTRA, "vacio");
+            values.put(Utilidades.CAMPO_FECHATRAMITE_EXTRA, "vacio");
         }
 
                     try{//Código que puede provocar errores
@@ -238,11 +241,12 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
                         values.put(Utilidades.CAMPO_ABONO_EXTRA, extra_campoAbono.getText().toString());
                         values.put(Utilidades.CAMPO_FECHAABONO_EXTRA, extra_fecha_pago.getText().toString());
+
                     }
                     catch(Exception e){
                         //Gestión del error var1, de tipo Tipo1
-                        //ccuota[16]= "extra_campoAbono vacio";
-                        //ccuota[17]= "extra_fecha_pago vacio";
+                        values.put(Utilidades.CAMPO_ABONO_EXTRA, "vacio");
+                        values.put(Utilidades.CAMPO_FECHAABONO_EXTRA, "vacio");
                     }
 
 
@@ -277,8 +281,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         Log.i("id DUEÑO", idDuenio + "");
 
         values.put(Utilidades.CAMPO_ID_DUENIO, idDuenio);
-
-
         }else{
             //Toast.makeText(getApplicationContext(),"Debe seleccionar un Dueño",Toast.LENGTH_LONG).show();
             values.put(Utilidades.CAMPO_ID_DUENIO, "N/A");

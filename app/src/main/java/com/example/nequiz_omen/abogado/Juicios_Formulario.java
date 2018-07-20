@@ -89,8 +89,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fecha_pago.setOnClickListener(fecha_pago());
-        fecha_tramite.setOnClickListener(fechaTramite());
+        fecha_pago.setOnClickListener(Calendario());
+        fecha_tramite.setOnClickListener(Calendario());
         
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -258,7 +258,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
                     }
 
 
-
             int i;
             for(i=0; i<ccuota.length; i++)
             {
@@ -346,7 +345,9 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         }
     }
 
-    /*===========   Metodos para crear y eliminar nuevos editText ==================*/
+
+
+    /*===========   Metodos para crear y eliminar nuevos editText  AL iNFLAR LOS LAYOUT==================*/
     public void onAddField(View v) {
       /*if (v.getId()== agregar_cliente.getId())
       {
@@ -386,8 +387,11 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
                     cliente_tramite = 1;
                     LayoutInflater dus = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     final View fila = dus.inflate(R.layout.rm_etxt_tramite, null);
-                    // Add the new row before the add field button.
                     layout_Tramite.addView(fila);
+
+                    /*SE AÑADE UN BUSCADOR PARA ENCONTRAR EL  EDITTEXT  Y PODER ANEXARLE UN NUEVO METODO  QUE ES EL DEL CALENDARIO*/
+                    extra_fecha_tramite = (EditText)findViewById(R.id.extra_fecha_tramite);  //extra
+                    extra_fecha_tramite.setOnClickListener(Calendario()); //SE AÑADEN NUEVOS EVENTOS
                 }else{
                     Toast.makeText(this, "Solo se puede agregar un Tramite", Toast.LENGTH_SHORT).show();
                 }
@@ -398,8 +402,10 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
                     cliente_pago = 1;
                     LayoutInflater nexxx = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     final View fila = nexxx.inflate(R.layout.rm_etxt_pago, null);
-                    // Add the new row before the add field button.
                     layout_Pago.addView(fila);
+
+                    extra_fecha_pago = (EditText) findViewById(R.id.extra_fecha_pago);
+                    extra_fecha_pago.setOnClickListener(Calendario()); //SE AÑADEN NUEVOS EVENTOS
                 }else{
                     //Toast.makeText(this, "Solo se puede agregar un Tramite", Toast.LENGTH_SHORT).show();
                 }
@@ -439,17 +445,82 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
 
 
-  /*===================0 Metodos para insertar fecha de de pagos en un fragment  ================================*/
-    public View.OnClickListener fechaTramite() {
+  /*=================== Metodos para insertar Un calendario  en un fragment e insertarlo en los text  ================================*/
+    public View.OnClickListener Calendario() {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDatePickerDialog2();
+                switch(v.getId())
+                {
+                    case  R.id.fecha_tramite:
+                        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                                // +1 because january is zero
+                                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                                fecha_tramite.setText(selectedDate);
+                            }
+                        });
+                        newFragment.show(getFragmentManager(), "datePicker");
+                    break;
+
+                    case  R.id.fecha_pago:
+                        DatePickerFragment newFragment2 = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                                // +1 because january is zero
+                                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                                fecha_pago.setText(selectedDate);
+                            }
+                        });
+                        newFragment2.show(getFragmentManager(), "datePicker");
+                    break;
+
+                    case  R.id.extra_fecha_tramite:
+                    DatePickerFragment newFragment3 = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                            // +1 because january is zero
+                            final String selectedDate = day + " / " + (month+1) + " / " + year;
+                            extra_fecha_tramite.setText(selectedDate);
+                        }
+                    });
+                    newFragment3.show(getFragmentManager(), "datePicker");
+                    break;
+
+                    case  R.id.extra_fecha_pago:
+                        DatePickerFragment newFragment4 = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                                // +1 because january is zero
+                                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                                extra_fecha_pago.setText(selectedDate);
+                            }
+                        });
+                        newFragment4.show(getFragmentManager(), "datePicker");
+                    break;
+                }
+                //System.out.println("EL ID ES EL SIGUIENTE "+ v);
             }
         };
     }
 
-    private void showDatePickerDialog2() {
+
+
+    /*=========================================================
+
+     private View.OnClickListener fecha_pago() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();   //METODO
+                }
+            }
+        };
+    }
+
+
+    private void showDatePickerDialog() {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -459,35 +530,12 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             }
         });
         newFragment.show(getFragmentManager(), "datePicker");
-    }
-
-    //=========================================================
-    private View.OnClickListener fecha_pago() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog();
-            }
-        };
-    }
-
-    private void showDatePickerDialog() {
-        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                // +1 because january is zero
-                final String selectedDate = day + " / " + (month+1) + " / " + year;
-                fecha_pago.setText(selectedDate);
-            }
-        });
-        newFragment.show(getFragmentManager(), "datePicker");
-    }
-
+    }  */
 
 
     /*==============================YA NO SE OCUPA PERO SE DEJA DE REFERENCIA==========================================*/
-        private void registrarMascota() {
-        /*
+        /*private void registrarMascota() {
+
             SQLiteDatabase db=conn.getWritableDatabase();
 
             ContentValues values=new ContentValues();
@@ -513,7 +561,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
             }else{
                 Toast.makeText(getApplicationContext(),"Debe seleccionar un Dueño",Toast.LENGTH_LONG).show();
-            }*/
+            }
+    }*/
 
-    }
+
 }//end class

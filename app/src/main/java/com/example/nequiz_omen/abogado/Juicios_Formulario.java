@@ -132,6 +132,53 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         spinnerJuicio.setAdapter(adapter);
 
         spinnerJuicio.setOnItemSelectedListener(this);
+
+
+
+
+        /*================= EVENTOS ON FOCUS  PARA HACER LAS OPERACIONES =========================*/
+        campoCosto_juicio.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                try{if (!hasFocus) {
+                    System.out.println("FOCUS" + hasFocus);
+                    int costo_juicio = Integer.parseInt(campoCosto_juicio.getText().toString());
+                    //int campo_resta = Integer.parseInt(campoResta_pago.getText().toString());
+                    int campo_Abono = Integer.parseInt(campoAbono.getText().toString());
+
+                    int result = costo_juicio - campo_Abono;
+                    campoResta_pago.setText(String.valueOf(result));
+                }else{
+                    System.out.println("FOCUS" + hasFocus);}
+
+                }catch (Exception e){
+                    System.out.println("FOCUS" + hasFocus);
+                    String costo_juicio = campoCosto_juicio.getText().toString();
+                    campoResta_pago.setText(costo_juicio);
+                }
+            }
+        });
+
+        campoAbono.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                try{if (!hasFocus) {
+                    System.out.println("FOCUS" + hasFocus);
+                    int costo_juicio = Integer.parseInt(campoCosto_juicio.getText().toString());
+                    int campo_Abono = Integer.parseInt(campoAbono.getText().toString());
+
+                    int result = costo_juicio - campo_Abono;
+                    campoResta_pago.setText(String.valueOf(result));
+                }else{
+                    System.out.println("FOCUS" + hasFocus);}
+
+                }catch (Exception e){ }
+
+            }
+        });
+
+
+
     }//end ON CREATE
 
 
@@ -185,6 +232,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
             //Intent i = new Intent(this, JuiciosE.class);
             //startActivity(i);
+            finish();
         }
 
     }
@@ -232,7 +280,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         catch(Exception e){
             //Gestión del error
             values.put(Utilidades.CAMPO_TRAMITE_EXTRA, "vacio");
-            values.put(Utilidades.CAMPO_FECHATRAMITE_EXTRA, "vacio");
+            values.put(Utilidades.CAMPO_FECHATRAMITE_EXTRA, "0");
         }
 
                     try{//Código que puede provocar errores
@@ -245,8 +293,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
                     }
                     catch(Exception e){
                         //Gestión del error var1, de tipo Tipo1
-                        values.put(Utilidades.CAMPO_ABONO_EXTRA, "vacio");
-                        values.put(Utilidades.CAMPO_FECHAABONO_EXTRA, "vacio");
+                        values.put(Utilidades.CAMPO_ABONO_EXTRA, "0");
+                        values.put(Utilidades.CAMPO_FECHAABONO_EXTRA, "0");
                     }
 
 
@@ -262,10 +310,14 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         values.put(Utilidades.CAMPO_TRAMITE, campoTramite.getText().toString());
         values.put(Utilidades.CAMPO_FECHA_TRAMITE, fecha_tramite.getText().toString());
 
+        //String costo_juicio = campoCosto_juicio.getText().toString();
+        //String costo_resta = campoResta_pago.getText().toString();
+        //String costo_abono = campoAbono.getText().toString();
 
         values.put(Utilidades.CAMPO_COSTO_JUICIO, campoCosto_juicio.getText().toString());
         values.put(Utilidades.CAMPO_RESTA_PAGO, campoResta_pago.getText().toString());
         values.put(Utilidades.CAMPO_ABONO, campoAbono.getText().toString());
+
         values.put(Utilidades.CAMPO_FECHA_PAGO, fecha_pago.getText().toString());
 
 
@@ -283,7 +335,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         values.put(Utilidades.CAMPO_ID_DUENIO, idDuenio);
         }else{
             //Toast.makeText(getApplicationContext(),"Debe seleccionar un Dueño",Toast.LENGTH_LONG).show();
-            values.put(Utilidades.CAMPO_ID_DUENIO, "N/A");
+            values.put(Utilidades.CAMPO_ID_DUENIO, "Sin Asignar");
         }
 
 
@@ -491,6 +543,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             }
         };
     }
+
+
 
 
 

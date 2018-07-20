@@ -31,7 +31,7 @@ import java.util.List;
 
 public class Juicios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables
-    private Spinner spinnerJuicio, spinnerEtapa, comboDuenio,comboCliente;
+    private Spinner spinnerJuicio, spinnerEtapa, comboDuenio;
     private LinearLayout layout_Cliente,layout_Contrario,layout_Tramite,layout_Pago;
     private ImageView agregar_cliente,agregar_contrario,agregar_tramite,agregar_pago;
 
@@ -182,8 +182,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         } else{
             registrarUsuarios();
             //registrarMascota();
-            String textLoc = spinnerEtapa.getSelectedItem().toString();
-            Toast.makeText(this, textLoc, Toast.LENGTH_SHORT).show();
 
             //Intent i = new Intent(this, JuiciosE.class);
             //startActivity(i);
@@ -196,99 +194,81 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
      //==================== METODO PARA GUARDAR FORMULARIO======================
     private void registrarUsuarios() {
 
-        String ccuota[] = new String[19];
-        ccuota[0]=	campoExpediente.getText().toString();
-        ccuota[2]=	campoContrario.getText().toString();
-        //ccuota[4]=	spinner_Juicio.getText().toString();
-        ccuota[5]=	campoAsunto.getText().toString();
-        ccuota[6]=	campoInstancia.getText().toString();
-        //ccuota[7]=	spinner_Etapa.getText().toString();
-        ccuota[8]=	campoTramite.getText().toString();
-        ccuota[9]=	fecha_tramite.getText().toString();
-        ccuota[12]=	campoCosto_juicio.getText().toString();
-        ccuota[13]=	campoResta_pago.getText().toString();
-        ccuota[14]=	campoAbono.getText().toString();
-        ccuota[15]=	fecha_pago.getText().toString();
-        //ccuota[18]=	comboCliente.getText().toString();
+        String textoJuicio = spinnerJuicio.getSelectedItem().toString();
+        String textoEtapa = spinnerEtapa.getSelectedItem().toString();
 
+        //SE ABRE LA BASE DE DATOS Y SE CONTROLAN LAS EXCEPCIONES
+        SQLiteDatabase db = conn.getWritableDatabase();
+        ContentValues values = new ContentValues();
 
         try{//Código que puede provocar errores
             extra_cliente = (EditText)findViewById(R.id.extra_cliente);
-            ccuota[1]=	extra_cliente.getText().toString();
+            values.put(Utilidades.CAMPO_CLIENTE_EXTRA, extra_cliente.getText().toString());
         }
         catch(Exception e){
-            //Gestión del
-            //extra_cliente.toString().concat("algo");
-            ccuota[1]=	"extra_cliente vacio" ;
+            //Gestión del error
+            //ccuota[1]=	"extra_cliente vacio" ;
         }
 
                     try{//Código que puede provocar errores
                         extra_contrario = (EditText)findViewById(R.id.extra_contrario);
-                        ccuota[3]=	extra_contrario.getText().toString();
+                        values.put(Utilidades.CAMPO_CONTRARIO_EXTRA, extra_contrario.getText().toString());
                     }
                     catch(Exception e){
                         //Gestión del error
-                        ccuota[3]= "extra_contrario vacio";
+                        //ccuota[3]= "extra_contrario vacio";
                     }
 
         try{//Código que puede provocar errores
             extra_tramite = (EditText)findViewById(R.id.extra_tramite);              //extra
             extra_fecha_tramite = (EditText)findViewById(R.id.extra_fecha_tramite);  //extra
 
-            ccuota[10]=	extra_tramite.getText().toString();
-            ccuota[11]=	extra_fecha_tramite.getText().toString();
+            values.put(Utilidades.CAMPO_TRAMITE_EXTRA, extra_tramite.getText().toString());
+            values.put(Utilidades.CAMPO_FECHATRAMITE_EXTRA, extra_fecha_tramite.getText().toString());
         }
         catch(Exception e){
             //Gestión del error
-            ccuota[10]= "extra_tramite vacio";
-            ccuota[11]= "extra_fecha_tramite vacio";
+            //ccuota[10]= "extra_tramite vacio";
+            //ccuota[11]= "extra_fecha_tramite vacio";
         }
 
                     try{//Código que puede provocar errores
                         extra_campoAbono = (EditText) findViewById(R.id.extra_campoAbono);
                         extra_fecha_pago = (EditText) findViewById(R.id.extra_fecha_pago);
 
-                        ccuota[16]=	extra_campoAbono.getText().toString();
-                        ccuota[17]=	extra_fecha_pago.getText().toString();
+                        values.put(Utilidades.CAMPO_ABONO_EXTRA, extra_campoAbono.getText().toString());
+                        values.put(Utilidades.CAMPO_FECHAABONO_EXTRA, extra_fecha_pago.getText().toString());
                     }
                     catch(Exception e){
                         //Gestión del error var1, de tipo Tipo1
-                        ccuota[16]= "extra_campoAbono vacio";
-                        ccuota[17]= "extra_fecha_pago vacio";
+                        //ccuota[16]= "extra_campoAbono vacio";
+                        //ccuota[17]= "extra_fecha_pago vacio";
                     }
 
 
-            int i;
-            for(i=0; i<ccuota.length; i++)
-            {
-                System.out.println("*********** RESULTADO " +i+ " => " +ccuota [i]);
-            }
 
-        /*SQLiteDatabase db = conn.getWritableDatabase();
-        ContentValues values = new ContentValues();
+
         values.put(Utilidades.CAMPO_NOMBRE_EXPEDIENTE, campoExpediente.getText().toString());
-        values.put(Utilidades.CAMPO_CLIENTE_EXTRA, extra_cliente.getText().toString());
         values.put(Utilidades.CAMPO_CONTRARIO, campoContrario.getText().toString());
-        values.put(Utilidades.CAMPO_CONTRARIO_EXTRA, extra_contrario.getText().toString());
-        //values.put(Utilidades.CAMPO_JUICIO, spinner_Juicio.getText().toString());
+
+        values.put(Utilidades.CAMPO_JUICIO, textoJuicio);
         values.put(Utilidades.CAMPO_ASUNTO, campoAsunto.getText().toString());
         values.put(Utilidades.CAMPO_INSTANCIA, campoInstancia.getText().toString());
-        //values.put(Utilidades.CAMPO_ETAPA, spinner_Etapa.getText().toString());
+        values.put(Utilidades.CAMPO_ETAPA, textoEtapa);
         values.put(Utilidades.CAMPO_TRAMITE, campoTramite.getText().toString());
         values.put(Utilidades.CAMPO_FECHA_TRAMITE, fecha_tramite.getText().toString());
-        values.put(Utilidades.CAMPO_TRAMITE_EXTRA, extra_tramite.getText().toString());
-        values.put(Utilidades.CAMPO_FECHATRAMITE_EXTRA, extra_fecha_tramite.getText().toString());
+
+
         values.put(Utilidades.CAMPO_COSTO_JUICIO, campoCosto_juicio.getText().toString());
         values.put(Utilidades.CAMPO_RESTA_PAGO, campoResta_pago.getText().toString());
         values.put(Utilidades.CAMPO_ABONO, campoAbono.getText().toString());
         values.put(Utilidades.CAMPO_FECHA_PAGO, fecha_pago.getText().toString());
-        values.put(Utilidades.CAMPO_ABONO_EXTRA, extra_campoAbono.getText().toString());
-        values.put(Utilidades.CAMPO_FECHAABONO_EXTRA, extra_fecha_pago.getText().toString());
-        //values.put(Utilidades.CAMPO_ID_DUENIO,idDuenio);
+
+
 
         int idCombo = (int) comboDuenio.getSelectedItemId();
 
-        //if (idCombo!=0){
+        if (idCombo!=0){
         Log.i("TAMAÑO", personasList.size() + "");
         Log.i("id combo", idCombo + "");
         Log.i("id combo - 1", (idCombo - 1) + "");//se resta 1 ya que se quiere obtener la posicion de la lista, no del combo
@@ -297,18 +277,23 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         Log.i("id DUEÑO", idDuenio + "");
 
         values.put(Utilidades.CAMPO_ID_DUENIO, idDuenio);
+
+
+        }else{
+            //Toast.makeText(getApplicationContext(),"Debe seleccionar un Dueño",Toast.LENGTH_LONG).show();
+            values.put(Utilidades.CAMPO_ID_DUENIO, "N/A");
+        }
+
+
         Long idResultante = db.insert(Utilidades.TABLA_JUICIOS, Utilidades.CAMPO_ID_JUICIO, values);
-
-
         //INSERTAR EN LA BASE DE DATOS
-        Toast.makeText(getApplicationContext(), "Id Registro: " + idResultante, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "Id Registro: " + idResultante, Toast.LENGTH_SHORT).show();
         System.out.println("*********Valores enviados a la BD  ====>  " + values);
         System.out.println("*********Ruta de Conexion en la BD  ====>  " + conn);
+        System.out.println("*********Ruta de Conexion en la BD  ====>  " + idResultante);
         db.close();   //se cierra la conexion
 
         Toast.makeText(this, "Expediente Guardado ", Toast.LENGTH_SHORT).show();
-       }
-        }*/
     }
 
 

@@ -27,6 +27,7 @@ import com.example.nequiz_omen.abogado.entidades.Usuario;
 import com.example.nequiz_omen.abogado.utilidades.Utilidades;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Juicios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables
@@ -65,24 +66,24 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
         /*==========================    BUSQUEDA DE ID PARA LA BD    ===========================*/
         campoExpediente = (EditText)findViewById(R.id.campoExpediente);
-        extra_cliente = (EditText)findViewById(R.id.extra_cliente);     //extra
+        //extra_cliente = (EditText)findViewById(R.id.extra_cliente);     //try  catch
         campoContrario = (EditText)findViewById(R.id.campoContrario);
-        extra_contrario = (EditText)findViewById(R.id.extra_contrario);     //pendiente ya que solo aparece cuando se infla
-        spinnerJuicio = (Spinner) findViewById(R.id.spinner_Juicio);     //Spinner
+        //extra_contrario = (EditText)findViewById(R.id.extra_contrario);     //try  catch
+        spinnerJuicio = (Spinner) findViewById(R.id.spinner_Juicio);
         campoAsunto = (EditText)findViewById(R.id.campoAsunto);
         campoInstancia = (EditText)findViewById(R.id.campoInstancia);
-        spinnerEtapa = (Spinner)findViewById(R.id.spinner_Etapa);    //Spinner
+        spinnerEtapa = (Spinner)findViewById(R.id.spinner_Etapa);
         campoTramite = (EditText)findViewById(R.id.campoTramite);
         fecha_tramite = (EditText)findViewById(R.id.fecha_tramite);
-        extra_tramite = (EditText)findViewById(R.id.extra_tramite);    //extra
-        extra_fecha_tramite = (EditText)findViewById(R.id.extra_fecha_tramite);  //extra
+        //extra_tramite = (EditText)findViewById(R.id.extra_tramite);              //try  catch
+        //extra_fecha_tramite = (EditText)findViewById(R.id.extra_fecha_tramite);  //try  catch
         campoCosto_juicio = (EditText)findViewById(R.id.campoCosto_juicio);
         campoResta_pago = (EditText)findViewById(R.id.campoResta_pago);
         campoAbono = (EditText)findViewById(R.id.campoAbono);
         fecha_pago = (EditText) findViewById(R.id.fecha_pago);
-        extra_campoAbono = (EditText) findViewById(R.id.extra_campoAbono);
-        extra_fecha_pago = (EditText) findViewById(R.id.extra_fecha_pago);
-        comboDuenio= (Spinner) findViewById(R.id.comboCliente);         //Spinner
+        //extra_campoAbono = (EditText) findViewById(R.id.extra_campoAbono);    //try  catch
+        //extra_fecha_pago = (EditText) findViewById(R.id.extra_fecha_pago);    //try  catch
+        comboDuenio= (Spinner) findViewById(R.id.comboCliente);
         /* ==========================    FIN DE DE LA BUSQUEDA    ===========================*/
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -175,13 +176,19 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
  /*==================     Metodo guardar al dar click al icono de Guardar  ================*/
     public void Guardar(MenuItem item) {
-        registrarUsuarios();
-        //registrarMascota();
-        String textLoc = spinnerEtapa.getSelectedItem().toString();
-        Toast.makeText(this, textLoc, Toast.LENGTH_SHORT).show();
 
-        //Intent i = new Intent(this, JuiciosE.class);
-        //startActivity(i);
+        if (campoExpediente.getText().toString().trim().length() < 3) {
+            campoExpediente.setError("Introduce un Numero de Expediente");
+        } else{
+            registrarUsuarios();
+            //registrarMascota();
+            String textLoc = spinnerEtapa.getSelectedItem().toString();
+            Toast.makeText(this, textLoc, Toast.LENGTH_SHORT).show();
+
+            //Intent i = new Intent(this, JuiciosE.class);
+            //startActivity(i);
+        }
+
     }
 
 
@@ -189,30 +196,68 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
      //==================== METODO PARA GUARDAR FORMULARIO======================
     private void registrarUsuarios() {
 
-        if (campoExpediente.getText().toString().trim().length() < 3) {
-            campoExpediente.setError("Introduce un Numero de Expediente");
-        } else {
+        String ccuota[] = new String[19];
+        ccuota[0]=	campoExpediente.getText().toString();
+        ccuota[2]=	campoContrario.getText().toString();
+        //ccuota[4]=	spinner_Juicio.getText().toString();
+        ccuota[5]=	campoAsunto.getText().toString();
+        ccuota[6]=	campoInstancia.getText().toString();
+        //ccuota[7]=	spinner_Etapa.getText().toString();
+        ccuota[8]=	campoTramite.getText().toString();
+        ccuota[9]=	fecha_tramite.getText().toString();
+        ccuota[12]=	campoCosto_juicio.getText().toString();
+        ccuota[13]=	campoResta_pago.getText().toString();
+        ccuota[14]=	campoAbono.getText().toString();
+        ccuota[15]=	fecha_pago.getText().toString();
+        //ccuota[18]=	comboCliente.getText().toString();
 
-            String ccuota[] = new String[2];
-            ccuota[1]=	campoExpediente.getText().toString();
-            ccuota[2]=	extra_cliente.getText().toString();
-            ccuota[3]=	campoContrario.getText().toString();
-            ccuota[4]=	extra_contrario.getText().toString();
-            //ccuota[5]=	spinner_Juicio.getText().toString();
-            ccuota[6]=	campoAsunto.getText().toString();
-            ccuota[7]=	campoInstancia.getText().toString();
-            //ccuota[8]=	spinner_Etapa.getText().toString();
-            ccuota[9]=	campoTramite.getText().toString();
-            ccuota[10]=	fecha_tramite.getText().toString();
-            ccuota[11]=	extra_tramite.getText().toString();
-            ccuota[12]=	extra_fecha_tramite.getText().toString();
-            ccuota[13]=	campoCosto_juicio.getText().toString();
-            ccuota[14]=	campoResta_pago.getText().toString();
-            ccuota[15]=	campoAbono.getText().toString();
-            ccuota[16]=	fecha_pago.getText().toString();
-            ccuota[17]=	extra_campoAbono.getText().toString();
-            ccuota[18]=	extra_fecha_pago.getText().toString();
-            //ccuota[19]=	comboCliente.getText().toString();
+
+        try{//Código que puede provocar errores
+            extra_cliente = (EditText)findViewById(R.id.extra_cliente);
+            ccuota[1]=	extra_cliente.getText().toString();
+        }
+        catch(Exception e){
+            //Gestión del
+            //extra_cliente.toString().concat("algo");
+            ccuota[1]=	"extra_cliente vacio" ;
+        }
+
+                    try{//Código que puede provocar errores
+                        extra_contrario = (EditText)findViewById(R.id.extra_contrario);
+                        ccuota[3]=	extra_contrario.getText().toString();
+                    }
+                    catch(Exception e){
+                        //Gestión del error
+                        ccuota[3]= "extra_contrario vacio";
+                    }
+
+        try{//Código que puede provocar errores
+            extra_tramite = (EditText)findViewById(R.id.extra_tramite);              //extra
+            extra_fecha_tramite = (EditText)findViewById(R.id.extra_fecha_tramite);  //extra
+
+            ccuota[10]=	extra_tramite.getText().toString();
+            ccuota[11]=	extra_fecha_tramite.getText().toString();
+        }
+        catch(Exception e){
+            //Gestión del error
+            ccuota[10]= "extra_tramite vacio";
+            ccuota[11]= "extra_fecha_tramite vacio";
+        }
+
+                    try{//Código que puede provocar errores
+                        extra_campoAbono = (EditText) findViewById(R.id.extra_campoAbono);
+                        extra_fecha_pago = (EditText) findViewById(R.id.extra_fecha_pago);
+
+                        ccuota[16]=	extra_campoAbono.getText().toString();
+                        ccuota[17]=	extra_fecha_pago.getText().toString();
+                    }
+                    catch(Exception e){
+                        //Gestión del error var1, de tipo Tipo1
+                        ccuota[16]= "extra_campoAbono vacio";
+                        ccuota[17]= "extra_fecha_pago vacio";
+                    }
+
+
 
             int i;
             for(i=0; i<ccuota.length; i++)
@@ -263,8 +308,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         db.close();   //se cierra la conexion
 
         Toast.makeText(this, "Expediente Guardado ", Toast.LENGTH_SHORT).show();
-       }*/
-        }
+       }
+        }*/
     }
 
 
@@ -360,7 +405,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
                 }
                break;
         }
-        System.out.println("EL ID QUE SE CREO FUE: " + v   );
+        //System.out.println("EL ID QUE SE CREO FUE: " + v   );
     }//end del metodo onAddField
 
 

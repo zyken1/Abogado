@@ -139,7 +139,7 @@ public class Cliente_Edicion extends AppCompatActivity {
     private void addTabs(ViewPager viewPager) {
         Cliente_Edicion.ViewPagerAdapter adapter = new Cliente_Edicion.ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new ClienteFragment(), "Datos del Cliente");
-        adapter.addFrag(new ClienteJuiciosFragment(), "JuiciosE del Cliente");
+        adapter.addFrag(new ClienteJuiciosFragment(), "Juicios del Cliente");
         //adapter.addFrag(new HonorariosFragment(), "Honorarios");
         //adapter.addFrag(new BananaFragment(), "Banana");
         viewPager.setAdapter(adapter);

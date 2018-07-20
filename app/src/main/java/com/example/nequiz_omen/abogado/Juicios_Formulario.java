@@ -57,6 +57,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         agregar_contrario = (ImageView) findViewById(R.id.add_linear_contrario);
         agregar_tramite = (ImageView) findViewById(R.id.add_linear_tramite);
         agregar_pago = (ImageView) findViewById(R.id.add_linear_pago);
+
         layout_Cliente = (LinearLayout) findViewById(R.id.layout_Cliente);
         layout_Contrario = (LinearLayout) findViewById(R.id.layout_Contrario);
         layout_Tramite = (LinearLayout) findViewById(R.id.layout_Etapa_procesal);
@@ -155,7 +156,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         //Se aplica el adaptador al Spinner de JuiciosE
         spinnerEtapa.setAdapter(adapter);
         //Toast.makeText(this, "Seleccionaste el Juicio:" + position + "  id:" +id, Toast.LENGTH_SHORT).show();
-        System.out.println("**********Array posicion  =====> " + parent.getItemAtPosition(position).toString() + "  Id ===> " +id);
+        //System.out.println("**********Array posicion  =====> " + parent.getItemAtPosition(position).toString() + "  Id ===> " +id);
     }
 
     @Override  // este spinner  es para la solucion en caso de que no se seleccione nada
@@ -192,8 +193,34 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             campoExpediente.setError("Introduce un Numero de Expediente");
         } else {
 
-        SQLiteDatabase db = conn.getWritableDatabase();
+            String ccuota[] = new String[2];
+            ccuota[1]=	campoExpediente.getText().toString();
+            ccuota[2]=	extra_cliente.getText().toString();
+            ccuota[3]=	campoContrario.getText().toString();
+            ccuota[4]=	extra_contrario.getText().toString();
+            //ccuota[5]=	spinner_Juicio.getText().toString();
+            ccuota[6]=	campoAsunto.getText().toString();
+            ccuota[7]=	campoInstancia.getText().toString();
+            //ccuota[8]=	spinner_Etapa.getText().toString();
+            ccuota[9]=	campoTramite.getText().toString();
+            ccuota[10]=	fecha_tramite.getText().toString();
+            ccuota[11]=	extra_tramite.getText().toString();
+            ccuota[12]=	extra_fecha_tramite.getText().toString();
+            ccuota[13]=	campoCosto_juicio.getText().toString();
+            ccuota[14]=	campoResta_pago.getText().toString();
+            ccuota[15]=	campoAbono.getText().toString();
+            ccuota[16]=	fecha_pago.getText().toString();
+            ccuota[17]=	extra_campoAbono.getText().toString();
+            ccuota[18]=	extra_fecha_pago.getText().toString();
+            //ccuota[19]=	comboCliente.getText().toString();
 
+            int i;
+            for(i=0; i<ccuota.length; i++)
+            {
+                System.out.println("*********** RESULTADO " +i+ " => " +ccuota [i]);
+            }
+
+        /*SQLiteDatabase db = conn.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(Utilidades.CAMPO_NOMBRE_EXPEDIENTE, campoExpediente.getText().toString());
         values.put(Utilidades.CAMPO_CLIENTE_EXTRA, extra_cliente.getText().toString());
@@ -236,7 +263,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         db.close();   //se cierra la conexion
 
         Toast.makeText(this, "Expediente Guardado ", Toast.LENGTH_SHORT).show();
-       }
+       }*/
+        }
     }
 
 

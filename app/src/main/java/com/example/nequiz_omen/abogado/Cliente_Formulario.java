@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -48,6 +50,19 @@ public class Cliente_Formulario extends AppCompatActivity {
         fecha_nacimiento = (EditText) findViewById(R.id.fecha_nacimiento);
         fecha_nacimiento.setOnClickListener(fechaNacimiento());
         /* ===============   FIN DE LA BUSQUEDA  ========================*/
+
+        /*  PARTE DE CODIGO QUE SIRVE PAR ALE AUTO COMPLETADO DEL TEXT VIEW*/
+        // Referencia al elemento en la vista
+        AutoCompleteTextView textView = (AutoCompleteTextView) campoCorreo;
+        // Arreglo con las regiones
+        String[] regions = getResources().getStringArray(R.array.arreglo_correo);
+        // Le pasamos las regiones al adaptador
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, regions);
+        // finalmente le asignamos el adaptador a nuestro elemento
+        textView.setAdapter(adapter);
+
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

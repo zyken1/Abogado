@@ -82,10 +82,13 @@ public class Juicios extends AppCompatActivity {
             juicios.setIdDuenio(cursor.getInt(0));
             juicios.setIdJuicios(cursor.getInt(1));
             juicios.setNombreExpediente(cursor.getString(2));
+            //juicios.setAsunto(cursor.getString(8));
             //juicios.setCliente_extra(cursor.getString(3));
 
 
             listaMascotas.add(juicios);
+            System.out.println("*********************Juicio ==> " + juicios.getNombreExpediente());
+            System.out.println("*********************Juicio ==> " + juicios.getContrario());
         }
 
         //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
@@ -125,7 +128,7 @@ public class Juicios extends AppCompatActivity {
         } else if (id == R.id.action_add) {
             Intent i = new Intent(this, Juicios_Formulario.class);
             startActivity(i);
-              //finish(); //Finaliza la actividad
+            finish(); //Finaliza la actividad
             return true;
     }
         return super.onOptionsItemSelected(item);

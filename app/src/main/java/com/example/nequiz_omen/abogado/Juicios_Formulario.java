@@ -3,6 +3,7 @@ package com.example.nequiz_omen.abogado;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -101,6 +102,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             @Override
             public void onClick(View v) {
                 //regresar...
+                Intent i = new Intent(Juicios_Formulario.this, Juicios.class);
+                startActivity(i);
                 finish();
             }
         });
@@ -230,8 +233,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             registrarUsuarios();
             //registrarMascota();
 
-            //Intent i = new Intent(this, JuiciosE.class);
-            //startActivity(i);
+            Intent i = new Intent(this, Juicios.class);
+            startActivity(i);
             finish();
         }
 

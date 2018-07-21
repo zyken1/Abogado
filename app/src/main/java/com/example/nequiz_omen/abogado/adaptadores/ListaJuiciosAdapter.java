@@ -32,9 +32,11 @@ public class ListaJuiciosAdapter extends RecyclerView.Adapter<ListaJuiciosAdapte
 
     @Override
     public void onBindViewHolder(PersonasViewHolder holder, int position) {
-        holder.id.setText(listaMascotas.get(position).getIdJuicios().toString());
+        //holder.id.setText(listaMascotas.get(position).getIdJuicios().toString());
         holder.nombre.setText(listaMascotas.get(position).getNombreExpediente());
         holder.cliente.setText(listaMascotas.get(position).getIdDuenio().toString());
+        holder.tipoJuicio.setText(listaMascotas.get(position).getJuicio());
+        holder.asunto.setText(listaMascotas.get(position).getAsunto());
     }
 
 
@@ -46,14 +48,14 @@ public class ListaJuiciosAdapter extends RecyclerView.Adapter<ListaJuiciosAdapte
 
     public class PersonasViewHolder extends RecyclerView.ViewHolder {
 
-        TextView id,nombre,cliente,tipoJuicio;
+        TextView id,nombre,cliente,tipoJuicio,asunto;
 
         public PersonasViewHolder(View itemView) {
             super(itemView);
             nombre = (TextView) itemView.findViewById(R.id.textExpediente);
-            id = (TextView) itemView.findViewById(R.id.textCliente);
-            cliente = (TextView) itemView.findViewById(R.id.textTipoJuicio);
-            //tipoJuicio = (TextView) itemView.findViewById(R.id.textAsunto);
+            cliente = (TextView) itemView.findViewById(R.id.textCliente);
+            tipoJuicio = (TextView) itemView.findViewById(R.id.textTipoJuicio);
+            asunto = (TextView) itemView.findViewById(R.id.textAsunto);
         }
     }
 

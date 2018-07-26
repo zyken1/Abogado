@@ -118,6 +118,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         comboDuenio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long idl) {
+
             }
 
             @Override

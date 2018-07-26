@@ -16,7 +16,8 @@
             android:layout_marginRight="5dp"
             android:background="@drawable/border_label_gris"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:onClick="detalle_Juicio">
 
             <TextView
                 android:id="@+id/textView2"

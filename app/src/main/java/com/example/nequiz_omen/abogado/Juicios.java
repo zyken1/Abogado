@@ -8,10 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.nequiz_omen.abogado.adaptadores.ListaJuiciosAdapter;
 import com.example.nequiz_omen.abogado.entidades.JuiciosE;
@@ -79,16 +81,23 @@ public class Juicios extends AppCompatActivity {
 
         while (cursor.moveToNext()){
             juicios=new JuiciosE();
-            juicios.setIdDuenio(cursor.getInt(0));
-            juicios.setIdJuicios(cursor.getInt(1));
-            juicios.setNombreExpediente(cursor.getString(2));
+            juicios.setIdJuicios(cursor.getInt(0));
+            juicios.setNombreExpediente(cursor.getString(1));
+            juicios.setCliente_extra(cursor.getString(2));
+            juicios.setContrario(cursor.getString(3));
+            juicios.setContrario_extra(cursor.getString(4));
+            juicios.setJuicio(cursor.getString(5));
+
             //juicios.setAsunto(cursor.getString(8));
             //juicios.setCliente_extra(cursor.getString(3));
-
+//juicios.setIdDuenio(cursor.getInt(1));
 
             listaMascotas.add(juicios);
+            System.out.println("*********************Juicio ==> " + juicios.getIdJuicios());
             System.out.println("*********************Juicio ==> " + juicios.getNombreExpediente());
+            System.out.println("*********************Juicio ==> " + juicios.getCliente_extra());
             System.out.println("*********************Juicio ==> " + juicios.getContrario());
+            System.out.println("*********************Juicio ==> " + juicios.getCliente_extra());
         }
 
         //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
@@ -137,11 +146,10 @@ public class Juicios extends AppCompatActivity {
 
 
     //Eventos a ejecutar al darle click alguna de las imagenes que se muestran en JUICIOS
-    public void Editar_juicios(View v) {
-
-        //Toast toastCenter = Toast.makeText(getApplicationContext(),"POSICION CENTRO",Toast.LENGTH_SHORT);
-        //toastCenter.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-        //toastCenter.show();
+    public void detalle_Juicio(View v) {
+        Toast toastCenter = Toast.makeText(getApplicationContext(),"POSICION CENTRO",Toast.LENGTH_SHORT);
+        toastCenter.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toastCenter.show();
 
         //Intent i = new Intent(this,Juicios_Edicion.class);
         //startActivity(i);

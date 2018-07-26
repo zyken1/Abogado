@@ -34,7 +34,7 @@ public class ListaJuiciosAdapter extends RecyclerView.Adapter<ListaJuiciosAdapte
     public void onBindViewHolder(PersonasViewHolder holder, int position) {
         //holder.id.setText(listaMascotas.get(position).getIdJuicios().toString());
         holder.nombre.setText(listaMascotas.get(position).getNombreExpediente());
-        holder.cliente.setText(listaMascotas.get(position).getIdDuenio().toString());
+        holder.cliente.setText(listaMascotas.get(position).getCliente_extra());
         holder.tipoJuicio.setText(listaMascotas.get(position).getJuicio());
         holder.asunto.setText(listaMascotas.get(position).getAsunto());
     }

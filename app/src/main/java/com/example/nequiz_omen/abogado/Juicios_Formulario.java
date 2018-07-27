@@ -339,7 +339,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         values.put(Utilidades.CAMPO_ID_DUENIO, idDuenio);
         }else{
             //Toast.makeText(getApplicationContext(),"Debe seleccionar un Dueño",Toast.LENGTH_LONG).show();
-            values.put(Utilidades.CAMPO_ID_DUENIO, "Sin Asignar");
+            values.put(Utilidades.CAMPO_ID_DUENIO,0);
         }
 
 
@@ -387,6 +387,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             listaPersonas.add(personasList.get(i).getId()+" - "+personasList.get(i).getNombre());
         }
     }
+
 
 
 

@@ -79,27 +79,42 @@ public class Juicios extends AppCompatActivity {
         //select * from JuiciosE
         Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_JUICIOS,null);
 
-        while (cursor.moveToNext()){
-            juicios=new JuiciosE();
+        while (cursor.moveToNext()) {
+            juicios = new JuiciosE();
             juicios.setIdJuicios(cursor.getInt(0));
             juicios.setNombreExpediente(cursor.getString(1));
             juicios.setCliente_extra(cursor.getString(2));
             juicios.setContrario(cursor.getString(3));
             juicios.setContrario_extra(cursor.getString(4));
             juicios.setJuicio(cursor.getString(5));
+            juicios.setAsunto(cursor.getString(6));
+            juicios.setInstancia(cursor.getString(7));
+            juicios.setEtapa(cursor.getString(8));
+            juicios.setTramite(cursor.getString(9));
+            juicios.setFecha_tramite(cursor.getString(10));
+            juicios.setTramite_extra(cursor.getString(11));
+            juicios.setFechaTramite_extra(cursor.getString(12));
+            juicios.setCosto_juicio(cursor.getString(13));
+            juicios.setResta_pago(cursor.getString(14));
+            juicios.setAbono(cursor.getString(15));
+            juicios.setFecha_pago(cursor.getString(16));
+            juicios.setAbono_extra(cursor.getString(17));
+            juicios.setAbono_extra(cursor.getString(18));
+            juicios.setFechaAbono_extra(cursor.getString(19));
+
+
 
             //juicios.setAsunto(cursor.getString(8));
             //juicios.setCliente_extra(cursor.getString(3));
-//juicios.setIdDuenio(cursor.getInt(1));
+            //juicios.setIdDuenio(cursor.getInt(1));
 
             listaMascotas.add(juicios);
             System.out.println("*********************Juicio ==> " + juicios.getIdJuicios());
             System.out.println("*********************Juicio ==> " + juicios.getNombreExpediente());
             System.out.println("*********************Juicio ==> " + juicios.getCliente_extra());
             System.out.println("*********************Juicio ==> " + juicios.getContrario());
-            System.out.println("*********************Juicio ==> " + juicios.getCliente_extra());
-        }
 
+        }
         //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
         llenarListaJuicios();
         obtenerLista();
@@ -151,29 +166,33 @@ public class Juicios extends AppCompatActivity {
         toastCenter.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
         toastCenter.show();
 
-        //Intent i = new Intent(this,Juicios_Edicion.class);
-        //startActivity(i);
+        int myNum = 0;
+
+        //myNum = Integer.parseInt(String.valueOf(numero));
+
+        JuiciosE user = listaMascotas.get(0);   //Usuario user = listaUsuario.get(0);
+        System.out.println("************ Numero de Usuario" + myNum);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("usuario", user);
+
+
+        Intent intent = new Intent(this, Juicios_Edicion.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
+        finish();
     }
 
 
 
   /*===============   CICLOS DE VIDA DEL ACTIVITY   =================*/
-    @Override
-    protected void onStop() {
-        super.onStop();
-        //Toast.makeText(getApplicationContext(),"onStop",Toast.LENGTH_SHORT).show();
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //System.out.println("***********Activity JUICIOS onResume ");
-        //Toast.makeText(getApplicationContext()," onResume ",Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     protected void onPause() {
         super.onPause();
         //System.out.println("***********PAUSA");
     }
+
+
 }

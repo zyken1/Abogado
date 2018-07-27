@@ -23,7 +23,6 @@ public class ClienteFragment extends Fragment {
 
     TextView campoNombre,campoTipo, campoGenero,campoCorreo,fecha_nacimiento,campoDireccion,campoTelmovil,campoTelCasa,campoTelOficina,campoDependientes,campoNotas;
     String campoId;
-    ConexionSQLiteHelper conn ;
 
     public ClienteFragment() {
         // Required empty public constructor

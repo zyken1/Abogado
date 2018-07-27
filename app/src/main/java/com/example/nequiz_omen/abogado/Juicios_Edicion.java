@@ -1,5 +1,7 @@
 package com.example.nequiz_omen.abogado;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,6 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+
+import com.example.nequiz_omen.abogado.entidades.JuiciosE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +65,54 @@ public class Juicios_Edicion extends AppCompatActivity {
                 finish();
             }
         });
-    }
+
+
+         /*===============Aqui va el Bundle ======================*/
+        Bundle objetoEnviado = getIntent().getExtras();  //instanciar el Bundle
+        JuiciosE juicios = null;
+
+        if (objetoEnviado != null) {
+            juicios = (JuiciosE) objetoEnviado.getSerializable("usuario");
+            int id = juicios.getIdJuicios();
+            String nombre = juicios.getNombreExpediente();
+            /*String Tipo = juicios.getTipo_persona();
+            String email = juicios.getE_mail();
+            String genero =juicios.getGenero();
+            String nacimiento = juicios.getFechaNacimiento();
+            String direccion = juicios.getDireccion();
+            String telMovil = juicios.getTel_movil();
+            String telCasa = juicios.getTel_casa();
+            String telOficina = juicios.getTel_oficina();
+            String dependientes = juicios.getDependientes();
+            String notas = juicios.getNotas();*/
+
+            //globalId = id;
+            //campoId.setText(user.getNombre());
+            System.out.println("********Objeto Recibido ====>  " + objetoEnviado);
+            System.out.println("********Bundle Recibido ====>  " + juicios);
+            System.out.println("********Bundle ID ====>  " + id);
+            System.out.println("********Bundle ID ====>  " + nombre);
+
+
+
+            SharedPreferences prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("id", String.valueOf(id));
+            editor.putString("nombre",nombre );
+            /*editor.putString("tipoPersona", Tipo);
+            editor.putString("e-mail", email);
+            editor.putString("genero", genero);
+            editor.putString("nacimiento", nacimiento);
+            editor.putString("direccion", direccion);
+            editor.putString("telMovil", telMovil);
+            editor.putString("telCasa", telCasa);
+            editor.putString("telOficina", telOficina);
+            editor.putString("dependientes", dependientes);
+            editor.putString("notas", notas);*/
+            editor.commit();
+        }
+        /*===============Aqui Termina el Bundle ======================*/
+    }//en d on create
 
     @Override  // SE AÑADE MENU DE SETTINGS
     public boolean onCreateOptionsMenu(Menu menu) {

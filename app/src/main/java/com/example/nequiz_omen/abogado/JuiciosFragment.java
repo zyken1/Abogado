@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class JuiciosFragment extends Fragment {
 
-    TextView campoExpediente;
+    TextView campoExpediente,campoCliente,campoContrario,campoTipo,campoAsunto,campoInstancia;
     String campoId;
 
 
@@ -36,6 +36,12 @@ public class JuiciosFragment extends Fragment {
 
         //campoId = (TextView) view.findViewById(R.id.campoId);
         campoExpediente = (TextView) view.findViewById(R.id.campoExpediente);
+        campoCliente = (TextView) view.findViewById(R.id.campoCliente);
+        campoContrario = (TextView) view.findViewById(R.id.campoContrario);
+        campoTipo = (TextView) view.findViewById(R.id.campoTipo);
+        campoAsunto = (TextView) view.findViewById(R.id.campoAsunto);
+        campoInstancia = (TextView) view.findViewById(R.id.campoInstancia);
+
 
 
         /*CON ESTE  METOO SE CAPTURA LOS DATOS DESDE CUALQUIIER FRAGMENT*/
@@ -43,14 +49,25 @@ public class JuiciosFragment extends Fragment {
 
 
         String ID = prefs.getString("id", "");
-        String expediente = prefs.getString("nombre", "0");
+        String NoExpediente = prefs.getString("nombre", "0");
+        String cliente = prefs.getString("clienteExtra", "0");
+        String Contrario = prefs.getString("contrario", "0");
+        //String ContrarioExtra = prefs.getString("contrarioExtra", "0");
+        String Tipo = prefs.getString("juicio", "0");
+        String Asunto = prefs.getString("asunto", "0");
+        String Instancia = prefs.getString("instancia", "0");
 
 
 
 
         //Se mandan los datos para que aparescan en en el fragment
         //campoId.setText("1");
-        campoExpediente.setText(expediente);
+        campoExpediente.setText(NoExpediente);
+        campoCliente.setText(cliente);
+        campoContrario.setText(Contrario);
+        campoTipo.setText(Tipo);
+        campoAsunto.setText(Asunto);
+        campoInstancia.setText(Instancia);
 
 
     return view;

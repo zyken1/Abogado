@@ -28,14 +28,12 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Etapa Procesal" />
 
                 <TextView
-                    android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -47,23 +45,24 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/editText7"
+                <TextView
+                    android:id="@+id/campoEtapa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:text="Name"
+                    style="@style/CodeFont2"/>
 
-                <EditText
-                    android:id="@+id/editText8"
+                <TextView
+                    android:id="@+id/campoTramite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:text="Name"
+                    style="@style/CodeFont2"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -72,17 +71,16 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Fecha Límite Para El Trámite" />
 
-                <EditText
-                    android:id="@+id/editText12"
+                <TextView
+                    android:id="@+id/campoFechaTramite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="date" />
+                    style="@style/CodeFont2"/>
 
                 <TextView
                     android:id="@+id/textView10"

@@ -74,41 +74,57 @@ public class Juicios_Edicion extends AppCompatActivity {
         if (objetoEnviado != null) {
             juicios = (JuiciosE) objetoEnviado.getSerializable("usuario");
             int id = juicios.getIdJuicios();
-            String nombre = juicios.getNombreExpediente();
-            /*String Tipo = juicios.getTipo_persona();
-            String email = juicios.getE_mail();
-            String genero =juicios.getGenero();
-            String nacimiento = juicios.getFechaNacimiento();
-            String direccion = juicios.getDireccion();
-            String telMovil = juicios.getTel_movil();
-            String telCasa = juicios.getTel_casa();
-            String telOficina = juicios.getTel_oficina();
-            String dependientes = juicios.getDependientes();
-            String notas = juicios.getNotas();*/
+            String cliente = juicios.getNombreExpediente();
+            String clienteExtra = juicios.getCliente_extra();
+            String contrario = juicios.getContrario();
+            String contrarioExtra =juicios.getContrario_extra();
+            String juicio = juicios.getJuicio();
+            String asunto = juicios.getAsunto();
+            String instancia = juicios.getInstancia();
+            String etapa = juicios.getEtapa();
+            String tramite = juicios.getTramite();
+            String fechaTramite = juicios.getFecha_tramite();
+            String tramiteExtra = juicios.getTramite_extra();
+            String fechaExtra = juicios.getFechaTramite_extra();
+            String costoJuicio = juicios.getCosto_juicio();
+            String restaPago = juicios.getResta_pago();
+            String abono = juicios.getAbono();
+            String fechaPago = juicios.getFecha_pago();
+            String AbonoExtra = juicios.getAbono_extra();
+            String FechaAbonoExtra = juicios.getFechaAbono_extra();
+            //Integer duenio =  juicios.getIdDuenio();
 
             //globalId = id;
             //campoId.setText(user.getNombre());
             System.out.println("********Objeto Recibido ====>  " + objetoEnviado);
             System.out.println("********Bundle Recibido ====>  " + juicios);
             System.out.println("********Bundle ID ====>  " + id);
-            System.out.println("********Bundle ID ====>  " + nombre);
+            System.out.println("********Bundle ID ====>  " + cliente);
 
 
 
             SharedPreferences prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("id", String.valueOf(id));
-            editor.putString("nombre",nombre );
-            /*editor.putString("tipoPersona", Tipo);
-            editor.putString("e-mail", email);
-            editor.putString("genero", genero);
-            editor.putString("nacimiento", nacimiento);
-            editor.putString("direccion", direccion);
-            editor.putString("telMovil", telMovil);
-            editor.putString("telCasa", telCasa);
-            editor.putString("telOficina", telOficina);
-            editor.putString("dependientes", dependientes);
-            editor.putString("notas", notas);*/
+            editor.putString("nombre",cliente );
+            editor.putString("clienteExtra", clienteExtra);
+            editor.putString("contrario", contrario);
+            editor.putString("contrarioExtra", contrarioExtra);
+            editor.putString("juicio", juicio);
+            editor.putString("asunto", asunto);
+            editor.putString("instancia", instancia);
+            editor.putString("etapa", etapa);
+            editor.putString("tramite", tramite);
+            editor.putString("fechaTramite", fechaTramite);
+            editor.putString("tramiteExtra", tramiteExtra);
+            editor.putString("fechaExtra", fechaExtra);
+            editor.putString("costoJuicio", costoJuicio);
+            editor.putString("restaPago", restaPago);
+            editor.putString("abono", abono);
+            editor.putString("fechaPago", fechaPago);
+            editor.putString("AbonoExtra", AbonoExtra);
+            editor.putString("FechaAbonoExtra", FechaAbonoExtra);
+
             editor.commit();
         }
         /*===============Aqui Termina el Bundle ======================*/
@@ -131,7 +147,7 @@ public class Juicios_Edicion extends AppCompatActivity {
 
     private void addTabs(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new JuiciosFragment(), "JuiciosE");
+        adapter.addFrag(new JuiciosFragment(), "Juicios");
         adapter.addFrag(new TramitesFragment(), "Tramites");
         adapter.addFrag(new HonorariosFragment(), "Honorarios");
         //adapter.addFrag(new BananaFragment(), "Banana");

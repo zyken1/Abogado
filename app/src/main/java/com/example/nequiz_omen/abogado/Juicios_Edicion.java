@@ -1,7 +1,9 @@
 package com.example.nequiz_omen.abogado;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 
 
 import com.example.nequiz_omen.abogado.entidades.JuiciosE;
+import com.example.nequiz_omen.abogado.utilidades.Utilidades;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +32,9 @@ public class Juicios_Edicion extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private int[] tabIcons = {
-            R.drawable.apple,
-            R.drawable.orange,
-            R.drawable.grapes,
-            R.drawable.banana
-    };
+    int globalIdJuicios;
 
+    ConexionSQLiteHelper conn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +43,9 @@ public class Juicios_Edicion extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);  //soportar  el manifest de la barra de accion
+
+        conn = new ConexionSQLiteHelper(getApplicationContext(), "bd_usuarios",null,1);
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -61,7 +63,8 @@ public class Juicios_Edicion extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //regresar...
+                Intent i = new Intent(Juicios_Edicion.this, Juicios.class);
+                startActivity(i);
                 finish();
             }
         });
@@ -94,7 +97,7 @@ public class Juicios_Edicion extends AppCompatActivity {
             String FechaAbonoExtra = juicios.getFechaAbono_extra();
             //Integer duenio =  juicios.getIdDuenio();
 
-            //globalId = id;
+            globalIdJuicios = id;
             //campoId.setText(user.getNombre());
             System.out.println("********Objeto Recibido ====>  " + objetoEnviado);
             System.out.println("********Bundle Recibido ====>  " + juicios);
@@ -158,6 +161,29 @@ public class Juicios_Edicion extends AppCompatActivity {
     public void editar_juicio(MenuItem item) {
         Toast.makeText(this, "Le diste Un click", Toast.LENGTH_SHORT).show();
     }
+
+    public void borrar_juicio(MenuItem item) {
+        SQLiteDatabase db = conn.getReadableDatabase();
+
+        //String [] parametros = {campoId.getText().toString()};  /*PARAMETROS DE CONSULTA*/
+        String cadena = String.valueOf(globalIdJuicios);
+        String [] parametros = {cadena};
+
+        //metodo de eliminar el registro y que tabla se eliminara
+        db.delete(Utilidades.TABLA_JUICIOS,Utilidades.CAMPO_ID_JUICIO + "=?" ,parametros);
+        Toast.makeText(getApplicationContext(),"Juicio eliminado",Toast.LENGTH_SHORT).show();
+        db.close(); //cerrar conexion
+        Intent i = new Intent(this, Juicios.class);
+        startActivity(i);
+
+        System.out.println();
+
+        finish();
+
+
+
+    }
+
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();

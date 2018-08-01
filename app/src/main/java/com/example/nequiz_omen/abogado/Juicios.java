@@ -116,13 +116,21 @@ public class Juicios extends AppCompatActivity {
 
         }
         //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
-        llenarListaJuicios();
+        try{
+            if (juicios.toString().length() <= 0){
+                llenarListaJuicios();
+                }
+            }catch (Exception e){
+            llenarListaJuicios();
+            }
+
         obtenerLista();
     }
 
     private void llenarListaJuicios() {
-        listaMascotas.add(new JuiciosE(10,11,"Expediente numero 00","","","","","","","","","","","","","","","","",""));
-        //listaUsuario.add(new Usuario(2,"josesito","1212121212"));
+            listaMascotas.add(new JuiciosE(10, 11, "Ingresa un Expediente", "Prueba", "-------", "--------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------"));
+            //listaUsuario.add(new Usuario(2,"josesito","1212121212"));
+
     }
 
 

@@ -33,11 +33,11 @@ import java.util.List;
 public class Juicios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables
     private Spinner spinnerJuicio, spinnerEtapa, comboDuenio;
-    private LinearLayout layout_Cliente,layout_Contrario,layout_Tramite,layout_Pago;
-    private ImageView agregar_cliente,agregar_contrario,agregar_tramite,agregar_pago;
+    private LinearLayout layout_Cliente, layout_Contrario, layout_Tramite, layout_Pago;
+    private ImageView agregar_cliente, agregar_contrario, agregar_tramite, agregar_pago;
 
     /* variables para busqueda */
-    EditText campoId,campoExpediente,extra_cliente,campoContrario,extra_contrario,campoAsunto,campoInstancia,campoTramite,fecha_tramite,extra_tramite,extra_fecha_tramite,campoCosto_juicio,campoResta_pago,campoAbono,fecha_pago,extra_campoAbono,extra_fecha_pago;
+    EditText campoId, campoExpediente, extra_cliente, campoContrario, extra_contrario, campoAsunto, campoInstancia, campoTramite, fecha_tramite, extra_tramite, extra_fecha_tramite, campoCosto_juicio, campoResta_pago, campoAbono, fecha_pago, extra_campoAbono, extra_fecha_pago;
 
     ArrayList<String> listaPersonas;
     ArrayList<Usuario> personasList;
@@ -66,25 +66,25 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         layout_Pago = (LinearLayout) findViewById(R.id.layout_Pago);
 
         /*==========================    BUSQUEDA DE ID PARA LA BD    ===========================*/
-        campoExpediente = (EditText)findViewById(R.id.campoExpediente);
+        campoExpediente = (EditText) findViewById(R.id.campoExpediente);
         //extra_cliente = (EditText)findViewById(R.id.extra_cliente);     //try  catch
-        campoContrario = (EditText)findViewById(R.id.campoContrario);
+        campoContrario = (EditText) findViewById(R.id.campoContrario);
         //extra_contrario = (EditText)findViewById(R.id.extra_contrario);     //try  catch
         spinnerJuicio = (Spinner) findViewById(R.id.spinner_Juicio);
-        campoAsunto = (EditText)findViewById(R.id.campoAsunto);
-        campoInstancia = (EditText)findViewById(R.id.campoInstancia);
-        spinnerEtapa = (Spinner)findViewById(R.id.spinner_Etapa);
-        campoTramite = (EditText)findViewById(R.id.campoTramite);
-        fecha_tramite = (EditText)findViewById(R.id.fecha_tramite);
+        campoAsunto = (EditText) findViewById(R.id.campoAsunto);
+        campoInstancia = (EditText) findViewById(R.id.campoInstancia);
+        spinnerEtapa = (Spinner) findViewById(R.id.spinner_Etapa);
+        campoTramite = (EditText) findViewById(R.id.campoTramite);
+        fecha_tramite = (EditText) findViewById(R.id.fecha_tramite);
         //extra_tramite = (EditText)findViewById(R.id.extra_tramite);              //try  catch
         //extra_fecha_tramite = (EditText)findViewById(R.id.extra_fecha_tramite);  //try  catch
-        campoCosto_juicio = (EditText)findViewById(R.id.campoCosto_juicio);
-        campoResta_pago = (EditText)findViewById(R.id.campoResta_pago);
-        campoAbono = (EditText)findViewById(R.id.campoAbono);
+        campoCosto_juicio = (EditText) findViewById(R.id.campoCosto_juicio);
+        campoResta_pago = (EditText) findViewById(R.id.campoResta_pago);
+        campoAbono = (EditText) findViewById(R.id.campoAbono);
         fecha_pago = (EditText) findViewById(R.id.fecha_pago);
         //extra_campoAbono = (EditText) findViewById(R.id.extra_campoAbono);    //try  catch
         //extra_fecha_pago = (EditText) findViewById(R.id.extra_fecha_pago);    //try  catch
-        comboDuenio= (Spinner) findViewById(R.id.comboCliente);
+        comboDuenio = (Spinner) findViewById(R.id.comboCliente);
         /* ==========================    FIN DE DE LA BUSQUEDA    ===========================*/
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -92,7 +92,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
         fecha_pago.setOnClickListener(Calendario());
         fecha_tramite.setOnClickListener(Calendario());
-        
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -102,17 +102,17 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             @Override
             public void onClick(View v) {
                 //regresar...
-                Intent i = new Intent(Juicios_Formulario.this, Juicios.class);
-                startActivity(i);
+                //Intent i = new Intent(Juicios_Formulario.this, Juicios.class);
+                //startActivity(i);
                 finish();
             }
         });
 
-        conn=new ConexionSQLiteHelper(getApplicationContext(),"bd_usuarios",null,1);
+        conn = new ConexionSQLiteHelper(getApplicationContext(), "bd_usuarios", null, 1);
 
         //==============================  ADAPTADOR PARA EL SPINNER
         consultarListaPersonas();
-        ArrayAdapter<CharSequence> adaptador=new ArrayAdapter(this,android.R.layout.simple_spinner_item,listaPersonas);
+        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaPersonas);
 
         comboDuenio.setAdapter(adaptador);
         comboDuenio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -124,11 +124,11 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
-           });
+        });
 
         //==============================  Referenciado de variables del XML
         //Construcción del "adaptador" para el primer Spinner
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.array_Juicios, /*Se carga el array definido en el XML */android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.array_Juicios, /*Se carga el array definido en el XML */android.R.layout.simple_spinner_item);
 
         //Se carga el tipo de vista para el adaptador
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -144,18 +144,20 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         campoCosto_juicio.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
-                try{if (!hasFocus) {
-                    System.out.println("FOCUS" + hasFocus);
-                    int costo_juicio = Integer.parseInt(campoCosto_juicio.getText().toString());
-                    //int campo_resta = Integer.parseInt(campoResta_pago.getText().toString());
-                    int campo_Abono = Integer.parseInt(campoAbono.getText().toString());
+                try {
+                    if (!hasFocus) {
+                        System.out.println("FOCUS" + hasFocus);
+                        int costo_juicio = Integer.parseInt(campoCosto_juicio.getText().toString());
+                        //int campo_resta = Integer.parseInt(campoResta_pago.getText().toString());
+                        int campo_Abono = Integer.parseInt(campoAbono.getText().toString());
 
-                    int result = costo_juicio - campo_Abono;
-                    campoResta_pago.setText(String.valueOf(result));
-                }else{
-                    System.out.println("FOCUS" + hasFocus);}
+                        int result = costo_juicio - campo_Abono;
+                        campoResta_pago.setText(String.valueOf(result));
+                    } else {
+                        System.out.println("FOCUS" + hasFocus);
+                    }
 
-                }catch (Exception e){
+                } catch (Exception e) {
                     System.out.println("FOCUS" + hasFocus);
                     String costo_juicio = campoCosto_juicio.getText().toString();
                     campoResta_pago.setText(costo_juicio);
@@ -166,25 +168,26 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         campoAbono.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
-                try{if (!hasFocus) {
-                    System.out.println("FOCUS" + hasFocus);
-                    int costo_juicio = Integer.parseInt(campoCosto_juicio.getText().toString());
-                    int campo_Abono = Integer.parseInt(campoAbono.getText().toString());
+                try {
+                    if (!hasFocus) {
+                        System.out.println("FOCUS" + hasFocus);
+                        int costo_juicio = Integer.parseInt(campoCosto_juicio.getText().toString());
+                        int campo_Abono = Integer.parseInt(campoAbono.getText().toString());
 
-                    int result = costo_juicio - campo_Abono;
-                    campoResta_pago.setText(String.valueOf(result));
-                }else{
-                    System.out.println("FOCUS" + hasFocus);}
+                        int result = costo_juicio - campo_Abono;
+                        campoResta_pago.setText(String.valueOf(result));
+                    } else {
+                        System.out.println("FOCUS" + hasFocus);
+                    }
 
-                }catch (Exception e){ }
+                } catch (Exception e) {
+                }
 
             }
         });
 
 
-
     }//end ON CREATE
-
 
 
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -211,6 +214,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         //System.out.println("**********Array posicion  =====> " + parent.getItemAtPosition(position).toString() + "  Id ===> " +id);
     }
 
+
+
     @Override  // este spinner  es para la solucion en caso de que no se seleccione nada
     public void onNothingSelected(AdapterView<?> parent) {
     }
@@ -234,8 +239,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             registrarUsuarios();
             //registrarMascota();
 
-            Intent i = new Intent(this, Juicios.class);
-            startActivity(i);
+            //Intent i = new Intent(this, Juicios.class);
+            //startActivity(i);
             finish();
         }
 

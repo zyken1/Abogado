@@ -1,9 +1,13 @@
 package com.example.nequiz_omen.abogado;
 
+import android.app.FragmentManager;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,9 +16,11 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.nequiz_omen.abogado.Dialogos.SimpleDialog;
 import com.example.nequiz_omen.abogado.adaptadores.ListaJuiciosAdapter;
 import com.example.nequiz_omen.abogado.entidades.JuiciosE;
 import com.example.nequiz_omen.abogado.utilidades.Utilidades;
@@ -107,6 +113,7 @@ public class Juicios extends AppCompatActivity {
             //juicios.setIdDuenio(cursor.getInt(1));
 
             listaMascotas.add(juicios);
+            System.out.println("*********************Juicio ==> " + juicios);
             System.out.println("*********************Juicio ==> " + juicios.getIdJuicios());
             System.out.println("*********************Juicio ==> " + juicios.getNombreExpediente());
             System.out.println("*********************Juicio ==> " + juicios.getCliente_extra());
@@ -157,7 +164,7 @@ public class Juicios extends AppCompatActivity {
         } else if (id == R.id.action_add) {
             Intent i = new Intent(this, Juicios_Formulario.class);
             startActivity(i);
-            finish(); //Finaliza la actividad
+            //finish(); //Finaliza la actividad
             return true;
     }
         return super.onOptionsItemSelected(item);
@@ -167,11 +174,12 @@ public class Juicios extends AppCompatActivity {
 
     //Eventos a ejecutar al darle click alguna de las imagenes que se muestran en JUICIOS
     public void detalle_Juicio(View v) {
-        Toast toastCenter = Toast.makeText(getApplicationContext(),"Click",Toast.LENGTH_SHORT);
+        /*Toast toastCenter = Toast.makeText(getApplicationContext(),"Click",Toast.LENGTH_SHORT);
         toastCenter.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-        toastCenter.show();
+        toastCenter.show();*/
 
-       /* int myNum = 0;
+
+         int myNum = 0;
 
         //myNum = Integer.parseInt(String.valueOf(numero));
 
@@ -185,18 +193,25 @@ public class Juicios extends AppCompatActivity {
         Intent intent = new Intent(this, Juicios_Edicion.class);
         intent.putExtras(bundle);
         startActivity(intent);
-        finish();*/
+        //finish();
     }
 
 
 
   /*===============   CICLOS DE VIDA DEL ACTIVITY   =================*/
 
-
     @Override
-    protected void onPause() {
-        super.onPause();
-        //System.out.println("***********PAUSA");
+    protected void onResume() {
+        listaMascotas = null;
+        recyclerViewUsuarios= (RecyclerView) findViewById(R.id.recyclerJuicios);
+        recyclerViewUsuarios.setLayoutManager(new LinearLayoutManager(this));
+
+        consultarListaPersonas();
+
+        ListaJuiciosAdapter adapter = new ListaJuiciosAdapter(listaMascotas);
+        recyclerViewUsuarios.setAdapter(adapter);
+        //System.out.println("***********RESUMEN");
+        super.onResume();
     }
 
 

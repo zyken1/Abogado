@@ -1,6 +1,7 @@
 package com.example.nequiz_omen.abogado;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
@@ -63,8 +64,8 @@ public class Juicios_Edicion extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Juicios_Edicion.this, Juicios.class);
-                startActivity(i);
+                //Intent i = new Intent(Juicios_Edicion.this, Juicios.class);
+                //startActivity(i);
                 finish();
             }
         });
@@ -162,27 +163,51 @@ public class Juicios_Edicion extends AppCompatActivity {
         Toast.makeText(this, "Le diste Un click", Toast.LENGTH_SHORT).show();
     }
 
+
+    /*===========================FRAGMENTO PARA BORRAR CON ALERT ===================================*/
     public void borrar_juicio(MenuItem item) {
-        SQLiteDatabase db = conn.getReadableDatabase();
 
-        //String [] parametros = {campoId.getText().toString()};  /*PARAMETROS DE CONSULTA*/
-        String cadena = String.valueOf(globalIdJuicios);
-        String [] parametros = {cadena};
+        android.app.AlertDialog.Builder quitDialog = new android.app.AlertDialog.Builder(Juicios_Edicion.this);
+        quitDialog.setTitle("ELIMINAR");
+        quitDialog.setMessage("¿Realmente deseas borrar el Juicio?");
+        quitDialog.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
-        //metodo de eliminar el registro y que tabla se eliminara
-        db.delete(Utilidades.TABLA_JUICIOS,Utilidades.CAMPO_ID_JUICIO + "=?" ,parametros);
-        Toast.makeText(getApplicationContext(),"Juicio eliminado",Toast.LENGTH_SHORT).show();
-        db.close(); //cerrar conexion
-        Intent i = new Intent(this, Juicios.class);
-        startActivity(i);
+                SQLiteDatabase db = conn.getReadableDatabase();
 
-        System.out.println();
+                //String [] parametros = {campoId.getText().toString()};  /*PARAMETROS DE CONSULTA*/
+                String cadena = String.valueOf(globalIdJuicios);
+                String [] parametros = {cadena};
 
-        finish();
+                //metodo de eliminar el registro y que tabla se eliminara
+                db.delete(Utilidades.TABLA_JUICIOS,Utilidades.CAMPO_ID_JUICIO + "=?" ,parametros);
+                Toast.makeText(getApplicationContext(),"Juicio eliminado",Toast.LENGTH_SHORT).show();
+                db.close(); //cerrar conexion
+                System.out.println();
 
+                finish();
+                dialog.dismiss();
+            }
+        });
+        quitDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        quitDialog.setCancelable(false);
+        android.app.AlertDialog dialog = quitDialog.create();
+        dialog.show();
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorAccent));
+        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.colorAccent));
 
+        //Intent i = new Intent(this, Juicios.class);
+        //startActivity(i);
+        //finish();
 
-    }
+    }    /*================================================================================================================*/
+
 
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

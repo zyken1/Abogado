@@ -102,8 +102,6 @@ public class Juicios extends AppCompatActivity {
             juicios.setAbono_extra(cursor.getString(18));
             juicios.setFechaAbono_extra(cursor.getString(19));
 
-
-
             //juicios.setAsunto(cursor.getString(8));
             //juicios.setCliente_extra(cursor.getString(3));
             //juicios.setIdDuenio(cursor.getInt(1));
@@ -112,7 +110,6 @@ public class Juicios extends AppCompatActivity {
             System.out.println("*********************Juicio ==> " + juicios.getIdJuicios());
             System.out.println("*********************Juicio ==> " + juicios.getNombreExpediente());
             System.out.println("*********************Juicio ==> " + juicios.getCliente_extra());
-            System.out.println("*********************Juicio ==> " + juicios.getContrario());
 
         }
         //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
@@ -128,7 +125,7 @@ public class Juicios extends AppCompatActivity {
     }
 
     private void llenarListaJuicios() {
-            listaMascotas.add(new JuiciosE(10, 11, "Ingresa un Expediente", "Prueba", "-------", "--------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------"));
+            listaMascotas.add(new JuiciosE(10, 11, "Ingresa un Expediente", "Prueba", "-------", "--------", "Tipo de juicio", "Asunto", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------", "---------"));
             //listaUsuario.add(new Usuario(2,"josesito","1212121212"));
 
     }
@@ -170,15 +167,15 @@ public class Juicios extends AppCompatActivity {
 
     //Eventos a ejecutar al darle click alguna de las imagenes que se muestran en JUICIOS
     public void detalle_Juicio(View v) {
-        Toast toastCenter = Toast.makeText(getApplicationContext(),"POSICION CENTRO",Toast.LENGTH_SHORT);
+        Toast toastCenter = Toast.makeText(getApplicationContext(),"Click",Toast.LENGTH_SHORT);
         toastCenter.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
         toastCenter.show();
 
-        int myNum = 0;
+       /* int myNum = 0;
 
         //myNum = Integer.parseInt(String.valueOf(numero));
 
-        JuiciosE user = listaMascotas.get(0);   //Usuario user = listaUsuario.get(0);
+        JuiciosE user = listaMascotas.get(0);       //Usuario user = listaUsuario.get(0);
         System.out.println("************ Numero de Usuario" + myNum);
 
         Bundle bundle = new Bundle();
@@ -188,7 +185,7 @@ public class Juicios extends AppCompatActivity {
         Intent intent = new Intent(this, Juicios_Edicion.class);
         intent.putExtras(bundle);
         startActivity(intent);
-        finish();
+        finish();*/
     }
 
 

@@ -76,8 +76,8 @@ public class Cliente_Formulario extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //regresar...
-                Intent i = new Intent(Cliente_Formulario.this,Cliente.class);
-                startActivity(i);
+                //Intent i = new Intent(Cliente_Formulario.this,Cliente.class);
+                //startActivity(i);
                 finish();
             }
         });
@@ -106,8 +106,8 @@ public class Cliente_Formulario extends AppCompatActivity {
             //registrarUsuariosSQL();   //SE CRE AUN METODO PARA INSERTAR DATOS MEDIANTE SQL
 
             Toast.makeText(this, "Cliente Guardado ", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(this, Cliente.class);
-            startActivity(i);
+            //Intent i = new Intent(this, Cliente.class);
+            //startActivity(i);
             finish();
         }
     }

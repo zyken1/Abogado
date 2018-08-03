@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Created by Nequiz_OMEN on 04/07/2018.
  */
 
-public class ListaJuiciosAdapter extends RecyclerView.Adapter<ListaJuiciosAdapter.PersonasViewHolder> {
+public class ListaJuiciosAdapter extends RecyclerView.Adapter<ListaJuiciosAdapter.PersonasViewHolder>  {
 
     ArrayList<JuiciosE> listaMascotas;
 

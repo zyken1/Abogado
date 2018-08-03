@@ -113,20 +113,20 @@ public class Juicios extends AppCompatActivity {
             //juicios.setIdDuenio(cursor.getInt(1));
 
             listaMascotas.add(juicios);
-            System.out.println("*********************Juicio ==> " + juicios);
+            /*System.out.println("*********************Juicio ==> " + juicios);
             System.out.println("*********************Juicio ==> " + juicios.getIdJuicios());
             System.out.println("*********************Juicio ==> " + juicios.getNombreExpediente());
-            System.out.println("*********************Juicio ==> " + juicios.getCliente_extra());
+            System.out.println("*********************Juicio ==> " + juicios.getCliente_extra());*/
 
         }
-        //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
+        /*se manda a llamar el metodo para agregarlo a la lista que se solicita aqui  ES TEMPORAL
         try{
             if (juicios.toString().length() <= 0){
                 llenarListaJuicios();
                 }
             }catch (Exception e){
             llenarListaJuicios();
-            }
+            }*/
 
         obtenerLista();
     }

@@ -24,7 +24,7 @@ import com.example.nequiz_omen.abogado.utilidades.Utilidades;
 
 import java.util.ArrayList;
 
-public class Cliente extends AppCompatActivity {
+public class Cliente extends AppCompatActivity  {
     //VARIABLES
     TextView campoId, campoNombre, campoTelefono,textid;
     int numero,numero2 ;
@@ -65,12 +65,14 @@ public class Cliente extends AppCompatActivity {
         recyclerViewUsuarios= (RecyclerView) findViewById(R.id.recyclerPersonas);
         recyclerViewUsuarios.setLayoutManager(new LinearLayoutManager(this));
 
+        consultarListaPersonas();
+
         ListaPersonasAdapter adapter = new ListaPersonasAdapter(listaUsuario);
         recyclerViewUsuarios.setAdapter(adapter);
 
-        consultarListaPersonas();
 
- //metodo On click para que desde ListaPersonasAdapter  TE MANDE LA POSICION
+
+        //metodo On click para que desde ListaPersonasAdapter  TE MANDE LA POSICION
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +82,6 @@ public class Cliente extends AppCompatActivity {
                 System.out.println("************V  " + v.getId());
                 Detalle_Cliente();
                 //Usuario user = listaUsuario.get(numero);   //Usuario user = listaUsuario.get(0);
-
             }
         });
 
@@ -88,12 +89,14 @@ public class Cliente extends AppCompatActivity {
     }//  END onCreate
     /*==================METODO PARA CONSULTAR LAS PERSONAS DE LA BD  =================================*/
     private void consultarListaPersonas() {
+        //numero2 = listaUsuario.size();
+
+        if( listaUsuario.size() < 1 ){}
+
         SQLiteDatabase db=conn.getReadableDatabase();
 
         Usuario usuario = null;
-        //int var = 1;
-        // listaUsuarios=new ArrayList<Usuario>();
-        //select * from usuarios
+
         Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_USUARIO,null);
 
         while (cursor.moveToNext()){  /*CICLO  WHILE  PARA REPETIR LA SENTENCIA*/
@@ -112,7 +115,7 @@ public class Cliente extends AppCompatActivity {
             usuario.setNotas(cursor.getString(11));
 
             listaUsuario.add(usuario);
-            System.out.println("*********************Usuario ==> " + usuario.getId());
+            //System.out.println("*********************Usuario ==> " + usuario.getId());
         }
         //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
         //llenarListaUsuarios();
@@ -124,11 +127,6 @@ public class Cliente extends AppCompatActivity {
         //listaUsuario.add(new Usuario(2,"josesito","1212121212"));
     }
     /*==================FIN  DE LA BD  =================================*/
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
 
 
 
@@ -150,7 +148,7 @@ public class Cliente extends AppCompatActivity {
         } else if (id == R.id.action_add) {
             Intent i = new Intent(this, Cliente_Formulario.class);
             startActivity(i);
-            finish();
+            //finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -179,9 +177,25 @@ public class Cliente extends AppCompatActivity {
         Intent intent = new Intent(this, Cliente_Edicion.class);
         intent.putExtras(bundle);
         startActivity(intent);
-        finish();
+        //finish();
     }
 
+
+    @Override
+    protected void onPause() {
+         //listaUsuario = null;
+        //consultarListaPersonas();
+        /*listaUsuario = null;
+
+        recyclerViewUsuarios= (RecyclerView) findViewById(R.id.recyclerPersonas);
+        recyclerViewUsuarios.setLayoutManager(new LinearLayoutManager(this));
+
+        consultarListaPersonas();
+
+        ListaPersonasAdapter adapter = new ListaPersonasAdapter(listaUsuario);
+        recyclerViewUsuarios.setAdapter(adapter);*/
+        super.onPause();
+    }
 
 
 }//END  CLASS

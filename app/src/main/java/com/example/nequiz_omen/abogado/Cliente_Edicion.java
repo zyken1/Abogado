@@ -1,6 +1,7 @@
 package com.example.nequiz_omen.abogado;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -114,8 +115,8 @@ public class Cliente_Edicion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //regresar...
-                Intent i = new Intent(Cliente_Edicion.this, Cliente.class);
-                startActivity(i);
+                //Intent i = new Intent(Cliente_Edicion.this, Cliente.class);
+                //startActivity(i);
                 finish();
             }
         });
@@ -149,21 +150,42 @@ public class Cliente_Edicion extends AppCompatActivity {
 
     //==========Aqui vna los metodos a ejecutar en el menu para cliente_edicion
     public void eliminar_cliente(MenuItem item) {
-        //System.out.println("********GLOBAL ID ====>  " + globalId);
-        SQLiteDatabase db = conn.getReadableDatabase();
+        android.app.AlertDialog.Builder quitDialog = new android.app.AlertDialog.Builder(Cliente_Edicion.this);
+        quitDialog.setTitle("Advertencia ");
+        quitDialog.setMessage("Estas apunto de eliminar el Cliente actual");
+        quitDialog.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
-        //String [] parametros = {campoId.getText().toString()};  /*PARAMETROS DE CONSULTA*/
-        String cadena = String.valueOf(globalId);
-        String [] parametros = {cadena};
+                //System.out.println("********GLOBAL ID ====>  " + globalId);
+                SQLiteDatabase db = conn.getReadableDatabase();
 
-        //metodo de eliminar el registro y que tabla se eliminara
-        db.delete(Utilidades.TABLA_USUARIO,Utilidades.CAMPO_ID + "=?" ,parametros);
-        Toast.makeText(getApplicationContext(),"USUARIO ELIMINADO",Toast.LENGTH_SHORT).show();
-        db.close(); //cerrar conexion
-        Intent i = new Intent(this, Cliente.class);
-        startActivity(i);
-        finish();
+                //String [] parametros = {campoId.getText().toString()};  /*PARAMETROS DE CONSULTA*/
+                String cadena = String.valueOf(globalId);
+                String [] parametros = {cadena};
+
+                //metodo de eliminar el registro y que tabla se eliminara
+                db.delete(Utilidades.TABLA_USUARIO,Utilidades.CAMPO_ID + "=?" ,parametros);
+                Toast.makeText(getApplicationContext(),"USUARIO ELIMINADO",Toast.LENGTH_SHORT).show();
+                db.close(); //cerrar conexion
+                finish();
+                dialog.dismiss();
+            }
+        });
+        quitDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        quitDialog.setCancelable(false);
+        android.app.AlertDialog dialog = quitDialog.create();
+        dialog.show();
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorAccent));
+        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.colorAccent));
     }
+
+
 
     public void editar_cliente(MenuItem item) {
         Toast.makeText(this, "Boton para editar", Toast.LENGTH_SHORT).show();

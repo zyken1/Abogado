@@ -29,6 +29,7 @@ import com.example.nequiz_omen.abogado.utilidades.Utilidades;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Juicios_Formulario extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Declaración de variables
@@ -148,13 +149,12 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
                     if (!hasFocus) {
                         System.out.println("FOCUS" + hasFocus);
                         int costo_juicio = Integer.parseInt(campoCosto_juicio.getText().toString());
-                        //int campo_resta = Integer.parseInt(campoResta_pago.getText().toString());
                         int campo_Abono = Integer.parseInt(campoAbono.getText().toString());
 
                         int result = costo_juicio - campo_Abono;
                         campoResta_pago.setText(String.valueOf(result));
                     } else {
-                        System.out.println("FOCUS" + hasFocus);
+                        //System.out.println("FOCUS" + hasFocus);
                     }
 
                 } catch (Exception e) {
@@ -177,12 +177,11 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
                         int result = costo_juicio - campo_Abono;
                         campoResta_pago.setText(String.valueOf(result));
                     } else {
-                        System.out.println("FOCUS" + hasFocus);
+                        //System.out.println("FOCUS" + hasFocus);
                     }
 
                 } catch (Exception e) {
                 }
-
             }
         });
 
@@ -211,7 +210,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         //Se aplica el adaptador al Spinner de JuiciosE
         spinnerEtapa.setAdapter(adapter);
         //Toast.makeText(this, "Seleccionaste el Juicio:" + position + "  id:" +id, Toast.LENGTH_SHORT).show();
-        //System.out.println("**********Array posicion  =====> " + parent.getItemAtPosition(position).toString() + "  Id ===> " +id);
     }
 
 
@@ -232,18 +230,19 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
  /*==================     Metodo guardar al dar click al icono de Guardar  ================*/
     public void Guardar(MenuItem item) {
+        String textoJuicio = spinnerJuicio.getSelectedItem().toString();
+        System.out.println(textoJuicio);
 
         if (campoExpediente.getText().toString().trim().length() < 3) {
             campoExpediente.setError("Introduce un Numero de Expediente");
-        } else{
+        } else if(Objects.equals(textoJuicio, "Selecciona un Tipo de Juicio")){
+            Toast.makeText(getApplicationContext(),"Debes seleccionar un tipo de Juicio",Toast.LENGTH_LONG).show();
+        }else{
             registrarUsuarios();
-            //registrarMascota();
-
             //Intent i = new Intent(this, Juicios.class);
-            //startActivity(i);
+            //startActivity(i);}
             finish();
         }
-
     }
 
 
@@ -258,14 +257,12 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         SQLiteDatabase db = conn.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-
         try{//Código que puede provocar errores
             extra_cliente = (EditText)findViewById(R.id.extra_cliente);
             values.put(Utilidades.CAMPO_CLIENTE_EXTRA, extra_cliente.getText().toString());
         }
         catch(Exception e){
             //Gestión del error
-            //ccuota[1]=	"extra_cliente vacio" ;
             values.put(Utilidades.CAMPO_CLIENTE_EXTRA, "vacio");
         }
 
@@ -318,10 +315,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         values.put(Utilidades.CAMPO_ETAPA, textoEtapa);
         values.put(Utilidades.CAMPO_TRAMITE, campoTramite.getText().toString());
         values.put(Utilidades.CAMPO_FECHA_TRAMITE, fecha_tramite.getText().toString());
-
-        //String costo_juicio = campoCosto_juicio.getText().toString();
-        //String costo_resta = campoResta_pago.getText().toString();
-        //String costo_abono = campoAbono.getText().toString();
 
         values.put(Utilidades.CAMPO_COSTO_JUICIO, campoCosto_juicio.getText().toString());
         values.put(Utilidades.CAMPO_RESTA_PAGO, campoResta_pago.getText().toString());
@@ -460,7 +453,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
                 }
                break;
         }
-        //System.out.println("EL ID QUE SE CREO FUE: " + v   );
     }//end del metodo onAddField
 
 

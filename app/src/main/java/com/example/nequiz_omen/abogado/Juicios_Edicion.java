@@ -168,8 +168,8 @@ public class Juicios_Edicion extends AppCompatActivity {
     public void borrar_juicio(MenuItem item) {
 
         android.app.AlertDialog.Builder quitDialog = new android.app.AlertDialog.Builder(Juicios_Edicion.this);
-        quitDialog.setTitle("ELIMINAR");
-        quitDialog.setMessage("¿Realmente deseas borrar el Juicio?");
+        quitDialog.setTitle("Advertencia");
+        quitDialog.setMessage("¿Realmente deseas borrar el Juicio Actual?");
         quitDialog.setPositiveButton("SI", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

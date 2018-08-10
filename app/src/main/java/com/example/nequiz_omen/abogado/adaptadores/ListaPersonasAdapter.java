@@ -1,5 +1,6 @@
 package com.example.nequiz_omen.abogado.adaptadores;
 
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,21 +30,19 @@ implements View.OnClickListener {
     public PersonasViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rm_crear_cliente, null, false);
 
-        view.setOnClickListener(this);// este escuchara el evento de selccion
+        view.setOnClickListener(this);// este escuchara el evento de seleccion
         return new PersonasViewHolder(view);
+
     }
 
     @Override
     public void onBindViewHolder(PersonasViewHolder holder, int position) {
-        //System.out.println("***************Posicion  = " +position);
-        //holder.textid.setText(listaUsuario.get(position).getId().toString());
         holder.campoId.setText("");
         holder.nombre.setText(listaUsuario.get(position).getNombre().toUpperCase());
         holder.telefono.setText(listaUsuario.get(position).getTel_movil());
         holder.correo.setText(listaUsuario.get(position).getE_mail().toLowerCase());     //holder.correo.setText(listaUsuario.get(position).getId().toString());
 
-        System.out.println("************ position " + position);
-
+       // System.out.println("************ position " + position);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.example.nequiz_omen.abogado;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,9 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +23,7 @@ import java.util.ArrayList;
 public class Cliente extends AppCompatActivity  {
     //VARIABLES
     TextView campoId, campoNombre, campoTelefono,textid;
-    int numero,numero2 ;
+    int numero,numero2,variable ;
     ArrayList<Usuario> listaUsuario;
     RecyclerView recyclerViewUsuarios;
     ArrayList<String> listaUsuarios;
@@ -67,19 +63,21 @@ public class Cliente extends AppCompatActivity  {
 
         consultarListaPersonas();
 
-        ListaPersonasAdapter adapter = new ListaPersonasAdapter(listaUsuario);
+        final ListaPersonasAdapter adapter = new ListaPersonasAdapter(listaUsuario);
         recyclerViewUsuarios.setAdapter(adapter);
-
-
 
         //metodo On click para que desde ListaPersonasAdapter  TE MANDE LA POSICION
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v ) {
                 numero = listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getId();
-                Toast.makeText(getApplication(), listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getNombre() + numero , Toast.LENGTH_LONG).show();
-                System.out.println("************V  " + v.getContext());
-                System.out.println("************V  " + v.getId());
+
+                Toast.makeText(getApplication(),   numero +".- "+ listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getNombre()  , Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplication(), listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).toString(), Toast.LENGTH_LONG).show();
+                //System.out.println("************V  " + listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)));
+                //System.out.println("************V  " + recyclerViewUsuarios.getChildAdapterPosition(v));
+                variable = recyclerViewUsuarios.getChildAdapterPosition(v);
+                //System.out.println("************V  " + variable);
                 Detalle_Cliente();
                 //Usuario user = listaUsuario.get(numero);   //Usuario user = listaUsuario.get(0);
             }
@@ -115,8 +113,10 @@ public class Cliente extends AppCompatActivity  {
             usuario.setNotas(cursor.getString(11));
 
             listaUsuario.add(usuario);
-            //System.out.println("*********************Usuario ==> " + usuario.getId());
+            System.out.println("*********************Usuario ==> " + usuario.getId());
         }
+
+        System.out.println("*********************Usuario ==> " + listaUsuario);
         //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
         //llenarListaUsuarios();
     }
@@ -161,12 +161,12 @@ public class Cliente extends AppCompatActivity  {
     public void Detalle_Cliente() {
         //Object[] nombres = listaUsuario.toArray();
         //System.out.println(nombres[1]);
-        int myNum = 0;
+        //int myNum = 0;
 
-            myNum = Integer.parseInt(String.valueOf(numero));
+            //myNum = Integer.parseInt(String.valueOf(numero));
 
-            Usuario user = listaUsuario.get(0);   //Usuario user = listaUsuario.get(0);
-            System.out.println("************ Numero de Usuario" + myNum);
+            Usuario user = listaUsuario.get(variable);   //Usuario user = listaUsuario.get(0);
+            //System.out.println("************ Numero de Usuario" + myNum);
 
             Bundle bundle = new Bundle();
             bundle.putSerializable("usuario", user);

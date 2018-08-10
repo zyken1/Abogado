@@ -15,9 +15,11 @@ import java.util.ArrayList;
  * Created by Nequiz_OMEN on 04/07/2018.
  */
 
-public class ListaJuiciosAdapter extends RecyclerView.Adapter<ListaJuiciosAdapter.PersonasViewHolder>  {
-
+public class ListaJuiciosAdapter extends RecyclerView.Adapter<ListaJuiciosAdapter.PersonasViewHolder>
+        implements View.OnClickListener{
     ArrayList<JuiciosE> listaMascotas;
+    private View.OnClickListener listener;  // es nuestro escuchador
+
 
     public ListaJuiciosAdapter(ArrayList<JuiciosE> listaMascotas) {
         this.listaMascotas = listaMascotas;
@@ -26,6 +28,8 @@ public class ListaJuiciosAdapter extends RecyclerView.Adapter<ListaJuiciosAdapte
     @Override
     public PersonasViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rm_crear_juicio,null,false);
+
+        view.setOnClickListener(this);// este escuchara el evento de seleccion
         return new PersonasViewHolder(view);
     }
 
@@ -43,6 +47,21 @@ public class ListaJuiciosAdapter extends RecyclerView.Adapter<ListaJuiciosAdapte
     @Override
     public int getItemCount() {
         return listaMascotas.size();
+    }
+
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener; //el listener que se creo arriba en el metodo sea igual al listener que le llega
+    }
+
+    /**
+     * Called when a view has been clicked.
+     * @param v The view that was clicked.
+     */
+    @Override
+    public void onClick(View v) {
+        if(listener != null){
+            listener.onClick(v);
+        }
     }
 
 

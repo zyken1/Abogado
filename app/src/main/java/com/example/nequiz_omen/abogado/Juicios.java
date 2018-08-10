@@ -1,26 +1,19 @@
 package com.example.nequiz_omen.abogado;
 
-import android.app.FragmentManager;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.nequiz_omen.abogado.Dialogos.SimpleDialog;
 import com.example.nequiz_omen.abogado.adaptadores.ListaJuiciosAdapter;
 import com.example.nequiz_omen.abogado.entidades.JuiciosE;
 import com.example.nequiz_omen.abogado.utilidades.Utilidades;
@@ -31,18 +24,15 @@ public class Juicios extends AppCompatActivity {
 
     ListView vistaJuicios;
     ArrayList<String> listaInformacion;
-
     ArrayList<JuiciosE> listaMascotas;
     RecyclerView recyclerViewUsuarios;
+    int numerito,posicion;
     ConexionSQLiteHelper conn;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juicios);
-
-        conn=new ConexionSQLiteHelper(getApplicationContext(),"bd_usuarios",null,1);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -60,6 +50,7 @@ public class Juicios extends AppCompatActivity {
             }
         });
 
+        conn=new ConexionSQLiteHelper(getApplicationContext(),"bd_usuarios",null,1);
 
         //ADAPTADOR PARA JUICIOS
 
@@ -72,6 +63,16 @@ public class Juicios extends AppCompatActivity {
 
         ListaJuiciosAdapter adapter = new ListaJuiciosAdapter(listaMascotas);
         recyclerViewUsuarios.setAdapter(adapter);
+
+        adapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //numerito = listaMascotas.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getIdJuicios();
+                //Toast.makeText(getApplication(),listaMascotas.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getIdJuicios(), Toast.LENGTH_LONG).show();
+                posicion = recyclerViewUsuarios.getChildAdapterPosition(v);
+                detalle_Juicio();
+            }
+        });
     }
 
 
@@ -173,22 +174,15 @@ public class Juicios extends AppCompatActivity {
 
 
     //Eventos a ejecutar al darle click alguna de las imagenes que se muestran en JUICIOS
-    public void detalle_Juicio(View v) {
+    public void detalle_Juicio() {
         /*Toast toastCenter = Toast.makeText(getApplicationContext(),"Click",Toast.LENGTH_SHORT);
         toastCenter.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
         toastCenter.show();*/
 
-
-         int myNum = 0;
-
-        //myNum = Integer.parseInt(String.valueOf(numero));
-
-        JuiciosE user = listaMascotas.get(0);       //Usuario user = listaUsuario.get(0);
-        System.out.println("************ Numero de Usuario" + myNum);
+        JuiciosE user = listaMascotas.get(posicion);       //Usuario user = listaUsuario.get(0);
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("usuario", user);
-
 
         Intent intent = new Intent(this, Juicios_Edicion.class);
         intent.putExtras(bundle);
@@ -202,7 +196,7 @@ public class Juicios extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        listaMascotas = null;
+        /*listaMascotas = null;
         recyclerViewUsuarios= (RecyclerView) findViewById(R.id.recyclerJuicios);
         recyclerViewUsuarios.setLayoutManager(new LinearLayoutManager(this));
 
@@ -210,7 +204,7 @@ public class Juicios extends AppCompatActivity {
 
         ListaJuiciosAdapter adapter = new ListaJuiciosAdapter(listaMascotas);
         recyclerViewUsuarios.setAdapter(adapter);
-        //System.out.println("***********RESUMEN");
+        //System.out.println("***********RESUMEN");*/
         super.onResume();
     }
 

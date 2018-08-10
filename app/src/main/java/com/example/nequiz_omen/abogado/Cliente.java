@@ -70,12 +70,9 @@ public class Cliente extends AppCompatActivity  {
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v ) {
-                numero = listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getId();
+                //numero = listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getId();
+                //Toast.makeText(getApplication(),   numero +".- "+ listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getNombre()  , Toast.LENGTH_LONG).show();
 
-                Toast.makeText(getApplication(),   numero +".- "+ listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getNombre()  , Toast.LENGTH_LONG).show();
-                //Toast.makeText(getApplication(), listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).toString(), Toast.LENGTH_LONG).show();
-                //System.out.println("************V  " + listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)));
-                //System.out.println("************V  " + recyclerViewUsuarios.getChildAdapterPosition(v));
                 variable = recyclerViewUsuarios.getChildAdapterPosition(v);
                 //System.out.println("************V  " + variable);
                 Detalle_Cliente();
@@ -113,10 +110,10 @@ public class Cliente extends AppCompatActivity  {
             usuario.setNotas(cursor.getString(11));
 
             listaUsuario.add(usuario);
-            System.out.println("*********************Usuario ==> " + usuario.getId());
+            //System.out.println("*********************Usuario ==> " + usuario.getId());
         }
 
-        System.out.println("*********************Usuario ==> " + listaUsuario);
+        //System.out.println("*********************Usuario ==> " + listaUsuario);
         //se manda a llamar el metodo para agregarlo a la lista que se solicita aqui
         //llenarListaUsuarios();
     }

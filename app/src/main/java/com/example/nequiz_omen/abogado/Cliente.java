@@ -1,6 +1,8 @@
 package com.example.nequiz_omen.abogado;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -72,7 +74,6 @@ public class Cliente extends AppCompatActivity  {
             public void onClick(View v ) {
                 //numero = listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getId();
                 //Toast.makeText(getApplication(),   numero +".- "+ listaUsuario.get(recyclerViewUsuarios.getChildAdapterPosition(v)).getNombre()  , Toast.LENGTH_LONG).show();
-
                 variable = recyclerViewUsuarios.getChildAdapterPosition(v);
                 //System.out.println("************V  " + variable);
                 Detalle_Cliente();
@@ -143,6 +144,7 @@ public class Cliente extends AppCompatActivity  {
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_add) {
+            this.getSharedPreferences("Preferences", 0).edit().clear().apply();
             Intent i = new Intent(this, Cliente_Formulario.class);
             startActivity(i);
             //finish();

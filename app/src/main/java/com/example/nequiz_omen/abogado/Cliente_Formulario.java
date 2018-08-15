@@ -3,6 +3,7 @@ package com.example.nequiz_omen.abogado;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,15 +25,19 @@ import com.example.nequiz_omen.abogado.utilidades.Utilidades;
 public class Cliente_Formulario extends AppCompatActivity {
     LinearLayout layout_for_sides;
 
+    ConexionSQLiteHelper conn ;
     //se declaran las variables
     EditText campoId,campoNombre,campoCorreo,fecha_nacimiento,campoDireccion,campoTelmovil,campoTelCasa,campoTelOficina,campoDependientes,campoNotas;
     String campotipo, campoGenero;
+    int numEntero = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cliente__formulario);
 
+
+        conn = new ConexionSQLiteHelper(getApplicationContext(), "bd_usuarios",null,1);
         //Busqueda del layout con el id
         layout_for_sides = (LinearLayout) findViewById(R.id.layout_for_sides);
 
@@ -51,7 +56,38 @@ public class Cliente_Formulario extends AppCompatActivity {
         fecha_nacimiento.setOnClickListener(fechaNacimiento());
         /* ===============   FIN DE LA BUSQUEDA  ========================*/
 
-        /*  PARTE DE CODIGO QUE SIRVE PAR ALE AUTO COMPLETADO DEL TEXT VIEW*/
+
+          /*CON ESTE  METOO SE CAPTURA LOS DATOS DESDE CUALQUIIER FRAGMENT*/
+        SharedPreferences prefs = getApplication().getSharedPreferences("Preferences", 0);
+
+        String ID = prefs.getString("id", "");
+        String nombre1 = prefs.getString("nombre", "0");
+        String tipoPersona = prefs.getString("tipoPersona", "0");
+        String correo = prefs.getString("e-mail", "S/N");
+        String genero = prefs.getString("genero", "");
+        String nacimiento = prefs.getString("nacimiento", "");
+        String direccion = prefs.getString("direccion", "");
+        String telMovil = prefs.getString("telMovil", "");
+        String telCasa = prefs.getString("telCasa", "");
+        String telOficina = prefs.getString("telOficina", "");
+        String dependientes = prefs.getString("dependientes", "");
+        String notas = prefs.getString("notas", "");
+        //tuTextView.setText(correo_e);
+
+         String valor = ID;
+        try {
+            int numEntero = Integer.parseInt(valor);  //NO RESPETA LA CONDICIONAL ARROJA CERO
+            }catch (Exception e){
+
+           }
+        System.out.println("****************************** ID = " + ID);
+        System.out.println("******************************  campoId = " + nombre1);
+        System.out.println("******************************  valor = " + valor);
+        System.out.println("******************************  valor = " + numEntero);
+        //consultarSQL();
+
+
+        /*  PARTE DE CODIGO QUE SIRVE PARA EL AUTO COMPLETADO DEL TEXT VIEW*/
         // Referencia al elemento en la vista
         AutoCompleteTextView textView = (AutoCompleteTextView) campoCorreo;
         // Arreglo con las regiones
@@ -98,17 +134,18 @@ public class Cliente_Formulario extends AppCompatActivity {
 
 
           /*  METODO GUARDAR EN EL FORMULARIO  */
-    public void Guardadito_cliente(MenuItem item) {
+    public void Guardadito_cliente(MenuItem item) {      //NO RESPETA LA CONDICIONAL ARROJA CERO
         if(campoNombre.getText().toString().trim().length() < 3) {
             campoNombre.setError("Ingrese un nombre valido");
-        } else{
-            registrarUsuarios();     //SE CREA UN METODO DE LA ACCION QUE HARA  CUANDO SE DE CLICK
+        } else if(numEntero > 0){
+            Toast.makeText(this, "actualizado ", Toast.LENGTH_SHORT).show();
+        }else{
+            //registrarUsuarios();     //SE CREA UN METODO DE LA ACCION QUE HARA  CUANDO SE DE CLICK
             //registrarUsuariosSQL();   //SE CRE AUN METODO PARA INSERTAR DATOS MEDIANTE SQL
-
             Toast.makeText(this, "Cliente Guardado ", Toast.LENGTH_SHORT).show();
             //Intent i = new Intent(this, Cliente.class);
             //startActivity(i);
-            finish();
+            //finish();
         }
     }
 

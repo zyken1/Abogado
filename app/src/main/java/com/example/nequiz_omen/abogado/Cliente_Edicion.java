@@ -81,7 +81,7 @@ public class Cliente_Edicion extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
         //editor.putString("e_mail", texto);
         //editor.putString("nombre", user.getNombre());
-        //editor.putString("id", String.valueOf(id));
+        editor.putString("id", String.valueOf(id));
         editor.putString("nombre",nombre );
         editor.putString("tipoPersona", Tipo);
         editor.putString("e-mail", email);
@@ -120,7 +120,7 @@ public class Cliente_Edicion extends AppCompatActivity {
                 finish();
             }
         });
-    }
+    }// END ON CREATE
 
      /*private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
@@ -189,7 +189,9 @@ public class Cliente_Edicion extends AppCompatActivity {
 
     public void editar_cliente(MenuItem item) {
         Toast.makeText(this, "Boton para editar", Toast.LENGTH_SHORT).show();
-        //System.out.println("********GLOBAL ID ====>  " + globalId);
+        Intent i = new Intent(this, Cliente_Formulario.class);
+        startActivity(i);
+
     }
 
 

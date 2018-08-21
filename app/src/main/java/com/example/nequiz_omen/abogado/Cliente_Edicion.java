@@ -188,10 +188,10 @@ public class Cliente_Edicion extends AppCompatActivity {
 
 
     public void editar_cliente(MenuItem item) {
-        Toast.makeText(this, "Boton para editar", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Boton para editar", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(this, Cliente_Formulario.class);
         startActivity(i);
-
+        finish();
     }
 
 

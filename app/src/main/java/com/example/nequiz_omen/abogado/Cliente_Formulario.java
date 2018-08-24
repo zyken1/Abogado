@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -22,15 +23,18 @@ import android.widget.Toast;
 import com.example.nequiz_omen.abogado.Dialogos.DatePickerFragment;
 import com.example.nequiz_omen.abogado.utilidades.Utilidades;
 
+import java.util.Objects;
+
 public class Cliente_Formulario extends AppCompatActivity {
     LinearLayout layout_for_sides;
 
     ConexionSQLiteHelper conn ;
     //se declaran las variables
     EditText campoId,campoNombre,campoCorreo,fecha_nacimiento,campoDireccion,campoTelmovil,campoTelCasa,campoTelOficina,campoDependientes,campoNotas;
-    String campotipo, campoGenero;
-    private RadioButton r1,r2;
+    String campotipo, campoGenero,cadenaPersona,cadenaGenero;
+    private RadioButton r1,r2,r3,r4;
     int numEntero = 0;
+    private CheckBox seleccionDireccion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +42,7 @@ public class Cliente_Formulario extends AppCompatActivity {
         setContentView(R.layout.activity_cliente__formulario);
 
 
-        conn = new ConexionSQLiteHelper(getApplicationContext(), "bd_usuarios",null,1);
+        conn = new ConexionSQLiteHelper(getApplicationContext(), "bd_usuarios", null, 1);
         //Busqueda del layout con el id
         layout_for_sides = (LinearLayout) findViewById(R.id.layout_for_sides);
 
@@ -55,10 +59,12 @@ public class Cliente_Formulario extends AppCompatActivity {
 
         fecha_nacimiento = (EditText) findViewById(R.id.fecha_nacimiento);
         fecha_nacimiento.setOnClickListener(fechaNacimiento());
+        r1 = (RadioButton) findViewById(R.id.radioButton);
+        r2 = (RadioButton) findViewById(R.id.radioButton2);
+        r3 = (RadioButton) findViewById(R.id.radioButton3);
+        r4 = (RadioButton) findViewById(R.id.radioButton4);
 
-        r1=(RadioButton)findViewById(R.id.radioButton3);
         /* ===============   FIN DE LA BUSQUEDA  ========================*/
-
 
           /*CON ESTE  METOO SE CAPTURA LOS DATOS DESDE CUALQUIIER FRAGMENT*/
         SharedPreferences prefs = getApplication().getSharedPreferences("Preferences", 0);
@@ -77,40 +83,35 @@ public class Cliente_Formulario extends AppCompatActivity {
         String notas = prefs.getString("notas", "");
         //tuTextView.setText(correo_e);
 
-         String valor = ID;
+        String valor = ID;
         try {
-             numEntero = Integer.parseInt(valor);  //NO RESPETA LA CONDICIONAL ARROJA CERO
-            }catch (Exception e){
-
-           }
-
-        if (valor == "1") {
-            r1.isChecked();
-        }else
-        {
+            cadenaPersona = tipoPersona;
+            cadenaGenero = genero;
+            numEntero = Integer.parseInt(valor);  //NO RESPETA LA CONDICIONAL ARROJA CERO
+            button();  //con este metodo se mandan a cliclear los button en automatico y se guardan las variables
+            //loguearCheckbox(r1);
+            //onRadioButtonClicked(r2);
+        } catch (Exception e) {
         }
-
         //Se mandan los datos para que aparescan en en el fragment
         //campoId.setText("1");
         campoNombre.setText(nombre1);
         //tipoPersona.setText(tipoPersona);
         campoCorreo.setText(correo);
         //campoGenero .setText(genero);
-        fecha_nacimiento .setText(nacimiento);
-        campoDireccion .setText(direccion);
-        campoTelmovil .setText(telMovil);
-        campoTelCasa .setText(telCasa);
-        campoTelOficina .setText(telOficina);
-        campoDependientes .setText(dependientes);
-        campoNotas .setText(notas);
+        fecha_nacimiento.setText(nacimiento);
+        campoDireccion.setText(direccion);
+        campoTelmovil.setText(telMovil);
+        campoTelCasa.setText(telCasa);
+        campoTelOficina.setText(telOficina);
+        campoDependientes.setText(dependientes);
+        campoNotas.setText(notas);
         //System.out.println(correo);
 
         System.out.println("****************************** ID = " + ID);
         System.out.println("******************************  tipoPersona = " + tipoPersona);
-        System.out.println("******************************  valor = " + valor);
-        System.out.println("******************************  genero = " + genero);
-
-
+        System.out.println("******************************  cadenaPersona = " + cadenaPersona);
+        System.out.println("******************************  cadenaGenero = " + cadenaGenero);
 
         /*  PARTE DE CODIGO QUE SIRVE PARA EL AUTO COMPLETADO DEL TEXT VIEW*/
         // Referencia al elemento en la vista
@@ -121,9 +122,6 @@ public class Cliente_Formulario extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, regions);
         // finalmente le asignamos el adaptador a nuestro elemento
         textView.setAdapter(adapter);
-
-
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -137,14 +135,14 @@ public class Cliente_Formulario extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //regresar...
-                //Intent i = new Intent(Cliente_Formulario.this,Cliente.class);
-                //startActivity(i);
+                Intent i = new Intent(Cliente_Formulario.this,Cliente.class);
+                startActivity(i);
                 finish();
             }
         });
 
-    }  //END ON CREATE
 
+    }  //END ON CREATE
 
 
 
@@ -163,14 +161,16 @@ public class Cliente_Formulario extends AppCompatActivity {
             campoNombre.setError("Ingrese un nombre valido");
         } else if(numEntero > 0){
             //Toast.makeText(this, "actualizado ", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this, Cliente.class);
+            startActivity(i);
             actualizarUsuario();
             finish();
         }else{
             registrarUsuarios();     //SE CREA UN METODO DE LA ACCION QUE HARA  CUANDO SE DE CLICK
             //registrarUsuariosSQL();   //SE CRE AUN METODO PARA INSERTAR DATOS MEDIANTE SQL
             Toast.makeText(this, "Cliente Guardado ", Toast.LENGTH_SHORT).show();
-            //Intent i = new Intent(this, Cliente.class);
-            //startActivity(i);
+            Intent i = new Intent(this, Cliente.class);
+            startActivity(i);
             finish();
         }
     }
@@ -236,32 +236,28 @@ private void actualizarUsuario() {
     /*=========   PARA LOS RADIOBUTTON  ==============*/
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
+       boolean checked = ((RadioButton) view).isChecked();
         // hacemos un case con lo que ocurre cada vez que pulsemos un botón
         switch(view.getId()) {
             case R.id.radioButton:
                 if (checked)
-                    //FISICA
-                    //Toast.makeText(getApplicationContext(),"FISICA",Toast.LENGTH_SHORT).show();
                     campotipo = "Fisica";
+                System.out.println("****************Impresion en BD ====>  Fisica");
                     break;
             case R.id.radioButton2:
                 if (checked)
-                    //MORAL
-                    //Toast.makeText(getApplicationContext(),"MORAL" ,Toast.LENGTH_SHORT).show();
                     campotipo = "Moral";
+                System.out.println("****************Impresion en BD ====>  Moral");
                     break;
             case R.id.radioButton3:
-                if (checked)
-                    // HOMBRE
-                    //Toast.makeText(getApplicationContext(),"HOMBRE" ,Toast.LENGTH_SHORT).show();
+                if (checked);
                     campoGenero = "Hombre";
+                System.out.println("****************Impresion en BD ====>  Hombre");
                     break;
             case R.id.radioButton4:
                 if (checked)
-                    // MUJER
-                    //Toast.makeText(getApplicationContext(),"MUJER" ,Toast.LENGTH_SHORT).show();
                     campoGenero = "Mujer";
+                System.out.println("****************Impresion en BD ====>  Mujer");
                     break;
         }
     }
@@ -287,5 +283,37 @@ private void actualizarUsuario() {
         });
         newFragment.show(getFragmentManager(), "datePicker");
     }
+
+  /*  public void loguearCheckbox(View v) {
+        String s = "Estado: " + (r1.isChecked() ? "Marcado" : "No Marcado");
+        Toast.makeText(this, s + v.getId(), Toast.LENGTH_LONG).show();
+
+        String si = "Estado: " + (r2.isChecked() ? "Marcado" : "No Marcado");
+        Toast.makeText(this, si + v.getId(), Toast.LENGTH_LONG).show();
+    }*/
+
+    public void  button(){
+        /*ESTA CONDICIONAL APLICA EN TIPO PERSONA*/
+        if (Objects.equals(cadenaPersona, "Fisica")) {
+            r1.setChecked(true);  //http://www.hermosaprogramacion.com/2016/03/checkbox-android/
+            onRadioButtonClicked(r1);
+        }else if(Objects.equals(cadenaPersona, "Moral"))
+        {
+            r2.setChecked(true);
+            onRadioButtonClicked(r2);
+        }
+        else{}
+        /* ESTA CONDICIONAL SOLO APLICA EN GENERO PERSONA */
+        if (Objects.equals(cadenaGenero, "Hombre")) {
+            onRadioButtonClicked(r3);
+            r3.setChecked(true);  //http://www.hermosaprogramacion.com/2016/03/checkbox-android/
+        }else if(Objects.equals(cadenaGenero, "Mujer"))
+        {
+            r4.setChecked(true);
+            onRadioButtonClicked(r4);
+        }
+        else{}
+    }
+
 
 }

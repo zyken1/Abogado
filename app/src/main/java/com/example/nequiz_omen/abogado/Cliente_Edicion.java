@@ -115,8 +115,8 @@ public class Cliente_Edicion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //regresar...
-                //Intent i = new Intent(Cliente_Edicion.this, Cliente.class);
-                //startActivity(i);
+                Intent i = new Intent(Cliente_Edicion.this, Cliente.class);
+                startActivity(i);
                 finish();
             }
         });
@@ -168,8 +168,8 @@ public class Cliente_Edicion extends AppCompatActivity {
                 db.delete(Utilidades.TABLA_USUARIO,Utilidades.CAMPO_ID + "=?" ,parametros);
                 Toast.makeText(getApplicationContext(),"USUARIO ELIMINADO",Toast.LENGTH_SHORT).show();
                 db.close(); //cerrar conexion
-                finish();
                 dialog.dismiss();
+                activity();  //Metodo que manda a llamar el activity de Clientes y finaliza este  activity
             }
         });
         quitDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -186,6 +186,13 @@ public class Cliente_Edicion extends AppCompatActivity {
     }
 
 
+
+    public void activity() {
+        //Toast.makeText(this, "Boton para editar", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(this, Cliente.class);
+        startActivity(i);
+        finish();
+    }
 
     public void editar_cliente(MenuItem item) {
         //Toast.makeText(this, "Boton para editar", Toast.LENGTH_SHORT).show();

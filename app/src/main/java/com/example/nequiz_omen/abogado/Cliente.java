@@ -147,7 +147,7 @@ public class Cliente extends AppCompatActivity  {
             this.getSharedPreferences("Preferences", 0).edit().clear().apply();
             Intent i = new Intent(this, Cliente_Formulario.class);
             startActivity(i);
-            //finish();
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -176,7 +176,7 @@ public class Cliente extends AppCompatActivity  {
         Intent intent = new Intent(this, Cliente_Edicion.class);
         intent.putExtras(bundle);
         startActivity(intent);
-        //finish();
+        finish();
     }
 
 

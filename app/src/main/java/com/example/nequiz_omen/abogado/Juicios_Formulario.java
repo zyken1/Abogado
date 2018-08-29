@@ -50,7 +50,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
     int cliente_contrario = 0;
     int cliente_tramite = 0;
     int cliente_pago = 0;
-
+    int numEntero = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,7 +108,13 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         String abono = prefs.getString("abono", "0");
         String fechaPago = prefs.getString("fechaPago", "0");
 
-        System.out.println("Datos Shared preference==>" +ID+"__"+NoExpediente +"__"+cliente);
+        String valor = ID;
+        try {
+            numEntero = Integer.parseInt(valor);  //NO RESPETA LA CONDICIONAL ARROJA CERO
+        } catch (Exception e) {
+        }
+
+        System.out.println("Datos Shared preference==>" +ID+"__"+NoExpediente +"__"+cliente + "__" + numEntero);
         Toast.makeText(this, ID+"__"+NoExpediente +"__"+cliente ,Toast.LENGTH_SHORT).show();
 
 
@@ -261,7 +267,12 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             campoExpediente.setError("Introduce un Numero de Expediente");
         } else if(Objects.equals(textoJuicio, "Selecciona un Tipo de Juicio")){
             Toast.makeText(getApplicationContext(),"Debes seleccionar un tipo de Juicio",Toast.LENGTH_LONG).show();
+        }else if(numEntero > 0)
+        {
+            actualizarJuicio();
+            Toast.makeText(this, "actualizado ", Toast.LENGTH_SHORT).show();
         }else{
+            //Toast.makeText(this, "Juicio Guardado ", Toast.LENGTH_SHORT).show();
             registrarUsuarios();
             //Intent i = new Intent(this, Juicios.class);
             //startActivity(i);}
@@ -346,8 +357,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
         values.put(Utilidades.CAMPO_FECHA_PAGO, fecha_pago.getText().toString());
 
-
-
         int idCombo = (int) comboDuenio.getSelectedItemId();
 
         if (idCombo!=0){
@@ -377,6 +386,32 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
     }
 
 
+    /*======================  AQUI se Actualiza el Cliente en  LA BASE DE DATOS  ====================================*/
+    private void actualizarJuicio() {
+        SQLiteDatabase db=conn.getWritableDatabase();
+
+        String cadena = Integer.toString(numEntero);
+        String[] parametros={cadena};
+        ContentValues values= new ContentValues();     //con el content y el put se va agregar una clave y un valor  COMO EN EL HASH
+        /*values.put(Utilidades.CAMPO_NOMBRE,campoNombre.getText().toString());
+        values.put(Utilidades.CAMPO_TIPO,campotipo);           //ENTRA EN EL SWITCH  de los RADIOBUTTON y se obtiene el valor en String
+        values.put(Utilidades.CAMPO_EMAIL,campoCorreo.getText().toString());
+        values.put(Utilidades.CAMPO_GENERO,campoGenero);       //ENTRA EN EL SWITCH  de los RADIOBUTTON y se obtiene el valor en String
+        values.put(Utilidades.CAMPO_NACIMIENTO,fecha_nacimiento.getText().toString());
+        values.put(Utilidades.CAMPO_DIRECCION,campoDireccion.getText().toString());
+        values.put(Utilidades.CAMPO_TELMOVIL,campoTelmovil.getText().toString());
+        values.put(Utilidades.CAMPO_TELCASA,campoTelCasa.getText().toString());
+        values.put(Utilidades.CAMPO_TELOFICINA,campoTelOficina.getText().toString());
+        values.put(Utilidades.CAMPO_DEPENDIENTES,campoDependientes.getText().toString());
+        values.put(Utilidades.CAMPO_NOTAS,campoNotas.getText().toString());*/
+
+        //INSERTAR EN LA BASE DE DATOS
+        db.update(Utilidades.TABLA_USUARIO,values,Utilidades.CAMPO_ID+"=?",parametros);
+        Toast.makeText(getApplicationContext(),"Ya se actualizó el usuario",Toast.LENGTH_LONG).show();
+        System.out.println("****************Impresion en BD ====> " +values);
+        db.close();
+
+    }
          /*========================================================================*/
     private void consultarListaPersonas() {
         SQLiteDatabase db=conn.getReadableDatabase();

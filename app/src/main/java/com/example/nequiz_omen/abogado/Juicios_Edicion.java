@@ -160,7 +160,10 @@ public class Juicios_Edicion extends AppCompatActivity {
 
     //Aqui van los eventos del click en la imagen de editar  "ic_menu_lapiz"
     public void editar_juicio(MenuItem item) {
-        Toast.makeText(this, "Le diste Un click", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Le diste Un click", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(this, Juicios_Formulario.class);
+        startActivity(i);
+        finish();
     }
 
 
@@ -207,9 +210,6 @@ public class Juicios_Edicion extends AppCompatActivity {
         //finish();
 
     }    /*================================================================================================================*/
-
-
-
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();

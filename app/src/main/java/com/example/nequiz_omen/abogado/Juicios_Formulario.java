@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -87,6 +88,29 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         //extra_fecha_pago = (EditText) findViewById(R.id.extra_fecha_pago);    //try  catch
         comboDuenio = (Spinner) findViewById(R.id.comboCliente);
         /* ==========================    FIN DE DE LA BUSQUEDA    ===========================*/
+
+        /*CON ESTE  METOO SE CAPTURA LOS DATOS DESDE CUALQUIIER FRAGMENT*/
+        SharedPreferences prefs = getSharedPreferences("Preferences", 0);
+
+        String ID = prefs.getString("id", "");
+        String NoExpediente = prefs.getString("nombre", "0");
+        String cliente = prefs.getString("clienteExtra", "0");
+        String Contrario = prefs.getString("contrario", "0");
+        //String ContrarioExtra = prefs.getString("contrarioExtra", "0");
+        String Tipo = prefs.getString("juicio", "0");
+        String Asunto = prefs.getString("asunto", "0");
+        String Instancia = prefs.getString("instancia", "0");
+        String etapa = prefs.getString("etapa", "0");
+        String tramite = prefs.getString("tramite", "0");
+        String fechaTramite = prefs.getString("fechaTramite", "0");
+        String costoJuicio = prefs.getString("costoJuicio", "0");
+        String restaPago = prefs.getString("restaPago", "0");
+        String abono = prefs.getString("abono", "0");
+        String fechaPago = prefs.getString("fechaPago", "0");
+
+        System.out.println("Datos Shared preference==>" +ID+"__"+NoExpediente +"__"+cliente);
+        Toast.makeText(this, ID+"__"+NoExpediente +"__"+cliente ,Toast.LENGTH_SHORT).show();
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

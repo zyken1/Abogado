@@ -163,6 +163,7 @@ public class Juicios extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_add) {
+            this.getSharedPreferences("Preferences", 0).edit().clear().apply();
             Intent i = new Intent(this, Juicios_Formulario.class);
             startActivity(i);
             //finish(); //Finaliza la actividad

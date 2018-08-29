@@ -114,6 +114,21 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         } catch (Exception e) {
         }
 
+        campoExpediente.setText(NoExpediente);
+        //cliente.setText(extra_cliente);
+        campoContrario.setText(Contrario);
+        //campoTipo.setText(Tipo);
+        campoAsunto.setText(Asunto);
+        campoInstancia.setText(Instancia);
+        //campoEtapa.setText(etapa);
+        campoTramite.setText(tramite);
+        //campoFechaTramite.setText(fechaTramite);
+        campoCosto_juicio.setText(costoJuicio);
+        //campo_resta_pago.setText(restaPago);
+        //campo_abono.setText(abono);
+        //campo_fecha_pago.setText(fechaPago);   //AQUI
+
+
         System.out.println("Datos Shared preference==>" +ID+"__"+NoExpediente +"__"+cliente + "__" + numEntero);
         Toast.makeText(this, ID+"__"+NoExpediente +"__"+cliente ,Toast.LENGTH_SHORT).show();
 
@@ -459,6 +474,11 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             case R.id.add_linear_cliente:
                 if(cliente == 0)
                 {
+                    try{//Código que puede provocar errores
+                        extra_cliente = (EditText)findViewById(R.id.extra_cliente);
+                        //cliente.setText(extra_cliente);
+                    }catch(Exception e){}
+
                     cliente = 1;
                     LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     final View rowView = inflater.inflate(R.layout.rm_etxt_cliente, null);

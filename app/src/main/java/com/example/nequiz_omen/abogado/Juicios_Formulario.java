@@ -93,20 +93,20 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         SharedPreferences prefs = getSharedPreferences("Preferences", 0);
 
         String ID = prefs.getString("id", "");
-        String NoExpediente = prefs.getString("nombre", "0");
-        String cliente = prefs.getString("clienteExtra", "0");
-        String Contrario = prefs.getString("contrario", "0");
-        //String ContrarioExtra = prefs.getString("contrarioExtra", "0");
-        String Tipo = prefs.getString("juicio", "0");
-        String Asunto = prefs.getString("asunto", "0");
-        String Instancia = prefs.getString("instancia", "0");
-        String etapa = prefs.getString("etapa", "0");
-        String tramite = prefs.getString("tramite", "0");
-        String fechaTramite = prefs.getString("fechaTramite", "0");
-        String costoJuicio = prefs.getString("costoJuicio", "0");
-        String restaPago = prefs.getString("restaPago", "0");
-        String abono = prefs.getString("abono", "0");
-        String fechaPago = prefs.getString("fechaPago", "0");
+        String NoExpediente = prefs.getString("nombre","");
+        String cliente = prefs.getString("clienteExtra", "");
+        String Contrario = prefs.getString("contrario", "");
+        //String ContrarioExtra = prefs.getString("contrarioExtra", "");
+        String Tipo = prefs.getString("juicio", "");
+        String Asunto = prefs.getString("asunto", "");
+        String Instancia = prefs.getString("instancia", "");
+        String etapa = prefs.getString("etapa", "");
+        String tramite = prefs.getString("tramite", "");
+        String fechaTramite = prefs.getString("fechaTramite", "");
+        String costoJuicio = prefs.getString("costoJuicio", "");
+        String restaPago = prefs.getString("restaPago", "");
+        String abono = prefs.getString("abono", "");
+        String fechaPago = prefs.getString("fechaPago", "");
 
         String valor = ID;
         try {
@@ -129,7 +129,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         //campo_fecha_pago.setText(fechaPago);   //AQUI
 
 
-        System.out.println("Datos Shared preference==>" +ID+"__"+NoExpediente +"__"+cliente + "__" + numEntero);
+        System.out.println("*******************Datos Shared preference==>" +ID+"__"+NoExpediente +"__"+cliente + "__" + numEntero);
         Toast.makeText(this, ID+"__"+NoExpediente +"__"+cliente ,Toast.LENGTH_SHORT).show();
 
 
@@ -182,8 +182,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         spinnerJuicio.setAdapter(adapter);
 
         spinnerJuicio.setOnItemSelectedListener(this);
-
-
 
 
         /*================= EVENTOS ON FOCUS  PARA HACER LAS OPERACIONES =========================*/
@@ -255,6 +253,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         //Se aplica el adaptador al Spinner de JuiciosE
         spinnerEtapa.setAdapter(adapter);
         //Toast.makeText(this, "Seleccionaste el Juicio:" + position + "  id:" +id, Toast.LENGTH_SHORT).show();
+
+
     }
 
 
@@ -284,11 +284,12 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
             Toast.makeText(getApplicationContext(),"Debes seleccionar un tipo de Juicio",Toast.LENGTH_LONG).show();
         }else if(numEntero > 0)
         {
-            actualizarJuicio();
+            //actualizarJuicio();
             Toast.makeText(this, "actualizado ", Toast.LENGTH_SHORT).show();
+            String itemText = (String) spinnerEtapa.getSelectedItem();
         }else{
-            //Toast.makeText(this, "Juicio Guardado ", Toast.LENGTH_SHORT).show();
-            registrarUsuarios();
+            Toast.makeText(this, "Juicio Guardado ", Toast.LENGTH_SHORT).show();
+            //registrarUsuarios();
             //Intent i = new Intent(this, Juicios.class);
             //startActivity(i);}
             finish();

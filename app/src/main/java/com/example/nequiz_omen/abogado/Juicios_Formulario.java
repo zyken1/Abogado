@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -110,7 +111,7 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
         String valor = ID;
         try {
-            numEntero = Integer.parseInt(valor);  //NO RESPETA LA CONDICIONAL ARROJA CERO
+            numEntero = Integer.parseInt(valor);
         } catch (Exception e) {
         }
 
@@ -183,7 +184,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
         spinnerJuicio.setOnItemSelectedListener(this);
 
-
         /*================= EVENTOS ON FOCUS  PARA HACER LAS OPERACIONES =========================*/
         campoCosto_juicio.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -227,8 +227,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
                 }
             }
         });
-
-
     }//end ON CREATE
 
 
@@ -252,8 +250,8 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Se aplica el adaptador al Spinner de JuiciosE
         spinnerEtapa.setAdapter(adapter);
-        //Toast.makeText(this, "Seleccionaste el Juicio:" + position + "  id:" +id, Toast.LENGTH_SHORT).show();
 
+       /*  https://01luisrene.com/inicializar-un-item-especifico-de-un-spinner-segun-su-posicion/  */
 
     }
 
@@ -272,7 +270,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
 
 
 
-
  /*==================     Metodo guardar al dar click al icono de Guardar  ================*/
     public void Guardar(MenuItem item) {
         String textoJuicio = spinnerJuicio.getSelectedItem().toString();
@@ -286,7 +283,6 @@ public class Juicios_Formulario extends AppCompatActivity implements AdapterView
         {
             //actualizarJuicio();
             Toast.makeText(this, "actualizado ", Toast.LENGTH_SHORT).show();
-            String itemText = (String) spinnerEtapa.getSelectedItem();
         }else{
             Toast.makeText(this, "Juicio Guardado ", Toast.LENGTH_SHORT).show();
             //registrarUsuarios();
